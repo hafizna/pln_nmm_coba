@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pln_nmm"
+version = "0.1.0"
+description = "PLN Network Model Management - CIM round-trip toolkit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary - PLN Icon Plus internal" }
+authors = [
+    { name = "PLN Icon Plus" },
+]
+dependencies = [
+    "cimpy>=1.1.0",
+    "lxml>=4.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+]
+
+[project.scripts]
+pln-nmm = "pln_nmm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
