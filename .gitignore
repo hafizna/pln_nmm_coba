@@ -31,8 +31,16 @@ htmlcov/
 
 # Project outputs
 examples/out/
+out/
+*.log
 *.tmp
 /tmp/
+
+# Frontend dependencies and build state
+web/node_modules/
+web/*.tsbuildinfo
+web/vite.config.js
+web/vite.config.d.ts
 
 # Antigravity / agents - keep config but ignore working state
 .antigravity/state/

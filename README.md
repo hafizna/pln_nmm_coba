@@ -1,114 +1,103 @@
-# pln_nmm_coba
+# PLN Network Model Management — CIM/SLD Toolkit
 
-PLN Network Model Management — CIM round-trip toolkit. Proof of concept.
+Python and web tooling for importing, inspecting, visualizing, and round-tripping
+PLN CIM16 / CGMES 2.4.15 Equipment-profile XML.
 
-This repository contains a Python library that round-trips PLN's CIM16 /
-CGMES 2.4.15 Equipment (EQ) profile XML files without losing the two
-custom namespaces that PLN's existing toolchain (Nur Hidayat's db config)
-embeds inline:
+The parser wraps SOGNO `cimpy` without modifying it. PLN diagram coordinates and
+custom metadata are preserved outside cimpy and reinjected on export.
 
-- `plnicp:DiagramProperty.x` / `.y` — per-equipment 2D canvas coordinates
-  used by PLN's diagram tools
-- `nhftui:info` — sirkit annotation, primarily on `ConnectivityNode`
+## Current scope
 
-The library is a thin adapter layer on top of [cimpy](https://github.com/sogno-platform/cimpy),
-the SOGNO platform's Python implementation of the IEC 61970 CIM standard.
-cimpy itself is unmodified. We do not fork it. The PLN-specific behavior
-lives entirely in `src/pln_nmm/adapter.py`.
+- CIM EQ XML import and diagnostics.
+- Preservation of `plnicp:DiagramProperty.x/y`, `nhftui:info`, and the POC
+  `plnnmm` provenance/data-quality properties.
+- SLD-first web inspection using canonical coordinates.
+- Optional derived topology schematic for data-quality review.
+- Explicit diagnostics for unresolved template placeholders and incomplete bay
+  connectivity.
 
-## Status
+Operational topology processing, load flow, and non-EQ CGMES profiles remain
+future work.
 
-Phase 1 (EQ round-trip) — working. All 14 tests pass against the bundled
-sample file `tests/fixtures/sample_EQ.xml`.
+## Install
 
-Out of scope for now: TP/SSH/SV profiles, load flow, web UI, multi-substation
-editing. See `docs/` for the planned next phases.
-
-## Quick start
-
-```bash
-# Install dependencies (Python 3.10+)
-pip install -e ".[dev]"
-
-# Run the demo against the bundled sample
-python examples/roundtrip_demo.py
-
-# Run the test suite
-pytest
-
-# Use the CLI
-python -m pln_nmm.cli inspect tests/fixtures/sample_EQ.xml
-python -m pln_nmm.cli roundtrip input.xml output.xml --mode preserve
+```powershell
+python -m pip install -e ".[dev,web]"
 ```
 
-## What the round-trip preserves
+Python 3.10 or newer is required.
 
-| Aspect | Preserved? |
-|---|---|
-| All `rdf:ID` values (mRIDs) | yes |
-| Class distribution (counts per CIM class) | yes |
-| Electrical parameters (r, x, b, ratedS, ratedU, etc.) | yes |
-| Container hierarchy (Region → Substation → VoltageLevel) | yes |
-| Terminal-to-equipment-to-ConnectivityNode chains | yes |
-| `plnicp:DiagramProperty.x` / `.y` coordinates | yes (preserve mode) |
-| `nhftui:info` attributes | yes (preserve mode) |
-| Float coordinate precision | yes (bit-exact) |
-| Original `md:FullModel` metadata | no — cimpy overwrites |
-| `cim:IdentifiedObject.mRID` child element | no — cimpy emits only `rdf:ID` |
-| Original whitespace / element ordering | no — cimpy normalizes |
+## CLI
 
-## Architecture in one paragraph
+Inspect an XML file:
 
-Importing a PLN EQ file goes through three steps. First, `extract_pln_extensions`
-walks the XML and lifts every `plnicp:DiagramProperty.x/y` and `nhftui:info`
-into a side-table keyed by mRID. Second, `strip_pln_extensions` writes a
-cleaned copy of the XML to a temp file with all PLN-specific elements
-removed. Third, cimpy parses the cleaned file into its native object graph.
-On export, cimpy serializes the object graph back to XML (without the
-PLN extensions, since cimpy does not know about them), then `reinject_pln_extensions`
-walks that output and reattaches the extensions from the side-table by
-matching on `rdf:ID`.
-
-## Project layout
-
-```
-pln_nmm_coba/
-├── src/pln_nmm/        # library
-│   ├── adapter.py      # extract / strip / reinject PLN extensions
-│   ├── importer.py     # wraps cimpy.cim_import
-│   ├── exporter.py     # wraps cimpy.cim_export with reinjection
-│   └── cli.py          # command-line entry point
-├── tests/              # pytest suite
-│   └── fixtures/       # bundled PLN sample CIM files
-├── examples/           # runnable demos
-├── docs/               # design specs, decision records
-├── CLAUDE.md           # context for Claude Code agent
-├── AGENTS.md           # context for Codex / generic agents
-└── pyproject.toml      # build, deps, test config
+```powershell
+python -m pln_nmm.cli inspect "path\to\model.xml"
 ```
 
-## Working with agentic tools
+Round-trip while preserving PLN extensions:
 
-This repo is set up for use with multiple agentic coding tools. The
-top-level instruction files describe project conventions for each:
+```powershell
+python -m pln_nmm.cli roundtrip "input.xml" "out\roundtrip_EQ.xml" --mode preserve
+```
 
-- **Claude Code** reads `CLAUDE.md`
-- **Codex** and other generic agents read `AGENTS.md`
-- **Antigravity (Gemini)** reads `.gemini/config.md`
+Emit standard CGMES without PLN extensions:
 
-All three files describe the same project the same way. They diverge only
-in tool-specific commands and flags.
+```powershell
+python -m pln_nmm.cli roundtrip "input.xml" "out\standard_EQ.xml" --mode standard
+```
 
-## License
+## Web SLD viewer
 
-Proprietary — internal PLN Icon Plus tooling.
+Run these in separate terminals:
 
-Third-party dependencies and their licenses:
+```powershell
+python -m uvicorn pln_nmm_web.api:app --host 127.0.0.1 --port 8000 --reload
+```
 
-- cimpy — Apache License 2.0 — © ACS RWTH Aachen / OPAL-RT Technologies
-- lxml — BSD-style — © Infrae
-- xmltodict (transitive via cimpy) — MIT — © Martin Blech
-- chevron (transitive via cimpy) — MIT — © Noah Morrison
+```powershell
+cd web
+npm install
+npm run dev -- --port 5173 --strictPort
+```
 
-A copy of the cimpy LICENSE is bundled by pip in the installed package's
-`dist-info` directory; no separate redistribution step is required.
+Open <http://127.0.0.1:5173> and upload a CIM XML file.
+
+The viewer defaults to **Canonical coordinates**, which displays the layout
+encoded in the XML. **Topology schematic** is a derived diagnostic view and may
+surface orphan equipment or incomplete switching chains.
+
+## Canonical demonstration files
+
+- `Gilimanuk_NMM_POC_Package/Gilimanuk_NMM_POC_Canonical_Draft.xml` — system /
+  inter-GI Gilimanuk proof of concept.
+- `NMM_Two_Level_Model_Demonstration/02_Substation_Level/` — focused single-GI
+  internal bay demonstration.
+- `docs/08_CANONICAL_XML_GAP_RECAP.md` — evidence-based recap of the XML gaps
+  filled relative to the initial aggregate source.
+
+These are review drafts, not as-built operational models.
+
+## Validation
+
+```powershell
+python -m pytest -q
+cd web
+npm run build
+```
+
+## Architecture
+
+- `src/pln_nmm/adapter.py` — extract, strip, and reinject PLN extensions.
+- `src/pln_nmm/importer.py` — cimpy import wrapper.
+- `src/pln_nmm/exporter.py` — cimpy export wrapper and UTF-8 normalization.
+- `src/pln_nmm/diagnostics.py` — pure-XML data-quality diagnostics.
+- `src/pln_nmm/sld.py` — tolerant SLD extraction.
+- `src/pln_nmm/topology.py` — derived bay/topology model.
+- `src/pln_nmm_web/api.py` — local FastAPI inspection API.
+- `web/` — React/TypeScript SLD workspace.
+
+## Licensing
+
+Runtime dependencies are permissively licensed: cimpy (Apache-2.0), lxml
+(BSD), FastAPI, React, and React Flow. GPL/AGPL dependencies are out of scope.

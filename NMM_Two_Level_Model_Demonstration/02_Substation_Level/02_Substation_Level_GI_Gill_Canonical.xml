@@ -1,0 +1,2057 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:plnicp="http://iconpln.co.id#" xmlns:plnnmm="http://pln.co.id/nmm/poc#">
+  <md:FullModel rdf:about="urn:uuid:680766ca-28a1-5795-ba11-e61f9b15b150">
+    <md:Model.created>2026-07-21T08:45:58Z</md:Model.created>
+    <md:Model.modelingAuthoritySet>PLN NMM POC</md:Model.modelingAuthoritySet>
+    <md:Model.profile>http://entsoe.eu/CIM/EquipmentCore/3/1</md:Model.profile>
+    <md:Model.profile>http://entsoe.eu/CIM/EquipmentOperation/3/1</md:Model.profile>
+    <md:Model.scenarioTime>2026-07-21T00:00:00Z</md:Model.scenarioTime>
+    <md:Model.version>0.1</md:Model.version>
+    <plnnmm:scope>Single-substation internal node-breaker proof of concept for GI_Gill</plnnmm:scope>
+    <plnnmm:parentModelRole>Substation-detail model that can be linked to a system/inter-GI model through boundary terminals</plnnmm:parentModelRole>
+    <plnnmm:disclaimer>Generated from a focused one-substation sample XML. CB/DS are provisional.</plnnmm:disclaimer>
+  </md:FullModel>
+  <cim:GeographicalRegion rdf:ID="_29d394de-5d90-59b3-b4d3-5e414c04625e">
+    <cim:IdentifiedObject.mRID>29d394de-5d90-59b3-b4d3-5e414c04625e</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>Grid_Iwa</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical region from the focused sample XML.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>REG-GRID-IWA</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.98</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+  </cim:GeographicalRegion>
+  <cim:SubGeographicalRegion rdf:ID="_513e42ef-b696-5a94-a62f-abe13088b065">
+    <cim:IdentifiedObject.mRID>513e42ef-b696-5a94-a62f-abe13088b065</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>Kota_Depok</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical subregion from the focused sample XML.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>SREG-KOTA-DEPOK</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.98</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:SubGeographicalRegion.Region rdf:resource="#_29d394de-5d90-59b3-b4d3-5e414c04625e"/>
+  </cim:SubGeographicalRegion>
+  <cim:Substation rdf:ID="_55fd4e8a-91d4-55e7-95f1-68bf110f662e">
+    <cim:IdentifiedObject.mRID>55fd4e8a-91d4-55e7-95f1-68bf110f662e</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GI_Gill</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Single canonical substation replacing repeated source Substation records.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>SUB-GI-GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.99</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Substation.Region rdf:resource="#_513e42ef-b696-5a94-a62f-abe13088b065"/>
+  </cim:Substation>
+  <cim:BaseVoltage rdf:ID="_a7846177-a022-57c8-b7ba-257e77733484">
+    <cim:IdentifiedObject.mRID>a7846177-a022-57c8-b7ba-257e77733484</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>150 kV</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical 150 kV base voltage.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>BV-150</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>1.00</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:BaseVoltage.nominalVoltage>150</cim:BaseVoltage.nominalVoltage>
+  </cim:BaseVoltage>
+  <cim:VoltageLevel rdf:ID="_34ee4ecc-2710-5a32-91db-8252a5cfa3ee">
+    <cim:IdentifiedObject.mRID>34ee4ecc-2710-5a32-91db-8252a5cfa3ee</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GI_Gill 150 kV</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Single canonical voltage level replacing equipment-specific source VoltageLevel records.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>VL-GI-GILL-150</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.98</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:VoltageLevel.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:VoltageLevel.Substation rdf:resource="#_55fd4e8a-91d4-55e7-95f1-68bf110f662e"/>
+  </cim:VoltageLevel>
+  <cim:ConnectivityNode rdf:ID="_66da45bd-323d-56ab-9197-d04e8e3139cc">
+    <cim:IdentifiedObject.mRID>66da45bd-323d-56ab-9197-d04e8e3139cc</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GI_Gill main bus connectivity node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GI_Gill main bus connectivity node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-150-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.99</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>558.0909726137421</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>178.65246948593943</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:ConnectivityNode>
+  <cim:BusbarSection rdf:ID="_073f7500-949b-5801-80b3-2732b1e629a2">
+    <cim:IdentifiedObject.mRID>073f7500-949b-5801-80b3-2732b1e629a2</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BUSBAR GI_GILL 150 kV</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical main busbar normalized from Busbar_Gill.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BUS-MAIN</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.99</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>460b6e83-6e01-413f-aa70-6280bee4104a</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>558.0909726137421</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>123.65246948593943</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:BusbarSection>
+  <cim:Terminal rdf:ID="_43dd4ab8-008f-5511-84ae-ff3638c85c1c">
+    <cim:IdentifiedObject.mRID>43dd4ab8-008f-5511-84ae-ff3638c85c1c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of BUSBAR GI_GILL 150 kV</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>BUSBAR-GI-GILL-MAIN-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.99</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_073f7500-949b-5801-80b3-2732b1e629a2"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_f1338a97-c3e0-567b-a3a1-3806efe526cf">
+    <cim:IdentifiedObject.mRID>f1338a97-c3e0-567b-a3a1-3806efe526cf</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY GEN GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for GEN GILL.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-GEN_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>8fb0654a-7c2e-4b67-a157-734b68ef4eed</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_eaaa3e58-6b41-5e9a-8f1a-5634043e076b">
+    <cim:IdentifiedObject.mRID>eaaa3e58-6b41-5e9a-8f1a-5634043e076b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN_GILL DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GEN_GILL DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-GEN_GILL-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_ef8d88c3-27a1-581a-8392-d5444f64f7c3">
+    <cim:IdentifiedObject.mRID>ef8d88c3-27a1-581a-8392-d5444f64f7c3</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN_GILL CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GEN_GILL CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-GEN_GILL-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_367af4e3-03f3-55a8-8532-71964764bcd0">
+    <cim:IdentifiedObject.mRID>367af4e3-03f3-55a8-8532-71964764bcd0</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN_GILL equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GEN_GILL equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-GEN_GILL-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_fc105aec-e392-5b0c-8afb-bbc8a4b1e3b9">
+    <cim:IdentifiedObject.mRID>fc105aec-e392-5b0c-8afb-bbc8a4b1e3b9</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS GEN GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS GEN GILL in GEN_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_GILL-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_a5d98c36-ac7f-5f91-aab2-1cb70649a92c">
+    <cim:IdentifiedObject.mRID>a5d98c36-ac7f-5f91-aab2-1cb70649a92c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_GILL-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_fc105aec-e392-5b0c-8afb-bbc8a4b1e3b9"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_578452d5-996c-519b-9124-48974079fc3a">
+    <cim:IdentifiedObject.mRID>578452d5-996c-519b-9124-48974079fc3a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_GILL-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_fc105aec-e392-5b0c-8afb-bbc8a4b1e3b9"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_eaaa3e58-6b41-5e9a-8f1a-5634043e076b"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_574e75da-d59f-58da-8486-2a4b05361e0c">
+    <cim:IdentifiedObject.mRID>574e75da-d59f-58da-8486-2a4b05361e0c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB GEN GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB GEN GILL in GEN_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_GILL-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_f333a60a-654d-55e9-a2f7-d8afe6234d3a">
+    <cim:IdentifiedObject.mRID>f333a60a-654d-55e9-a2f7-d8afe6234d3a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-GEN_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_574e75da-d59f-58da-8486-2a4b05361e0c"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_eaaa3e58-6b41-5e9a-8f1a-5634043e076b"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_5e0433fc-5e79-528c-b888-17874b282a2f">
+    <cim:IdentifiedObject.mRID>5e0433fc-5e79-528c-b888-17874b282a2f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-GEN_GILL-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_574e75da-d59f-58da-8486-2a4b05361e0c"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_ef8d88c3-27a1-581a-8392-d5444f64f7c3"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_4e5e95d6-8ff8-5840-824f-bf7af055b95d">
+    <cim:IdentifiedObject.mRID>4e5e95d6-8ff8-5840-824f-bf7af055b95d</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT GEN GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT GEN GILL in GEN_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_GILL-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_RECAST</plnnmm:provenance>
+    <plnnmm:confidence>0.68</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>06ff0283-2b7d-4299-a349-3c172fcfa6d6</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_89dbe9cd-08ad-543b-9d6c-a7c83d7eac59">
+    <cim:IdentifiedObject.mRID>89dbe9cd-08ad-543b-9d6c-a7c83d7eac59</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_GILL-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_RECAST</plnnmm:provenance>
+    <plnnmm:confidence>0.68</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_4e5e95d6-8ff8-5840-824f-bf7af055b95d"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_ef8d88c3-27a1-581a-8392-d5444f64f7c3"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_e9795dc0-dba4-504c-b7c8-93c168c063e1">
+    <cim:IdentifiedObject.mRID>e9795dc0-dba4-504c-b7c8-93c168c063e1</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_GILL-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_RECAST</plnnmm:provenance>
+    <plnnmm:confidence>0.68</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_4e5e95d6-8ff8-5840-824f-bf7af055b95d"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_367af4e3-03f3-55a8-8532-71964764bcd0"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:SynchronousMachine rdf:ID="_da09c581-86b0-5e3b-8f68-43d5b2d8e127">
+    <cim:IdentifiedObject.mRID>da09c581-86b0-5e3b-8f68-43d5b2d8e127</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical SynchronousMachine for GEN GILL. Source generator ratings are retained.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>8fb0654a-7c2e-4b67-a157-734b68ef4eed</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>633.0945837725392</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>657.5511904057308</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_f1338a97-c3e0-567b-a3a1-3806efe526cf"/>
+    <cim:RotatingMachine.ratedPowerFactor>0.8</cim:RotatingMachine.ratedPowerFactor>
+    <cim:RotatingMachine.ratedS>100.0</cim:RotatingMachine.ratedS>
+    <cim:RotatingMachine.ratedU>150.0</cim:RotatingMachine.ratedU>
+    <cim:SynchronousMachine.maxQ>100.0</cim:SynchronousMachine.maxQ>
+    <cim:SynchronousMachine.minQ>-100.0</cim:SynchronousMachine.minQ>
+    <cim:SynchronousMachine.type rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind.generator"/>
+  </cim:SynchronousMachine>
+  <cim:Terminal rdf:ID="_1f9b780c-97c2-54bb-8267-86076110feec">
+    <cim:IdentifiedObject.mRID>1f9b780c-97c2-54bb-8267-86076110feec</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of GEN GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-GEN_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_da09c581-86b0-5e3b-8f68-43d5b2d8e127"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_367af4e3-03f3-55a8-8532-71964764bcd0"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_92f88430-60d2-5eb3-b4ca-f7183c94551b">
+    <cim:IdentifiedObject.mRID>92f88430-60d2-5eb3-b4ca-f7183c94551b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY TRAFO GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for TRAFO GILL.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-TRF_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>03243776-08fc-40f5-a180-c8179bccf17a</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_6c6e2bb0-ef7e-5ac0-8a89-47bd592946bd">
+    <cim:IdentifiedObject.mRID>6c6e2bb0-ef7e-5ac0-8a89-47bd592946bd</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_GILL DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_GILL DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_GILL-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_81b7d461-e261-5148-a099-132af0c0cffc">
+    <cim:IdentifiedObject.mRID>81b7d461-e261-5148-a099-132af0c0cffc</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_GILL CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_GILL CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_GILL-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_cdafe6d9-b5c2-5d77-b1a7-32a743397edd">
+    <cim:IdentifiedObject.mRID>cdafe6d9-b5c2-5d77-b1a7-32a743397edd</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_GILL equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_GILL equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_GILL-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_c2c90805-7e60-5861-bdbf-85e9a28c00c6">
+    <cim:IdentifiedObject.mRID>c2c90805-7e60-5861-bdbf-85e9a28c00c6</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS TRAFO GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS TRAFO GILL in TRF_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_GILL-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_a6bd5eea-f3a7-57eb-beb4-1f88db20d143">
+    <cim:IdentifiedObject.mRID>a6bd5eea-f3a7-57eb-beb4-1f88db20d143</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_GILL-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_c2c90805-7e60-5861-bdbf-85e9a28c00c6"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_3a0b1d60-c11e-5c73-ae74-1f9e31263501">
+    <cim:IdentifiedObject.mRID>3a0b1d60-c11e-5c73-ae74-1f9e31263501</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_GILL-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_c2c90805-7e60-5861-bdbf-85e9a28c00c6"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_6c6e2bb0-ef7e-5ac0-8a89-47bd592946bd"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_4d2d465e-20b0-5dd9-81f7-fa9a70095334">
+    <cim:IdentifiedObject.mRID>4d2d465e-20b0-5dd9-81f7-fa9a70095334</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB TRAFO GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB TRAFO GILL in TRF_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_GILL-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_a916d2d8-11e2-52be-81ea-54544452aaf9">
+    <cim:IdentifiedObject.mRID>a916d2d8-11e2-52be-81ea-54544452aaf9</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-TRF_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_4d2d465e-20b0-5dd9-81f7-fa9a70095334"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_6c6e2bb0-ef7e-5ac0-8a89-47bd592946bd"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_71fc56ae-547e-5073-85f3-1f6dc42182df">
+    <cim:IdentifiedObject.mRID>71fc56ae-547e-5073-85f3-1f6dc42182df</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-TRF_GILL-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_4d2d465e-20b0-5dd9-81f7-fa9a70095334"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_81b7d461-e261-5148-a099-132af0c0cffc"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_649f007c-6adf-56e9-ae5c-574b86037319">
+    <cim:IdentifiedObject.mRID>649f007c-6adf-56e9-ae5c-574b86037319</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT TRAFO GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT TRAFO GILL in TRF_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_GILL-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_3b944bca-9e6f-5abd-a299-724cefeedd88">
+    <cim:IdentifiedObject.mRID>3b944bca-9e6f-5abd-a299-724cefeedd88</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_GILL-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_649f007c-6adf-56e9-ae5c-574b86037319"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_81b7d461-e261-5148-a099-132af0c0cffc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_05026f23-7031-5d50-a6bd-e1569ec9b246">
+    <cim:IdentifiedObject.mRID>05026f23-7031-5d50-a6bd-e1569ec9b246</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_GILL-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_649f007c-6adf-56e9-ae5c-574b86037319"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_cdafe6d9-b5c2-5d77-b1a7-32a743397edd"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:PowerTransformer rdf:ID="_c66dbab6-b371-5e16-b5ae-d56f6dbfa643">
+    <cim:IdentifiedObject.mRID>c66dbab6-b371-5e16-b5ae-d56f6dbfa643</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRAFO GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical PowerTransformer for TRAFO GILL. Source transformer-end data are retained; voltage-ratio inconsistency is flagged.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>03243776-08fc-40f5-a180-c8179bccf17a</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>505.8331076152256</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_92f88430-60d2-5eb3-b4ca-f7183c94551b"/>
+  </cim:PowerTransformer>
+  <cim:ConnectivityNode rdf:ID="_8f767792-387a-57a7-aa84-dda5bbea86fe">
+    <cim:IdentifiedObject.mRID>8f767792-387a-57a7-aa84-dda5bbea86fe</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_GILL transformer end-2 boundary node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_GILL transformer end-2 boundary node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_GILL-END2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1076.558842467801</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>635.8331076152256</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:ConnectivityNode>
+  <cim:Terminal rdf:ID="_2cf9e77a-ce1c-5181-8d44-7759a63d51ad">
+    <cim:IdentifiedObject.mRID>2cf9e77a-ce1c-5181-8d44-7759a63d51ad</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-TRF_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_c66dbab6-b371-5e16-b5ae-d56f6dbfa643"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_cdafe6d9-b5c2-5d77-b1a7-32a743397edd"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_f4953d14-ddde-57eb-a6f8-239aeccb5302">
+    <cim:IdentifiedObject.mRID>f4953d14-ddde-57eb-a6f8-239aeccb5302</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of TRAFO GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-TRF_GILL-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_c66dbab6-b371-5e16-b5ae-d56f6dbfa643"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_8f767792-387a-57a7-aa84-dda5bbea86fe"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:PowerTransformerEnd rdf:ID="_51d07e54-b15c-55e4-b2cb-d8dad8be77fa">
+    <cim:IdentifiedObject.mRID>51d07e54-b15c-55e4-b2cb-d8dad8be77fa</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRAFO GILL END 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Transformer end 1 retained from source sample.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-TRF_GILL-END-1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>77724378-2811-4fbb-93f4-f50c3320af53</plnnmm:sourceObjectMRID>
+    <cim:PowerTransformerEnd.PowerTransformer rdf:resource="#_c66dbab6-b371-5e16-b5ae-d56f6dbfa643"/>
+    <cim:TransformerEnd.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:TransformerEnd.Terminal rdf:resource="#_2cf9e77a-ce1c-5181-8d44-7759a63d51ad"/>
+    <cim:TransformerEnd.endNumber>1</cim:TransformerEnd.endNumber>
+    <cim:PowerTransformerEnd.ratedS>50.0</cim:PowerTransformerEnd.ratedS>
+    <cim:PowerTransformerEnd.ratedU>150.0</cim:PowerTransformerEnd.ratedU>
+    <cim:PowerTransformerEnd.r>0.0</cim:PowerTransformerEnd.r>
+    <cim:PowerTransformerEnd.x>13.5</cim:PowerTransformerEnd.x>
+    <cim:PowerTransformerEnd.b>-4.44444e-05</cim:PowerTransformerEnd.b>
+    <cim:PowerTransformerEnd.g>0.0</cim:PowerTransformerEnd.g>
+  </cim:PowerTransformerEnd>
+  <cim:PowerTransformerEnd rdf:ID="_98e44915-2738-5886-8dcd-bffca209ec60">
+    <cim:IdentifiedObject.mRID>98e44915-2738-5886-8dcd-bffca209ec60</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRAFO GILL END 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Transformer end 2 retained from source sample.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-TRF_GILL-END-2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>8c4683cc-e989-4d46-b3a2-6ac132bba87b</plnnmm:sourceObjectMRID>
+    <cim:PowerTransformerEnd.PowerTransformer rdf:resource="#_c66dbab6-b371-5e16-b5ae-d56f6dbfa643"/>
+    <cim:TransformerEnd.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:TransformerEnd.Terminal rdf:resource="#_f4953d14-ddde-57eb-a6f8-239aeccb5302"/>
+    <cim:TransformerEnd.endNumber>2</cim:TransformerEnd.endNumber>
+    <cim:PowerTransformerEnd.ratedS>50.0</cim:PowerTransformerEnd.ratedS>
+    <cim:PowerTransformerEnd.ratedU>150.0</cim:PowerTransformerEnd.ratedU>
+    <cim:PowerTransformerEnd.r>0.0</cim:PowerTransformerEnd.r>
+    <cim:PowerTransformerEnd.x>0.0</cim:PowerTransformerEnd.x>
+    <cim:PowerTransformerEnd.b>0.0</cim:PowerTransformerEnd.b>
+    <cim:PowerTransformerEnd.g>0.0</cim:PowerTransformerEnd.g>
+  </cim:PowerTransformerEnd>
+  <cim:Bay rdf:ID="_960b98ae-3d89-5861-915f-b18cf5aa67a9">
+    <cim:IdentifiedObject.mRID>960b98ae-3d89-5861-915f-b18cf5aa67a9</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY LINE GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for LINE GILL.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-LINE_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>54e16534-67d2-4dfd-91f3-d2f2e85058a2</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_d77c5b0c-3341-5d32-9bc5-044c2a888b92">
+    <cim:IdentifiedObject.mRID>d77c5b0c-3341-5d32-9bc5-044c2a888b92</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_GILL DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_GILL DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_GILL-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_efa34944-ca55-5bc7-87f8-e40b07a3fa2b">
+    <cim:IdentifiedObject.mRID>efa34944-ca55-5bc7-87f8-e40b07a3fa2b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_GILL CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_GILL CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_GILL-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_00a23877-efe9-563f-a0d0-77369ccc316f">
+    <cim:IdentifiedObject.mRID>00a23877-efe9-563f-a0d0-77369ccc316f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_GILL equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_GILL equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_GILL-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_f1660596-32f0-570c-9cd4-60fb1b5ba5d0">
+    <cim:IdentifiedObject.mRID>f1660596-32f0-570c-9cd4-60fb1b5ba5d0</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS LINE GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS LINE GILL in LINE_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_GILL-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_1581affb-54e5-509d-a848-1fd33936e20a">
+    <cim:IdentifiedObject.mRID>1581affb-54e5-509d-a848-1fd33936e20a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_GILL-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_f1660596-32f0-570c-9cd4-60fb1b5ba5d0"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_935b9aaa-e621-5f78-8d08-e9db5f5cd24d">
+    <cim:IdentifiedObject.mRID>935b9aaa-e621-5f78-8d08-e9db5f5cd24d</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_GILL-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_f1660596-32f0-570c-9cd4-60fb1b5ba5d0"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_d77c5b0c-3341-5d32-9bc5-044c2a888b92"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_d608c080-04a1-56aa-9dd8-b50089abaa52">
+    <cim:IdentifiedObject.mRID>d608c080-04a1-56aa-9dd8-b50089abaa52</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB LINE GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB LINE GILL in LINE_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_GILL-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_44c0ba56-257a-5b03-8d7d-33979342b67f">
+    <cim:IdentifiedObject.mRID>44c0ba56-257a-5b03-8d7d-33979342b67f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LINE_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_d608c080-04a1-56aa-9dd8-b50089abaa52"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_d77c5b0c-3341-5d32-9bc5-044c2a888b92"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_12f4871e-db26-5720-9d46-8e4b020fee83">
+    <cim:IdentifiedObject.mRID>12f4871e-db26-5720-9d46-8e4b020fee83</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LINE_GILL-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_d608c080-04a1-56aa-9dd8-b50089abaa52"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_efa34944-ca55-5bc7-87f8-e40b07a3fa2b"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_7b5232e5-0731-5e47-9b41-926745ce52dc">
+    <cim:IdentifiedObject.mRID>7b5232e5-0731-5e47-9b41-926745ce52dc</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT LINE GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT LINE GILL in LINE_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_GILL-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_3ddb04ab-ae6a-536a-b3b1-1cf589faa50e">
+    <cim:IdentifiedObject.mRID>3ddb04ab-ae6a-536a-b3b1-1cf589faa50e</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_GILL-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_7b5232e5-0731-5e47-9b41-926745ce52dc"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_efa34944-ca55-5bc7-87f8-e40b07a3fa2b"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_294949e5-d722-5d6d-804f-a7bf90ac619a">
+    <cim:IdentifiedObject.mRID>294949e5-d722-5d6d-804f-a7bf90ac619a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_GILL-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_7b5232e5-0731-5e47-9b41-926745ce52dc"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_00a23877-efe9-563f-a0d0-77369ccc316f"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:ACLineSegment rdf:ID="_0cf87624-7a3c-56c6-9a84-e22c73c4da15">
+    <cim:IdentifiedObject.mRID>0cf87624-7a3c-56c6-9a84-e22c73c4da15</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical ACLineSegment for LINE GILL. Source line r/x/b/g and length are retained as sample values.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>54e16534-67d2-4dfd-91f3-d2f2e85058a2</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>518.7341803104646</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_960b98ae-3d89-5861-915f-b18cf5aa67a9"/>
+    <cim:ConductingEquipment.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:ACLineSegment.r>0.0</cim:ACLineSegment.r>
+    <cim:ACLineSegment.x>10.0</cim:ACLineSegment.x>
+    <cim:ACLineSegment.bch>0.0</cim:ACLineSegment.bch>
+    <cim:ACLineSegment.gch>0.0</cim:ACLineSegment.gch>
+    <cim:Conductor.length>5.0</cim:Conductor.length>
+  </cim:ACLineSegment>
+  <cim:ConnectivityNode rdf:ID="_3772b4c2-2008-52e1-b8d0-74af6ac846f2">
+    <cim:IdentifiedObject.mRID>3772b4c2-2008-52e1-b8d0-74af6ac846f2</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_GILL remote boundary node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_GILL remote boundary node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_GILL-BOUNDARY</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>302.05016327558076</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>648.7341803104646</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:ConnectivityNode>
+  <cim:Terminal rdf:ID="_b08d41b8-40ce-59c4-8825-bd24bc1f72bf">
+    <cim:IdentifiedObject.mRID>b08d41b8-40ce-59c4-8825-bd24bc1f72bf</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LINE_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_0cf87624-7a3c-56c6-9a84-e22c73c4da15"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_00a23877-efe9-563f-a0d0-77369ccc316f"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_da9189f7-d906-511d-9fc7-45788b580274">
+    <cim:IdentifiedObject.mRID>da9189f7-d906-511d-9fc7-45788b580274</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of LINE GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LINE_GILL-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_0cf87624-7a3c-56c6-9a84-e22c73c4da15"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_3772b4c2-2008-52e1-b8d0-74af6ac846f2"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_2fbca7ee-54bf-580a-8080-22a55aa3d1f9">
+    <cim:IdentifiedObject.mRID>2fbca7ee-54bf-580a-8080-22a55aa3d1f9</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY LOAD GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for LOAD GILL.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-LOAD_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>5307dd06-d00b-4521-95d0-a456c852d7cc</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_a8aaf8a6-4267-51f0-9d15-9c137f756751">
+    <cim:IdentifiedObject.mRID>a8aaf8a6-4267-51f0-9d15-9c137f756751</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_GILL DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_GILL DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_GILL-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_f9cd6ba3-76c7-5bf7-832e-441cec7e2651">
+    <cim:IdentifiedObject.mRID>f9cd6ba3-76c7-5bf7-832e-441cec7e2651</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_GILL CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_GILL CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_GILL-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_7559ef89-41be-5454-bc01-a5bc0fe2b209">
+    <cim:IdentifiedObject.mRID>7559ef89-41be-5454-bc01-a5bc0fe2b209</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_GILL equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_GILL equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_GILL-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_13911620-0b1b-5920-9a63-479f1f9c072a">
+    <cim:IdentifiedObject.mRID>13911620-0b1b-5920-9a63-479f1f9c072a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS LOAD GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS LOAD GILL in LOAD_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_GILL-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_1f1d6747-4875-55c6-a238-cffb7733730a">
+    <cim:IdentifiedObject.mRID>1f1d6747-4875-55c6-a238-cffb7733730a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_GILL-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_13911620-0b1b-5920-9a63-479f1f9c072a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_9ff5ba88-d233-5e7d-b676-49ee0f5ce0c8">
+    <cim:IdentifiedObject.mRID>9ff5ba88-d233-5e7d-b676-49ee0f5ce0c8</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_GILL-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_13911620-0b1b-5920-9a63-479f1f9c072a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_a8aaf8a6-4267-51f0-9d15-9c137f756751"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_7605780d-db33-5298-bc1d-d430bb61a08e">
+    <cim:IdentifiedObject.mRID>7605780d-db33-5298-bc1d-d430bb61a08e</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB LOAD GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB LOAD GILL in LOAD_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_GILL-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_01c40ff0-8488-50b1-9566-1f09548cb473">
+    <cim:IdentifiedObject.mRID>01c40ff0-8488-50b1-9566-1f09548cb473</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LOAD_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_7605780d-db33-5298-bc1d-d430bb61a08e"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_a8aaf8a6-4267-51f0-9d15-9c137f756751"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_d9578121-8f07-52cb-b246-aa162eacb1ba">
+    <cim:IdentifiedObject.mRID>d9578121-8f07-52cb-b246-aa162eacb1ba</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LOAD_GILL-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_7605780d-db33-5298-bc1d-d430bb61a08e"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_f9cd6ba3-76c7-5bf7-832e-441cec7e2651"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_03719b78-b387-53ea-a92d-645539d744c7">
+    <cim:IdentifiedObject.mRID>03719b78-b387-53ea-a92d-645539d744c7</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT LOAD GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT LOAD GILL in LOAD_GILL bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_GILL-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_8adca9f1-644e-56e0-b118-501514aa4590">
+    <cim:IdentifiedObject.mRID>8adca9f1-644e-56e0-b118-501514aa4590</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_GILL-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_03719b78-b387-53ea-a92d-645539d744c7"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_f9cd6ba3-76c7-5bf7-832e-441cec7e2651"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_363af5ba-059a-5acb-ab31-972922d4594d">
+    <cim:IdentifiedObject.mRID>363af5ba-059a-5acb-ab31-972922d4594d</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_GILL-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_03719b78-b387-53ea-a92d-645539d744c7"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_7559ef89-41be-5454-bc01-a5bc0fe2b209"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:ConformLoad rdf:ID="_51abe3f7-3bad-593f-a491-c8965958ba7b">
+    <cim:IdentifiedObject.mRID>51abe3f7-3bad-593f-a491-c8965958ba7b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD GILL</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical ConformLoad for LOAD GILL. Source fixed P and Q are retained.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_GILL</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>5307dd06-d00b-4521-95d0-a456c852d7cc</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>1267.5325550845819</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>519.3672818399214</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_2fbca7ee-54bf-580a-8080-22a55aa3d1f9"/>
+    <cim:ConductingEquipment.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:EnergyConsumer.pfixed>40.0</cim:EnergyConsumer.pfixed>
+    <cim:EnergyConsumer.qfixed>20.0</cim:EnergyConsumer.qfixed>
+    <cim:Equipment.aggregate>false</cim:Equipment.aggregate>
+  </cim:ConformLoad>
+  <cim:Terminal rdf:ID="_6645d901-3d61-50b0-aefa-4e4717ffe501">
+    <cim:IdentifiedObject.mRID>6645d901-3d61-50b0-aefa-4e4717ffe501</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of LOAD GILL</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LOAD_GILL-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_51abe3f7-3bad-593f-a491-c8965958ba7b"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_7559ef89-41be-5454-bc01-a5bc0fe2b209"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_d1256592-8cc8-5745-9ae6-393ea696cc6b">
+    <cim:IdentifiedObject.mRID>d1256592-8cc8-5745-9ae6-393ea696cc6b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY GEN PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for GEN PUKIS.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-GEN_PUKIS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>dd1040cd-7825-40e2-99e2-9c09aeff4b72</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_3f212720-5ede-5853-abac-c731356f8c7a">
+    <cim:IdentifiedObject.mRID>3f212720-5ede-5853-abac-c731356f8c7a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN_PUKIS DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GEN_PUKIS DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-GEN_PUKIS-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_3019b0c5-477a-53be-aee6-d6b8821bb170">
+    <cim:IdentifiedObject.mRID>3019b0c5-477a-53be-aee6-d6b8821bb170</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN_PUKIS CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GEN_PUKIS CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-GEN_PUKIS-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_9ab56a50-b935-5a51-b018-f6f578dab337">
+    <cim:IdentifiedObject.mRID>9ab56a50-b935-5a51-b018-f6f578dab337</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN_PUKIS equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node GEN_PUKIS equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-GEN_PUKIS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_c8ac321d-d206-5c3b-8a80-c378800ac9cb">
+    <cim:IdentifiedObject.mRID>c8ac321d-d206-5c3b-8a80-c378800ac9cb</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS GEN PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS GEN PUKIS in GEN_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_PUKIS-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_80335575-a7bd-5250-8470-b699579716d7">
+    <cim:IdentifiedObject.mRID>80335575-a7bd-5250-8470-b699579716d7</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_PUKIS-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_c8ac321d-d206-5c3b-8a80-c378800ac9cb"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_ed38e3aa-c2ae-5613-a1d4-e754cba5292c">
+    <cim:IdentifiedObject.mRID>ed38e3aa-c2ae-5613-a1d4-e754cba5292c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_PUKIS-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_c8ac321d-d206-5c3b-8a80-c378800ac9cb"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_3f212720-5ede-5853-abac-c731356f8c7a"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_79d6b1aa-6072-5b66-9a45-a346fa0efe57">
+    <cim:IdentifiedObject.mRID>79d6b1aa-6072-5b66-9a45-a346fa0efe57</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB GEN PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB GEN PUKIS in GEN_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_PUKIS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_8bc3f7b7-cf01-5052-b726-3ac977c9df7f">
+    <cim:IdentifiedObject.mRID>8bc3f7b7-cf01-5052-b726-3ac977c9df7f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-GEN_PUKIS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_79d6b1aa-6072-5b66-9a45-a346fa0efe57"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_3f212720-5ede-5853-abac-c731356f8c7a"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_c256adb9-648c-53d0-9f57-576efecb6935">
+    <cim:IdentifiedObject.mRID>c256adb9-648c-53d0-9f57-576efecb6935</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-GEN_PUKIS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_79d6b1aa-6072-5b66-9a45-a346fa0efe57"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_3019b0c5-477a-53be-aee6-d6b8821bb170"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_25bb5407-c81e-5d68-b65e-0e1ec4266ef0">
+    <cim:IdentifiedObject.mRID>25bb5407-c81e-5d68-b65e-0e1ec4266ef0</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT GEN PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT GEN PUKIS in GEN_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_PUKIS-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_RECAST</plnnmm:provenance>
+    <plnnmm:confidence>0.68</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>b2f3994d-04ff-4740-8e9d-ec4361ff94b4</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_a800fbd0-c240-52b9-86be-c461f98c6782">
+    <cim:IdentifiedObject.mRID>a800fbd0-c240-52b9-86be-c461f98c6782</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_PUKIS-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_RECAST</plnnmm:provenance>
+    <plnnmm:confidence>0.68</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_25bb5407-c81e-5d68-b65e-0e1ec4266ef0"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_3019b0c5-477a-53be-aee6-d6b8821bb170"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_60d7de11-a5ee-5b8e-8fe4-f0a65b335034">
+    <cim:IdentifiedObject.mRID>60d7de11-a5ee-5b8e-8fe4-f0a65b335034</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-GEN_PUKIS-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_RECAST</plnnmm:provenance>
+    <plnnmm:confidence>0.68</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_25bb5407-c81e-5d68-b65e-0e1ec4266ef0"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_9ab56a50-b935-5a51-b018-f6f578dab337"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:SynchronousMachine rdf:ID="_eb80c047-7ec9-5900-bcc8-ff335ba3e6e6">
+    <cim:IdentifiedObject.mRID>eb80c047-7ec9-5900-bcc8-ff335ba3e6e6</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GEN PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical SynchronousMachine for GEN PUKIS. Source generator ratings are retained.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-GEN_PUKIS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>dd1040cd-7825-40e2-99e2-9c09aeff4b72</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>417.99767541649067</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>601.0496867734796</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_d1256592-8cc8-5745-9ae6-393ea696cc6b"/>
+    <cim:RotatingMachine.ratedPowerFactor>0.8</cim:RotatingMachine.ratedPowerFactor>
+    <cim:RotatingMachine.ratedS>50.0</cim:RotatingMachine.ratedS>
+    <cim:RotatingMachine.ratedU>150.0</cim:RotatingMachine.ratedU>
+    <cim:SynchronousMachine.maxQ>50.0</cim:SynchronousMachine.maxQ>
+    <cim:SynchronousMachine.minQ>-50.0</cim:SynchronousMachine.minQ>
+    <cim:SynchronousMachine.type rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind.generator"/>
+  </cim:SynchronousMachine>
+  <cim:Terminal rdf:ID="_e0977a7e-f3df-5fc6-aeef-11978370f36c">
+    <cim:IdentifiedObject.mRID>e0977a7e-f3df-5fc6-aeef-11978370f36c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of GEN PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-GEN_PUKIS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_eb80c047-7ec9-5900-bcc8-ff335ba3e6e6"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_9ab56a50-b935-5a51-b018-f6f578dab337"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_edd5aaa8-777d-5753-8425-06b297ad3470">
+    <cim:IdentifiedObject.mRID>edd5aaa8-777d-5753-8425-06b297ad3470</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY TRAFO PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for TRAFO PUKIS.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-TRF_PUKIS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>14393b6d-4323-4808-9a2d-cda47109cd5b</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_12b8097a-958b-5e8f-8f09-7611bc4dbc29">
+    <cim:IdentifiedObject.mRID>12b8097a-958b-5e8f-8f09-7611bc4dbc29</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_PUKIS DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_PUKIS DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_PUKIS-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_260c88ff-f31f-5af5-b1b4-84debf8caac4">
+    <cim:IdentifiedObject.mRID>260c88ff-f31f-5af5-b1b4-84debf8caac4</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_PUKIS CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_PUKIS CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_PUKIS-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_4f21795a-a1f7-5a5c-b93f-65d05bc76b30">
+    <cim:IdentifiedObject.mRID>4f21795a-a1f7-5a5c-b93f-65d05bc76b30</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_PUKIS equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_PUKIS equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_PUKIS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_84e2fd75-2570-5031-99c9-ece1291b7631">
+    <cim:IdentifiedObject.mRID>84e2fd75-2570-5031-99c9-ece1291b7631</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS TRAFO PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS TRAFO PUKIS in TRF_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_PUKIS-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_0a7af868-579c-5f15-8b14-4dc9f8a09bba">
+    <cim:IdentifiedObject.mRID>0a7af868-579c-5f15-8b14-4dc9f8a09bba</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_PUKIS-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_84e2fd75-2570-5031-99c9-ece1291b7631"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_48b27b4c-15ef-5f69-aa92-0ba3e3d031da">
+    <cim:IdentifiedObject.mRID>48b27b4c-15ef-5f69-aa92-0ba3e3d031da</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_PUKIS-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_84e2fd75-2570-5031-99c9-ece1291b7631"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_12b8097a-958b-5e8f-8f09-7611bc4dbc29"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_0006adee-2688-5bcd-8e96-a828a4b90135">
+    <cim:IdentifiedObject.mRID>0006adee-2688-5bcd-8e96-a828a4b90135</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB TRAFO PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB TRAFO PUKIS in TRF_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_PUKIS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_4aa39be5-d4de-5a3c-851f-94135565ccb1">
+    <cim:IdentifiedObject.mRID>4aa39be5-d4de-5a3c-851f-94135565ccb1</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-TRF_PUKIS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_0006adee-2688-5bcd-8e96-a828a4b90135"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_12b8097a-958b-5e8f-8f09-7611bc4dbc29"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_c62c276a-bccb-5ae6-aa64-5b78210ba66b">
+    <cim:IdentifiedObject.mRID>c62c276a-bccb-5ae6-aa64-5b78210ba66b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-TRF_PUKIS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_0006adee-2688-5bcd-8e96-a828a4b90135"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_260c88ff-f31f-5af5-b1b4-84debf8caac4"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_1b1e2237-c548-52cc-92aa-101f8c41f6cb">
+    <cim:IdentifiedObject.mRID>1b1e2237-c548-52cc-92aa-101f8c41f6cb</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT TRAFO PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT TRAFO PUKIS in TRF_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_PUKIS-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_5bd91558-8e26-5d48-b24f-3861402e8dc6">
+    <cim:IdentifiedObject.mRID>5bd91558-8e26-5d48-b24f-3861402e8dc6</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_PUKIS-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_1b1e2237-c548-52cc-92aa-101f8c41f6cb"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_260c88ff-f31f-5af5-b1b4-84debf8caac4"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_1f4aae22-7ee5-56cb-ba1a-4f04610fba29">
+    <cim:IdentifiedObject.mRID>1f4aae22-7ee5-56cb-ba1a-4f04610fba29</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-TRF_PUKIS-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_1b1e2237-c548-52cc-92aa-101f8c41f6cb"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_4f21795a-a1f7-5a5c-b93f-65d05bc76b30"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:PowerTransformer rdf:ID="_2ea6e28f-4fd6-5d0a-8ef4-9230e645ab6a">
+    <cim:IdentifiedObject.mRID>2ea6e28f-4fd6-5d0a-8ef4-9230e645ab6a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRAFO PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical PowerTransformer for TRAFO PUKIS. Source transformer-end data are retained; voltage-ratio inconsistency is flagged.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-TRF_PUKIS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>14393b6d-4323-4808-9a2d-cda47109cd5b</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>505.65090755317146</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_edd5aaa8-777d-5753-8425-06b297ad3470"/>
+  </cim:PowerTransformer>
+  <cim:ConnectivityNode rdf:ID="_d21c2b03-6a8e-55a5-bfda-252f20c9cd5c">
+    <cim:IdentifiedObject.mRID>d21c2b03-6a8e-55a5-bfda-252f20c9cd5c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRF_PUKIS transformer end-2 boundary node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node TRF_PUKIS transformer end-2 boundary node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-TRF_PUKIS-END2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>715.5054672095241</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>635.6509075531715</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:ConnectivityNode>
+  <cim:Terminal rdf:ID="_6dc22abe-ee0f-5c4f-8b5b-273f5fadc9f8">
+    <cim:IdentifiedObject.mRID>6dc22abe-ee0f-5c4f-8b5b-273f5fadc9f8</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-TRF_PUKIS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_2ea6e28f-4fd6-5d0a-8ef4-9230e645ab6a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_4f21795a-a1f7-5a5c-b93f-65d05bc76b30"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_3a8ecdaa-3848-52b6-a40c-5446f7f5a3b8">
+    <cim:IdentifiedObject.mRID>3a8ecdaa-3848-52b6-a40c-5446f7f5a3b8</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of TRAFO PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-TRF_PUKIS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_2ea6e28f-4fd6-5d0a-8ef4-9230e645ab6a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_d21c2b03-6a8e-55a5-bfda-252f20c9cd5c"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:PowerTransformerEnd rdf:ID="_5e6e5b16-429e-5bc2-920b-ccc7ffbc9472">
+    <cim:IdentifiedObject.mRID>5e6e5b16-429e-5bc2-920b-ccc7ffbc9472</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRAFO PUKIS END 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Transformer end 1 retained from source sample.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-TRF_PUKIS-END-1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>c2f427af-b4f7-470c-ac66-e16a3b512f8f</plnnmm:sourceObjectMRID>
+    <cim:PowerTransformerEnd.PowerTransformer rdf:resource="#_2ea6e28f-4fd6-5d0a-8ef4-9230e645ab6a"/>
+    <cim:TransformerEnd.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:TransformerEnd.Terminal rdf:resource="#_6dc22abe-ee0f-5c4f-8b5b-273f5fadc9f8"/>
+    <cim:TransformerEnd.endNumber>1</cim:TransformerEnd.endNumber>
+    <cim:PowerTransformerEnd.ratedS>20.0</cim:PowerTransformerEnd.ratedS>
+    <cim:PowerTransformerEnd.ratedU>150.0</cim:PowerTransformerEnd.ratedU>
+    <cim:PowerTransformerEnd.r>0.0</cim:PowerTransformerEnd.r>
+    <cim:PowerTransformerEnd.x>0.6</cim:PowerTransformerEnd.x>
+    <cim:PowerTransformerEnd.b>-0.0005</cim:PowerTransformerEnd.b>
+    <cim:PowerTransformerEnd.g>0.0</cim:PowerTransformerEnd.g>
+  </cim:PowerTransformerEnd>
+  <cim:PowerTransformerEnd rdf:ID="_bca87bdf-7f55-5547-92da-595daae060ea">
+    <cim:IdentifiedObject.mRID>bca87bdf-7f55-5547-92da-595daae060ea</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TRAFO PUKIS END 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Transformer end 2 retained from source sample.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-TRF_PUKIS-END-2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>95bb0a0f-0dfe-4eb9-a028-cafd8f6c88c0</plnnmm:sourceObjectMRID>
+    <cim:PowerTransformerEnd.PowerTransformer rdf:resource="#_2ea6e28f-4fd6-5d0a-8ef4-9230e645ab6a"/>
+    <cim:TransformerEnd.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:TransformerEnd.Terminal rdf:resource="#_3a8ecdaa-3848-52b6-a40c-5446f7f5a3b8"/>
+    <cim:TransformerEnd.endNumber>2</cim:TransformerEnd.endNumber>
+    <cim:PowerTransformerEnd.ratedS>20.0</cim:PowerTransformerEnd.ratedS>
+    <cim:PowerTransformerEnd.ratedU>150.0</cim:PowerTransformerEnd.ratedU>
+    <cim:PowerTransformerEnd.r>0.0</cim:PowerTransformerEnd.r>
+    <cim:PowerTransformerEnd.x>0.0</cim:PowerTransformerEnd.x>
+    <cim:PowerTransformerEnd.b>0.0</cim:PowerTransformerEnd.b>
+    <cim:PowerTransformerEnd.g>0.0</cim:PowerTransformerEnd.g>
+  </cim:PowerTransformerEnd>
+  <cim:Bay rdf:ID="_a3c607df-8866-54fd-a3c8-48bd989bf792">
+    <cim:IdentifiedObject.mRID>a3c607df-8866-54fd-a3c8-48bd989bf792</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY LINE PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for LINE PUKIS.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-LINE_PUKIS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>d4e4667a-800d-4b3c-a4c7-39086563ea56</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_5679169c-4cc8-5991-b368-ecaaf5add3e6">
+    <cim:IdentifiedObject.mRID>5679169c-4cc8-5991-b368-ecaaf5add3e6</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_PUKIS DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_PUKIS DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_PUKIS-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_4a86d4c8-164d-523a-9acc-ff1dfc531c19">
+    <cim:IdentifiedObject.mRID>4a86d4c8-164d-523a-9acc-ff1dfc531c19</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_PUKIS CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_PUKIS CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_PUKIS-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_70ed74ea-1147-53bd-8b0d-628d9afe8609">
+    <cim:IdentifiedObject.mRID>70ed74ea-1147-53bd-8b0d-628d9afe8609</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_PUKIS equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_PUKIS equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_PUKIS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_4d1d859f-7c5b-5b10-98a7-1d37ab3b9a6a">
+    <cim:IdentifiedObject.mRID>4d1d859f-7c5b-5b10-98a7-1d37ab3b9a6a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS LINE PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS LINE PUKIS in LINE_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_PUKIS-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_396196cd-1f1b-5dff-a7c5-0366098f48de">
+    <cim:IdentifiedObject.mRID>396196cd-1f1b-5dff-a7c5-0366098f48de</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_PUKIS-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_4d1d859f-7c5b-5b10-98a7-1d37ab3b9a6a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_fba26926-c7a7-5dba-9369-ea26da216877">
+    <cim:IdentifiedObject.mRID>fba26926-c7a7-5dba-9369-ea26da216877</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_PUKIS-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_4d1d859f-7c5b-5b10-98a7-1d37ab3b9a6a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_5679169c-4cc8-5991-b368-ecaaf5add3e6"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_af3cf5b6-4d38-5378-8c46-b9ef2d70db15">
+    <cim:IdentifiedObject.mRID>af3cf5b6-4d38-5378-8c46-b9ef2d70db15</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB LINE PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB LINE PUKIS in LINE_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_PUKIS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_b21a9609-064d-5e77-8804-d7a71360e901">
+    <cim:IdentifiedObject.mRID>b21a9609-064d-5e77-8804-d7a71360e901</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LINE_PUKIS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_af3cf5b6-4d38-5378-8c46-b9ef2d70db15"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_5679169c-4cc8-5991-b368-ecaaf5add3e6"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_ad21dc7e-30be-5674-88d1-6b5a670fdab2">
+    <cim:IdentifiedObject.mRID>ad21dc7e-30be-5674-88d1-6b5a670fdab2</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LINE_PUKIS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_af3cf5b6-4d38-5378-8c46-b9ef2d70db15"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_4a86d4c8-164d-523a-9acc-ff1dfc531c19"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_0c876842-c0a1-5188-93e9-ca197dd2ffc3">
+    <cim:IdentifiedObject.mRID>0c876842-c0a1-5188-93e9-ca197dd2ffc3</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT LINE PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT LINE PUKIS in LINE_PUKIS bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_PUKIS-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_4acd8379-72e0-5435-976a-11a4fa6a7f3f">
+    <cim:IdentifiedObject.mRID>4acd8379-72e0-5435-976a-11a4fa6a7f3f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_PUKIS-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_0c876842-c0a1-5188-93e9-ca197dd2ffc3"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_4a86d4c8-164d-523a-9acc-ff1dfc531c19"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_95201d70-67ab-5fca-b8d1-313b0b972e67">
+    <cim:IdentifiedObject.mRID>95201d70-67ab-5fca-b8d1-313b0b972e67</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LINE_PUKIS-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_0c876842-c0a1-5188-93e9-ca197dd2ffc3"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_70ed74ea-1147-53bd-8b0d-628d9afe8609"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:ACLineSegment rdf:ID="_ca198929-15f8-566d-9285-d7029f294614">
+    <cim:IdentifiedObject.mRID>ca198929-15f8-566d-9285-d7029f294614</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE PUKIS</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical ACLineSegment for LINE PUKIS. Source line r/x/b/g and length are retained as sample values.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LINE_PUKIS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>d4e4667a-800d-4b3c-a4c7-39086563ea56</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>530.8691312802916</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_a3c607df-8866-54fd-a3c8-48bd989bf792"/>
+    <cim:ConductingEquipment.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:ACLineSegment.r>0.0</cim:ACLineSegment.r>
+    <cim:ACLineSegment.x>0.0</cim:ACLineSegment.x>
+    <cim:ACLineSegment.bch>0.0</cim:ACLineSegment.bch>
+    <cim:ACLineSegment.gch>0.0</cim:ACLineSegment.gch>
+    <cim:Conductor.length>3.0</cim:Conductor.length>
+  </cim:ACLineSegment>
+  <cim:ConnectivityNode rdf:ID="_c3a93958-1196-5ae7-aec2-ee56e547f4e7">
+    <cim:IdentifiedObject.mRID>c3a93958-1196-5ae7-aec2-ee56e547f4e7</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LINE_PUKIS remote boundary node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LINE_PUKIS remote boundary node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LINE_PUKIS-BOUNDARY</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>867.1625021288316</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>660.8691312802916</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:ConnectivityNode>
+  <cim:Terminal rdf:ID="_b231fc3b-f46c-532d-a3f4-1688df5dbe3d">
+    <cim:IdentifiedObject.mRID>b231fc3b-f46c-532d-a3f4-1688df5dbe3d</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LINE_PUKIS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_ca198929-15f8-566d-9285-d7029f294614"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_70ed74ea-1147-53bd-8b0d-628d9afe8609"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_6218f5c4-bee7-52d4-8e43-d6964cc58a4b">
+    <cim:IdentifiedObject.mRID>6218f5c4-bee7-52d4-8e43-d6964cc58a4b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of LINE PUKIS</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LINE_PUKIS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_ca198929-15f8-566d-9285-d7029f294614"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_c3a93958-1196-5ae7-aec2-ee56e547f4e7"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_af76dec9-c01d-5b01-a24b-75de98137319">
+    <cim:IdentifiedObject.mRID>af76dec9-c01d-5b01-a24b-75de98137319</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY LOAD PUKIS 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for LOAD PUKIS 1.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-LOAD_PUKIS1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>064497e7-05e6-49f9-8292-98b542f72cb0</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_1fe0c297-04d6-565b-b8f0-31a0545f1478">
+    <cim:IdentifiedObject.mRID>1fe0c297-04d6-565b-b8f0-31a0545f1478</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_PUKIS1 DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_PUKIS1 DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_PUKIS1-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_6a97cafd-9979-55fc-b110-bfaa275b470f">
+    <cim:IdentifiedObject.mRID>6a97cafd-9979-55fc-b110-bfaa275b470f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_PUKIS1 CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_PUKIS1 CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_PUKIS1-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_b745ddbe-f98c-5caf-93e9-add6d96393be">
+    <cim:IdentifiedObject.mRID>b745ddbe-f98c-5caf-93e9-add6d96393be</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_PUKIS1 equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_PUKIS1 equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_PUKIS1-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_a3923f15-492c-5e04-a354-c849adcca78a">
+    <cim:IdentifiedObject.mRID>a3923f15-492c-5e04-a354-c849adcca78a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS LOAD PUKIS 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS LOAD PUKIS 1 in LOAD_PUKIS1 bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS1-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_363182f0-1adb-58c4-8e2d-c0d8b023d69b">
+    <cim:IdentifiedObject.mRID>363182f0-1adb-58c4-8e2d-c0d8b023d69b</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS1-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_a3923f15-492c-5e04-a354-c849adcca78a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_77917fd4-8733-5615-ba4b-f61ac205a326">
+    <cim:IdentifiedObject.mRID>77917fd4-8733-5615-ba4b-f61ac205a326</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS1-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_a3923f15-492c-5e04-a354-c849adcca78a"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_1fe0c297-04d6-565b-b8f0-31a0545f1478"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_a1c53f1b-3ca8-51d4-96e0-dcb9f227624e">
+    <cim:IdentifiedObject.mRID>a1c53f1b-3ca8-51d4-96e0-dcb9f227624e</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB LOAD PUKIS 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB LOAD PUKIS 1 in LOAD_PUKIS1 bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS1-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_b86d86e6-4f73-52ae-b8ee-b94397c0c8d5">
+    <cim:IdentifiedObject.mRID>b86d86e6-4f73-52ae-b8ee-b94397c0c8d5</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LOAD_PUKIS1-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_a1c53f1b-3ca8-51d4-96e0-dcb9f227624e"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_1fe0c297-04d6-565b-b8f0-31a0545f1478"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_ccd852f4-0502-5444-b109-7758e60d353d">
+    <cim:IdentifiedObject.mRID>ccd852f4-0502-5444-b109-7758e60d353d</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LOAD_PUKIS1-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_a1c53f1b-3ca8-51d4-96e0-dcb9f227624e"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_6a97cafd-9979-55fc-b110-bfaa275b470f"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_73bbc66e-0e1c-56ee-bc60-318312f13970">
+    <cim:IdentifiedObject.mRID>73bbc66e-0e1c-56ee-bc60-318312f13970</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT LOAD PUKIS 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT LOAD PUKIS 1 in LOAD_PUKIS1 bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS1-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_6e8e845d-0a36-5652-85d7-07841630c8e5">
+    <cim:IdentifiedObject.mRID>6e8e845d-0a36-5652-85d7-07841630c8e5</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS1-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_73bbc66e-0e1c-56ee-bc60-318312f13970"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_6a97cafd-9979-55fc-b110-bfaa275b470f"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_57a88fc1-4974-5ef5-9c53-197750273bfe">
+    <cim:IdentifiedObject.mRID>57a88fc1-4974-5ef5-9c53-197750273bfe</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS1-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_73bbc66e-0e1c-56ee-bc60-318312f13970"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_b745ddbe-f98c-5caf-93e9-add6d96393be"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:ConformLoad rdf:ID="_1c24096f-d095-5a62-b096-4f93e8ac6fc2">
+    <cim:IdentifiedObject.mRID>1c24096f-d095-5a62-b096-4f93e8ac6fc2</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD PUKIS 1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical ConformLoad for LOAD PUKIS 1. Source fixed P and Q are retained.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>064497e7-05e6-49f9-8292-98b542f72cb0</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>985.250609421161</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>616.1819907201638</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_af76dec9-c01d-5b01-a24b-75de98137319"/>
+    <cim:ConductingEquipment.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:EnergyConsumer.pfixed>20.0</cim:EnergyConsumer.pfixed>
+    <cim:EnergyConsumer.qfixed>10.0</cim:EnergyConsumer.qfixed>
+    <cim:Equipment.aggregate>false</cim:Equipment.aggregate>
+  </cim:ConformLoad>
+  <cim:Terminal rdf:ID="_ca4ae997-8964-590d-ba3e-9885307d3bf7">
+    <cim:IdentifiedObject.mRID>ca4ae997-8964-590d-ba3e-9885307d3bf7</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of LOAD PUKIS 1</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LOAD_PUKIS1-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_1c24096f-d095-5a62-b096-4f93e8ac6fc2"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_b745ddbe-f98c-5caf-93e9-add6d96393be"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Bay rdf:ID="_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed">
+    <cim:IdentifiedObject.mRID>3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>BAY LOAD PUKIS 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical single-bus bay for LOAD PUKIS 2.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-BAY-LOAD_PUKIS2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_DERIVED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>16eadad8-7b0c-4416-ac5f-afb09c7a685e</plnnmm:sourceObjectMRID>
+    <cim:Bay.VoltageLevel rdf:resource="#_34ee4ecc-2710-5a32-91db-8252a5cfa3ee"/>
+  </cim:Bay>
+  <cim:ConnectivityNode rdf:ID="_4ad940b4-30b8-50a7-881c-5fa11e0806d9">
+    <cim:IdentifiedObject.mRID>4ad940b4-30b8-50a7-881c-5fa11e0806d9</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_PUKIS2 DS-to-CB node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_PUKIS2 DS-to-CB node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_PUKIS2-DS-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>260</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_dc0c5a44-6487-5d9b-b813-2a45b6357133">
+    <cim:IdentifiedObject.mRID>dc0c5a44-6487-5d9b-b813-2a45b6357133</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_PUKIS2 CB-to-DS node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_PUKIS2 CB-to-DS node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_PUKIS2-CB-DS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>350</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+  </cim:ConnectivityNode>
+  <cim:ConnectivityNode rdf:ID="_dd8f0095-7d93-55b4-9fbe-efa43d6febb1">
+    <cim:IdentifiedObject.mRID>dd8f0095-7d93-55b4-9fbe-efa43d6febb1</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD_PUKIS2 equipment terminal node</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Connectivity node LOAD_PUKIS2 equipment terminal node.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CN-GI-GILL-LOAD_PUKIS2-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.80</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>445</plnicp:DiagramProperty.y>
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+  </cim:ConnectivityNode>
+  <cim:Disconnector rdf:ID="_b7581733-c251-5276-9607-2f533beb8ff9">
+    <cim:IdentifiedObject.mRID>b7581733-c251-5276-9607-2f533beb8ff9</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS BUS LOAD PUKIS 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS BUS LOAD PUKIS 2 in LOAD_PUKIS2 bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS2-DS-BUS</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>220</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_20fd6565-abab-5bf4-a253-d286aab8e50a">
+    <cim:IdentifiedObject.mRID>20fd6565-abab-5bf4-a253-d286aab8e50a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS BUS LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS2-BUS-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_b7581733-c251-5276-9607-2f533beb8ff9"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_66da45bd-323d-56ab-9197-d04e8e3139cc"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_bbe12fc4-3a62-56d3-9db4-1c927f1415fc">
+    <cim:IdentifiedObject.mRID>bbe12fc4-3a62-56d3-9db4-1c927f1415fc</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS BUS LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS2-BUS-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_b7581733-c251-5276-9607-2f533beb8ff9"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_4ad940b4-30b8-50a7-881c-5fa11e0806d9"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Breaker rdf:ID="_41d4a5f7-1330-5bdd-b4fd-4efc9cb1b951">
+    <cim:IdentifiedObject.mRID>41d4a5f7-1330-5bdd-b4fd-4efc9cb1b951</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>CB LOAD PUKIS 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>CB LOAD PUKIS 2 in LOAD_PUKIS2 bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS2-CB</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>305</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Breaker>
+  <cim:Terminal rdf:ID="_cf9d9516-4af8-52b8-a096-9f3521d941f7">
+    <cim:IdentifiedObject.mRID>cf9d9516-4af8-52b8-a096-9f3521d941f7</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of CB LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LOAD_PUKIS2-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_41d4a5f7-1330-5bdd-b4fd-4efc9cb1b951"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_4ad940b4-30b8-50a7-881c-5fa11e0806d9"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_4b9fd383-ab6f-51f5-8cdf-c3e1a354dcaa">
+    <cim:IdentifiedObject.mRID>4b9fd383-ab6f-51f5-8cdf-c3e1a354dcaa</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of CB LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>CB-GI-GILL-LOAD_PUKIS2-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.72</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_41d4a5f7-1330-5bdd-b4fd-4efc9cb1b951"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_dc0c5a44-6487-5d9b-b813-2a45b6357133"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Disconnector rdf:ID="_dc4edc65-8b1c-5d16-b6f0-2c5bafa73e67">
+    <cim:IdentifiedObject.mRID>dc4edc65-8b1c-5d16-b6f0-2c5bafa73e67</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>DS EQUIPMENT LOAD PUKIS 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>DS EQUIPMENT LOAD PUKIS 2 in LOAD_PUKIS2 bay.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS2-DS-EQ</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>395</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+    <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+    <cim:Switch.retained>true</cim:Switch.retained>
+  </cim:Disconnector>
+  <cim:Terminal rdf:ID="_04f3436b-31af-54a2-860b-f7f24fc0b1c8">
+    <cim:IdentifiedObject.mRID>04f3436b-31af-54a2-860b-f7f24fc0b1c8</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of DS EQUIPMENT LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS2-EQ-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_dc4edc65-8b1c-5d16-b6f0-2c5bafa73e67"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_dc0c5a44-6487-5d9b-b813-2a45b6357133"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_7855a59d-4769-5d48-b26e-d1e6afa09e7f">
+    <cim:IdentifiedObject.mRID>7855a59d-4769-5d48-b26e-d1e6afa09e7f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 2 of DS EQUIPMENT LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>DS-GI-GILL-LOAD_PUKIS2-EQ-T2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>ASSUMED</plnnmm:provenance>
+    <plnnmm:confidence>0.70</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_dc4edc65-8b1c-5d16-b6f0-2c5bafa73e67"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_dd8f0095-7d93-55b4-9fbe-efa43d6febb1"/>
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:ConformLoad rdf:ID="_04703bf2-0fa5-50d8-b16a-de205c87004c">
+    <cim:IdentifiedObject.mRID>04703bf2-0fa5-50d8-b16a-de205c87004c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>LOAD PUKIS 2</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Canonical ConformLoad for LOAD PUKIS 2. Source fixed P and Q are retained.</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>GI-GILL-150-LOAD_PUKIS2</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_NORMALIZED</plnnmm:provenance>
+    <plnnmm:confidence>0.90</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <plnnmm:sourceObjectMRID>16eadad8-7b0c-4416-ac5f-afb09c7a685e</plnnmm:sourceObjectMRID>
+    <plnicp:DiagramProperty.x>557.5696249430794</plnicp:DiagramProperty.x>
+    <plnicp:DiagramProperty.y>551.2141035057057</plnicp:DiagramProperty.y>
+    <cim:Equipment.EquipmentContainer rdf:resource="#_3e82619e-1cc5-5d9a-8fb4-b86bab2b7aed"/>
+    <cim:ConductingEquipment.BaseVoltage rdf:resource="#_a7846177-a022-57c8-b7ba-257e77733484"/>
+    <cim:EnergyConsumer.pfixed>10.0</cim:EnergyConsumer.pfixed>
+    <cim:EnergyConsumer.qfixed>5.0</cim:EnergyConsumer.qfixed>
+    <cim:Equipment.aggregate>false</cim:Equipment.aggregate>
+  </cim:ConformLoad>
+  <cim:Terminal rdf:ID="_cba8487b-d75f-5dd8-9abd-551b3e0bb845">
+    <cim:IdentifiedObject.mRID>cba8487b-d75f-5dd8-9abd-551b3e0bb845</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:IdentifiedObject.description>Terminal 1 of LOAD PUKIS 2</cim:IdentifiedObject.description>
+    <plnnmm:canonicalBusinessId>PRIMARY-GI-GILL-LOAD_PUKIS2-T1</plnnmm:canonicalBusinessId>
+    <plnnmm:provenance>SOURCE_TOPOLOGY_EXPANDED</plnnmm:provenance>
+    <plnnmm:confidence>0.85</plnnmm:confidence>
+    <plnnmm:modelStatus>DRAFT</plnnmm:modelStatus>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_04703bf2-0fa5-50d8-b16a-de205c87004c"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_dd8f0095-7d93-55b4-9fbe-efa43d6febb1"/>
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+</rdf:RDF>

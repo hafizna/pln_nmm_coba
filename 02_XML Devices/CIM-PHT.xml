@@ -1,0 +1,81 @@
+<?xml version="1.0" ?><!-- Dibuat oleh NH, db config v1.12 --><rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:nhftui="https://eng.ui.ac.id/lab-simulasi/nhjarman2025#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <md:FullModel rdf:about="urn:uuid:b88b0175-6bf0-48c1-a4e4-ea2a5d982fc2">
+    <md:Model.created>2025-04-16T12:27:37Z2025-03-03T08:44:01Z</md:Model.created>
+    <md:Model.modelingAuthoritySet>NH</md:Model.modelingAuthoritySet>
+    <md:Model.profile>http://entsoe.eu/CIM/EquipmentCore/3/1</md:Model.profile>
+    <md:Model.profile>http://entsoe.eu/CIM/EquipmentOperation/3/1</md:Model.profile>
+    <md:Model.scenarioTime>2025-04-16 20:45:29.672667</md:Model.scenarioTime>
+    <md:Model.version>1.12</md:Model.version>
+  </md:FullModel>
+  <cim:Terminal rdf:ID="_9f7cbae7-b599-4045-906e-24085f3fcafd">
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:IdentifiedObject.description>Terminal PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>9f7cbae7-b599-4045-906e-24085f3fcafd</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_bd1993b0-a361-4328-ba5f-87c227ba9863"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_c7d8aa01-b672-4f03-a62c-fc8ab5e639b0"/>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:Terminal rdf:ID="_45e930ec-9fff-4fb6-bdcf-8f2367ba550a">
+    <cim:ACDCTerminal.sequenceNumber>2</cim:ACDCTerminal.sequenceNumber>
+    <cim:IdentifiedObject.description>Terminal PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>45e930ec-9fff-4fb6-bdcf-8f2367ba550a</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_bd1993b0-a361-4328-ba5f-87c227ba9863"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_c94ab960-44b0-4253-baab-cad0d5c5a82e"/>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:ConnectivityNode nhftui:info="$NO_SIRKIT" rdf:ID="9a8dc0ce-efa4-4fbc-80fd-73ebbc22ae51">
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_401b92c4-eba2-4c19-aa9f-c106fc1b34d5"/>
+    <cim:IdentifiedObject.description>ConnectivityNode PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>cf733c0c-4051-486c-8053-28538cc72bea</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+  </cim:ConnectivityNode>
+  <cim:ACLineSegment rdf:ID="_bd1993b0-a361-4328-ba5f-87c227ba9863">
+    <cim:ACLineSegment.bch>$(Isi_ACLineSegment.bch)</cim:ACLineSegment.bch>
+    <cim:ACLineSegment.gch>$(Isi_ACLineSegment.gch)</cim:ACLineSegment.gch>
+    <cim:ACLineSegment.r>$(Isi_ACLineSegment.r)</cim:ACLineSegment.r>
+    <cim:ACLineSegment.x>$(Isi_ACLineSegment.x)</cim:ACLineSegment.x>
+    <cim:ConductingEquipment.BaseVoltage rdf:resource="#_6dd28780-8dd3-4782-bf29-6492a2674e45"/>
+    <cim:Conductor.length>$(Isi_Conductor.length)</cim:Conductor.length>
+    <cim:IdentifiedObject.description>ACLineSegmentPHT_1_-_GI_PUKIS_-_TestGrid</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>bd1993b0-a361-4328-ba5f-87c227ba9863</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>11</cim:IdentifiedObject.name>
+  </cim:ACLineSegment>
+  <cim:ConnectivityNode nhftui:info="$NO_SIRKIT" rdf:ID="_c94ab960-44b0-4253-baab-cad0d5c5a82e">
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_401b92c4-eba2-4c19-aa9f-c106fc1b34d5"/>
+    <cim:IdentifiedObject.description>ConnectivityNode PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>c94ab960-44b0-4253-baab-cad0d5c5a82e</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>2</cim:IdentifiedObject.name>
+  </cim:ConnectivityNode>
+  <cim:BaseVoltage rdf:ID="_6dd28780-8dd3-4782-bf29-6492a2674e45">
+    <cim:BaseVoltage.nominalVoltage>150</cim:BaseVoltage.nominalVoltage>
+    <cim:IdentifiedObject.description>BaseVoltage PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>6dd28780-8dd3-4782-bf29-6492a2674e45</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>11</cim:IdentifiedObject.name>
+  </cim:BaseVoltage>
+  <cim:VoltageLevel rdf:ID="_401b92c4-eba2-4c19-aa9f-c106fc1b34d5">
+    <cim:IdentifiedObject.description>VoltageLevel PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>401b92c4-eba2-4c19-aa9f-c106fc1b34d5</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>11</cim:IdentifiedObject.name>
+    <cim:VoltageLevel.BaseVoltage rdf:resource="#_6dd28780-8dd3-4782-bf29-6492a2674e45"/>
+    <cim:VoltageLevel.Substation rdf:resource="#_eee10233-b9a7-49a5-8e6c-e4fd2ee3324c"/>
+  </cim:VoltageLevel>
+  <cim:Substation rdf:ID="_eee10233-b9a7-49a5-8e6c-e4fd2ee3324c">
+    <cim:IdentifiedObject.description>Substation PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>eee10233-b9a7-49a5-8e6c-e4fd2ee3324c</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GI_PUKIS</cim:IdentifiedObject.name>
+    <cim:Substation.Region rdf:resource="#_5ae4eba3-8367-4295-b128-8c49de9ab8b7"/>
+  </cim:Substation>
+  <cim:SubGeographicalRegion rdf:ID="_5ae4eba3-8367-4295-b128-8c49de9ab8b7">
+    <cim:IdentifiedObject.description>SubGeographicalRegion PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>5ae4eba3-8367-4295-b128-8c49de9ab8b7</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>Depok</cim:IdentifiedObject.name>
+    <cim:SubGeographicalRegion.Region rdf:resource="#_e34f6247-002f-49e9-aa6d-02b3495d6199"/>
+  </cim:SubGeographicalRegion>
+  <cim:GeographicalRegion rdf:ID="_e34f6247-002f-49e9-aa6d-02b3495d6199">
+    <cim:IdentifiedObject.description>GeographicalRegion PHT_1</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>e34f6247-002f-49e9-aa6d-02b3495d6199</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TestGrid</cim:IdentifiedObject.name>
+  </cim:GeographicalRegion>
+</rdf:RDF>

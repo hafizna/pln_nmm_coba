@@ -8,17 +8,19 @@ instead; the two files describe the same project with the same conventions.
 
 Python library that round-trips PLN's CIM16 / CGMES 2.4.15 Equipment
 profile XML files through the SOGNO `cimpy` library, preserving two
-custom PLN namespaces (`plnicp:DiagramProperty.x/y` and `nhftui:info`)
-that cimpy alone would silently drop on export.
+custom PLN namespaces (`plnicp:DiagramProperty.x/y`, `nhftui:info`, and POC
+`plnnmm` review metadata) that cimpy alone would silently drop on export.
 
 End goal: web-based Network Model Management tool for PLN Transmisi.
-This repo is the parser/serializer kernel.
+This repo is the parser/serializer kernel. The next product phase is an
+SLD-first web editor; topology processing and load-flow analysis are
+deferred until the diagram workflow and data-quality layer are useful.
 
 ## How to run
 
 ```bash
 pip install -e ".[dev]"   # Python 3.10+
-pytest                     # 14 tests, ~0.5s
+pytest                     # 31 tests, ~10s
 python examples/roundtrip_demo.py
 ```
 
@@ -29,7 +31,7 @@ python examples/roundtrip_demo.py
 - `src/pln_nmm/exporter.py` — wraps `cimpy.cim_export` with the reinject step.
 - `src/pln_nmm/cli.py` — argparse CLI.
 - `tests/` — pytest suite, fixtures in `tests/fixtures/`.
-- `docs/` — design specs (planned, mostly empty for now).
+- `docs/` — design specs and roadmap.
 
 ## Critical invariants — do not break these
 
@@ -42,9 +44,11 @@ python examples/roundtrip_demo.py
 3. Float coordinates must round-trip bit-exact via Python `repr()`.
    Tests assert `before.x == after.x` after the round-trip. Do not
    change the float-to-string formatting.
-4. Bus-branch only for v1. Switching equipment (Breaker, Disconnector)
-   is intentionally excluded from the supported asset import path.
-   Reasoning is in `CLAUDE.md` and will be expanded in `docs/`.
+4. SLD-first for the next app phase. Do not prioritize bus-branch topology
+   processing yet. Focus the web MVP on CIM import, diagnostics, and SLD
+   creation/editing. Switching equipment (Breaker, Disconnector) should be
+   treated as schematic/annotation-only unless the source CIM clearly
+   identifies it.
 
 ## Domain context
 

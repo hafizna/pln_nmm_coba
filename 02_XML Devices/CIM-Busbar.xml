@@ -1,0 +1,61 @@
+<?xml version="1.0" ?><!-- Dibuat oleh NH, db config v1.12 --><rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:nhftui="https://eng.ui.ac.id/lab-simulasi/nhjarman2025#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <md:FullModel rdf:about="urn:uuid:b88b0175-6bf0-48c1-a4e4-ea2a5d982fc2">
+    <md:Model.created>2025-04-16T12:27:37Z2025-03-03T08:44:01Z</md:Model.created>
+    <md:Model.modelingAuthoritySet>NH</md:Model.modelingAuthoritySet>
+    <md:Model.profile>http://entsoe.eu/CIM/EquipmentCore/3/1</md:Model.profile>
+    <md:Model.profile>http://entsoe.eu/CIM/EquipmentOperation/3/1</md:Model.profile>
+    <md:Model.scenarioTime>2025-04-16 20:45:29.672667</md:Model.scenarioTime>
+    <md:Model.version>1.12</md:Model.version>
+  </md:FullModel>
+  <cim:Terminal rdf:ID="_95a116a7-0c2a-4fd6-a634-f46f0ddd432f">
+    <cim:ACDCTerminal.sequenceNumber>1</cim:ACDCTerminal.sequenceNumber>
+    <cim:IdentifiedObject.description>Terminal BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>95a116a7-0c2a-4fd6-a634-f46f0ddd432f</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:Terminal.ConductingEquipment rdf:resource="#_8c3fb00a-19a0-4048-aee0-037a33c78af8"/>
+    <cim:Terminal.ConnectivityNode rdf:resource="#_c7d8aa01-b672-4f03-a62c-fc8ab5e639b0"/>
+    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC"/>
+  </cim:Terminal>
+  <cim:BusbarSection rdf:ID="_8c3fb00a-19a0-4048-aee0-037a33c78af8">
+    <cim:Equipment.EquipmentContainer rdf:resource="#_3694febf-7e72-4bfc-a6db-d1b3c25053ec"/>
+    <cim:IdentifiedObject.description>BusbarSectionBB_A_-_GI_PUKIS_-_TestGrid</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>8c3fb00a-19a0-4048-aee0-037a33c78af8</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+  </cim:BusbarSection>
+  <cim:ConnectivityNode nhftui:info="$NO_SIRKIT" rdf:ID="_c7d8aa01-b672-4f03-a62c-fc8ab5e639b0">
+    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#_3694febf-7e72-4bfc-a6db-d1b3c25053ec"/>
+    <cim:IdentifiedObject.description>ConnectivityNode BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>c7d8aa01-b672-4f03-a62c-fc8ab5e639b0</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+  </cim:ConnectivityNode>
+  <cim:VoltageLevel rdf:ID="_3694febf-7e72-4bfc-a6db-d1b3c25053ec">
+    <cim:IdentifiedObject.description>VoltageLevel BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>3694febf-7e72-4bfc-a6db-d1b3c25053ec</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+    <cim:VoltageLevel.BaseVoltage rdf:resource="#_d9982d7f-df4d-41f8-803d-13c910445fc2"/>
+    <cim:VoltageLevel.Substation rdf:resource="#_11ad697e-1431-4270-9a90-5020562a98f5"/>
+  </cim:VoltageLevel>
+  <cim:Substation rdf:ID="_11ad697e-1431-4270-9a90-5020562a98f5">
+    <cim:IdentifiedObject.description>Substation BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>11ad697e-1431-4270-9a90-5020562a98f5</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>GI_PUKIS</cim:IdentifiedObject.name>
+    <cim:Substation.Region rdf:resource="#_79cc814e-80be-413d-88f3-a5889bd3a4b2"/>
+  </cim:Substation>
+  <cim:BaseVoltage rdf:ID="_d9982d7f-df4d-41f8-803d-13c910445fc2">
+    <cim:BaseVoltage.nominalVoltage>150</cim:BaseVoltage.nominalVoltage>
+    <cim:IdentifiedObject.description>BaseVoltage BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>d9982d7f-df4d-41f8-803d-13c910445fc2</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>1</cim:IdentifiedObject.name>
+  </cim:BaseVoltage>
+  <cim:SubGeographicalRegion rdf:ID="_79cc814e-80be-413d-88f3-a5889bd3a4b2">
+    <cim:IdentifiedObject.description>SubGeographicalRegion BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>79cc814e-80be-413d-88f3-a5889bd3a4b2</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>Depok</cim:IdentifiedObject.name>
+    <cim:SubGeographicalRegion.Region rdf:resource="#_418ae8fb-aee2-4cb1-9023-615c071a7e75"/>
+  </cim:SubGeographicalRegion>
+  <cim:GeographicalRegion rdf:ID="_418ae8fb-aee2-4cb1-9023-615c071a7e75">
+    <cim:IdentifiedObject.description>GeographicalRegion BB_A</cim:IdentifiedObject.description>
+    <cim:IdentifiedObject.mRID>418ae8fb-aee2-4cb1-9023-615c071a7e75</cim:IdentifiedObject.mRID>
+    <cim:IdentifiedObject.name>TestGrid</cim:IdentifiedObject.name>
+  </cim:GeographicalRegion>
+</rdf:RDF>
