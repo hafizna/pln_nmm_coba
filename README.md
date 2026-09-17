@@ -385,6 +385,7 @@ docs/              - spesifikasi, rekap, laporan gap
 | [10_MODEL_INPUT_WORKBOOK.md](docs/10_MODEL_INPUT_WORKBOOK.md) | struktur workbook dan aturannya |
 | [11_BALI_FILL_GAP_REPORT.md](docs/11_BALI_FILL_GAP_REPORT.md) | **status pengisian Bali dan gapnya** |
 | [12_CIM_SCOPE.md](docs/12_CIM_SCOPE.md) | **peran NMM dan kesiapan model untuk solver** |
+| [13_DL_SEPARATION.md](docs/13_DL_SEPARATION.md) | **koordinat di EQ: apa yang salah dan bagaimana diperbaiki** |
 | [09_BALI_PRIMARY_SLD_SPEC.md](docs/09_BALI_PRIMARY_SLD_SPEC.md) | kontrak field minimum |
 | [08_CANONICAL_XML_GAP_RECAP.md](docs/08_CANONICAL_XML_GAP_RECAP.md) | bukti historis fixture Gilimanuk |
 | [07_PHASES.md](docs/07_PHASES.md) | rencana milestone dan kriteria penerimaan |
