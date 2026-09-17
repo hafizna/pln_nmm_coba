@@ -12,6 +12,11 @@ Version 1 accepts PLN CIM16 / CGMES 2.4.15 Equipment profile XML using:
 
 The current scope is EQ only. TP, SSH, SV, DL, and GL are future phases.
 
+The Bali milestone plans an EQ core plus preserved PLN asset extensions and
+versioned scenario/snapshot companions. This package is not implemented yet and
+is not a claim of standard-only CGMES compliance. See
+[the minimum contract](09_BALI_PRIMARY_SLD_SPEC.md).
+
 ## PLN Extensions
 
 The adapter preserves:
@@ -19,9 +24,14 @@ The adapter preserves:
 - `plnicp:DiagramProperty.x`
 - `plnicp:DiagramProperty.y`
 - `nhftui:info`
+- Supported `plnnmm` review/provenance properties.
 
 These fields are extracted before cimpy import, stripped from the temporary
 cimpy input, and reinjected after cimpy export.
+
+Whole unsupported primary-equipment objects such as CT/CVT need additional
+preservation support and reference tests; existing property handling is not
+sufficient. Normal switch position and scenario state must remain separate.
 
 ## Template Placeholders
 

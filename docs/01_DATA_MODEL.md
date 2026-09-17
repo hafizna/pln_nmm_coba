@@ -1,45 +1,38 @@
-# 01 - Data Model
+# 01 ? Data Model
 
-## Current Kernel Model
+## Lapisan yang sudah ada
 
-The current package has two layers:
+Kernel membungkus cimpy dan menyimpan ekstensi PLN yang didukung dalam side-table.
+Kunci round-trip adalah rdf:ID dengan leading underscore dihapus, bukan nilai
+IdentifiedObject.mRID yang mungkin berbeda. Koordinat memakai Python repr().
 
-1. A lossless XML side-table keyed by canonical mRID.
-2. The cimpy object graph for files that are semantically valid CGMES 2.4.15 EQ.
+## Kontrak target
 
-The side-table stores PLN-only extensions that cimpy does not model:
+1. Source evidence: file asli, dokumen/halaman, tanggal, label sumber.
+2. Asset/connectivity: GI, VoltageLevel, Bay, equipment, Terminal,
+   ConnectivityNode, winding trafo, dan rating.
+3. Diagram: posisi/orientasi per view, referensi ke ID objek yang sama.
+4. Scenario: referensi versi model, posisi switch, availability, asumsi dispatch.
+5. Snapshot: timestamp, P/Q/V/I, arah, satuan, dan granularitas pengukuran.
+6. Review: provenance dan kualitas per objek serta per atribut.
 
-- `plnicp:DiagramProperty.x`
-- `plnicp:DiagramProperty.y`
-- `nhftui:info`
+ID SLD engine/asset register dipetakan secara eksplisit ke ID CIM stabil.
+Dua ujung satu sirkit memakai satu identitas aset. Jangan menggabungkan sirkit
+paralel atau memecah angka aliran koridor ke per-sirkit tanpa asumsi tercatat.
 
-The canonical key is `rdf:ID` with the leading underscore stripped. This must
-remain true even when `cim:IdentifiedObject.mRID` disagrees, because cimpy emits
-the `rdf:ID`-derived form on export.
+Field minimum ada di [spesifikasi](09_BALI_PRIMARY_SLD_SPEC.md).
+Field domain dalam spesifikasi belum merupakan nama properti CIM resmi;
+mapping harus diperiksa terhadap profile/class yang benar sebelum implementasi.
 
-## Platform Model
+## Kualitas dan readiness
 
-The web platform should store three related representations:
+Gunakan kualitas verified/inferred/assumed/unknown per atribut, dengan sumber,
+alasan asumsi, reviewer bila tersedia, dan tanggal berlaku. Verified memerlukan
+bukti/review; hasil OCR tidak otomatis verified.
 
-- Raw CIM XML file version, for audit and exact export lineage.
-- Normalized CIM object records, preferably in PostgreSQL JSONB first.
-- Derived topology graph, produced from CIM terminals, connectivity nodes,
-  conducting equipment, and transformers.
+Track readiness terpisah: XML parsable, EQ importable, references resolved,
+primary SLD coverage, scenario complete, load-flow ready. Satu flag valid tidak
+mewakili semuanya. Unknown bukan numeric zero atau status closed.
 
-PostGIS should be added only when the product needs real geographic coordinates
-or map overlays. The current `plnicp` x/y values are diagram canvas coordinates,
-not geospatial coordinates.
-
-## Data Quality State
-
-Objects and files need validation state:
-
-- `raw`: uploaded but not inspected.
-- `needs_input`: unresolved `$(Isi_*)` placeholders exist.
-- `valid_eq`: cimpy can import the EQ profile.
-- `topology_ready`: bus-branch graph can be derived.
-- `load_flow_ready`: required electrical parameters are complete enough for
-  pandapower.
-
-`$(Isi_*)` values are template prompts. They should be shown to users as fields
-to complete, not hidden as parser errors.
+Raw XML dipertahankan; edit menghasilkan versi baru. Penyimpanan file paket
+lokal cukup untuk milestone. Database produksi tidak menjadi prasyarat.

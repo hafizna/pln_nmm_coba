@@ -1,35 +1,38 @@
-# 06 - Architecture
+# 06 ? Architecture
 
-## Recommended Shape
+## Existing foundation
 
-Keep this repository as the parser/serializer kernel and build the web platform
-around it.
+Python pln_nmm wraps cimpy for EQ import/export and PLN extension preservation.
+FastAPI inspection endpoints and React/TypeScript/React Flow workspace already
+live here. Tolerant XML extraction supports diagnostics and SLD inspection when
+semantic import is blocked.
 
-Backend:
+## Target milestone pipeline
 
-- Python FastAPI
-- `pln_nmm` kernel for import/export/diagnostics
-- NetworkX for derived topology
-- pandapower for first load-flow integration
+Source files / SLD_engine snapshot / asset register
+? staged observations and identity reconciliation
+? canonical equipment/connectivity plus asset extensions
+? system and GI diagram projections
+? versioned local package save/export/import.
 
-Frontend:
+Scenario and snapshot records reference the same model IDs but remain separate
+from asset ratings and geometry. Start with local files; a production database,
+authentication, hosting, and live integration are not milestone dependencies.
 
-- React + TypeScript
-- React Flow for first SLD editor
-- Cytoscape.js later if graph-scale exploration becomes central
+## Profile boundary
 
-Storage:
+Use supported CIM16/CGMES 2.4.15 EQ classes for electrical structure. The installed
+cimpy profile lacks CurrentTransformer/PotentialTransformer classes; do not
+assume full CIM coverage or silently discard instrumentation.
 
-- PostgreSQL + JSONB first
-- PostGIS later only for geographic coordinates or map overlays
+Implement an explicit PLN extension preservation path for unsupported asset
+objects/fields, including attachment references. Existing property preservation
+does not prove unsupported whole-object preservation. Test new support.
 
-## Why Not Replace cimpy Now
+Normal switch position belongs to EQ; scenario open belongs to SSH in CGMES.
+For the first milestone, use a versioned scenario companion rather than
+misrepresent scenario state as standard EQ. Native SSH/TP/SV/DL/GL support is later.
 
-cimpy already gives a working path for valid CGMES 2.4.15 EQ round-trip. The
-larger fixture problem is not that cimpy is the wrong tool; it is that the file
-contains unresolved template prompts in typed fields. A diagnostics and
-normalization layer should come before any library replacement.
-
-RDFLib may be useful for tolerant RDF querying, and PowSyBl may be useful once
-full CGMES package workflows are in scope. Neither should replace the current
-lossless adapter kernel yet.
+SLD_engine remains separate. Imported evidence records keep repository revision,
+source IDs and document references. Renderer reuse, if needed, requires a
+separate code/license review; no runtime coupling is assumed.

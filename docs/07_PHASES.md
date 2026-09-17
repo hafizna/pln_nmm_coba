@@ -1,55 +1,54 @@
-# 07 - Phases
+# 07 ? Bali SLD Milestone
 
-## Phase 1 - Parser Kernel
+Direction agreed 2026-09-16. One week is a proposed timebox; acceptance below,
+not elapsed days, determines completion. These tasks are planned, not implemented.
 
-Status: active and mostly working.
+## Sequence
 
-- Preserve PLN extensions.
-- Round-trip valid EQ through cimpy.
-- Diagnose unresolved `$(Isi_*)` template placeholders.
-- Expose CLI inspect and roundtrip commands.
+| Day | Deliverable |
+|---|---|
+| 1 | Source/coverage manifest; reconcile GI/circuit IDs, dates, existing/planned status; agree representative bay templates and assumptions |
+| 2 | Canonical Bali system equipment/connectivity and deterministic IDs |
+| 3 | GI/bay detail including switching, CT/CVT and other primary equipment; implement unsupported-data preservation |
+| 4 | System/detail SLD, rating inspector, gap/source display |
+| 5 | Scenario status editing and local versioned save/export/import |
+| 6 | Full-Bali coverage audit and representative end-to-end round-trip checks |
+| 7 | Fix failures, prepare demonstration and list unresolved evidence |
 
-## Phase 2 - SLD Web Editor MVP
+Baseline flow snapshot is stretch scope after acceptance. Load flow and defense
+scheme execution are later milestones.
 
-- FastAPI upload/import API.
-- React + TypeScript workspace.
-- React Flow SLD canvas.
-- Diagnostics panel for unresolved `$(Isi_*)` tokens.
-- Initial SLD rendering from PLN coordinates where available.
-- Manual creation/editing for busbars, transformers, and line/corridor symbols.
+## Acceptance checklist
 
-## Phase 3 - Tolerant SLD Extraction
+- [ ] Manifest enumerates all GI, boundary, circuits and applicable equipment
+      in the selected Bali source revision; exclusions/conflicts are explicit.
+- [ ] Every scoped GI/circuit appears in system SLD and links to detail.
+- [ ] Bay equipment has stable IDs and valid attachment/connectivity references;
+      no duplicate IDs, dangling internal references or silently omitted objects.
+- [ ] Bus configurations and equipment order follow evidence or labeled assumptions.
+- [ ] CT/CVT and other applicable primary equipment are present; unknown rating
+      fields remain inspectable. Source-limited detail is labeled provisional.
+- [ ] Rating/unit/source/quality are inspectable; OCR setting, Inom and IKHA
+      are distinct; inferred values cannot masquerade as verified.
+- [ ] Switch state supports open/closed/unknown per scenario; normal state separate.
+- [ ] Edit/save/reopen preserves model, scenario, layout and identity.
+- [ ] Preserve export/import retains primary objects, CT/CVT attachments, supported
+      ratings, provenance and bit-exact coordinates; companion files remain linked.
+- [ ] Standard export explicitly reports excluded PLN data.
+- [ ] Appropriate Python regression checks and web build pass; overview/detail
+      visually reviewed for connectivity, symbols and readability.
 
-- Read enough XML directly to render SLDs even when cimpy import is blocked.
-- Extract object class, mRID/rdf:ID, labels, terminals, connectivity nodes, and
-  `plnicp` coordinates.
-- Treat switching/bay details as schematic annotations unless source evidence is
-  strong enough to identify them.
+## If the timebox is too tight
 
-## Phase 4 - Data Quality And Normalization
+Reduce automated layout polish, bulk editing and snapshot overlays first.
+Use reviewed template-assisted bay modeling with explicit assumptions.
+Do not hide missing primary equipment, drop fields on export, or call partial
+coverage ?full Bali.? If source review remains incomplete, deliver a provisional
+Bali model with a measured coverage/gap report and record unfinished acceptance.
 
-- Add dangling reference diagnostics.
-- Classify placeholder fields by expected input type.
-- Add repair/fill workflow for unresolved template values.
-- Store validation reports in backend-ready JSON.
+## Later
 
-## Phase 5 - Canonical XML Review Workflow
-
-- Compare canonical drafts against recent CIM/XML and approved SLD evidence.
-- Keep provenance, confidence, and technical-parameter status explicit.
-- Review single-GI bay connectivity before promoting system-level topology.
-- Keep inferred switching equipment and diagram coordinates reviewable.
-
-## Phase 6 - Topology And Analysis
-
-- Evaluate cimpy bus-branch conversion.
-- Produce NetworkX graph.
-- pandapower conversion.
-- Load-flow execution and result visualization.
-- Export edited CIMXML / PLN-compatible EQ.
-
-## Phase 7 - CGMES Expansion
-
-- Add TP/SSH/SV support.
-- Evaluate PowSyBl for full CGMES package validation and exchange.
-- Consider standard Diagram Layout profile migration.
+1. Replace assumptions using per-bay asset registers and as-built SLDs.
+2. Add operating snapshots and illustrative risk/defense-scheme scenarios.
+3. Establish solver-ready parameter coverage, then load flow/short circuit.
+4. Add protection studies, native additional CGMES profiles and production hosting.

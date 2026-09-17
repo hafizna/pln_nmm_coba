@@ -1,85 +1,96 @@
 # Agent instructions for pln_nmm_coba
 
-This file is read by OpenAI Codex and other generic agentic coding tools
-that follow the AGENTS.md convention. Claude Code reads `CLAUDE.md`
-instead; the two files describe the same project with the same conventions.
+## Product direction
 
-## Project summary
+This repository contains the CIM parser/serializer kernel AND the local web
+workspace. The next milestone is a complete primary-equipment SLD model of Bali:
+system overview down to GI/bay, busbars, CB/PMT, disconnector/PMS, earthing switch,
+CT, CVT/PT, arrester, transformers, generators and shunts applicable to sources.
+Ratings, scenario status and per-field provenance must be inspectable.
 
-Python library that round-trips PLN's CIM16 / CGMES 2.4.15 Equipment
-profile XML files through the SOGNO `cimpy` library, preserving two
-custom PLN namespaces (`plnicp:DiagramProperty.x/y`, `nhftui:info`, and POC
-`plnnmm` review metadata) that cimpy alone would silently drop on export.
+Read README.md, docs/09_BALI_PRIMARY_SLD_SPEC.md and docs/07_PHASES.md before
+product work. Those describe planned acceptance, not features already complete.
+SLD_engine remains a separate repository used as reconciled source evidence;
+do not merge it or assume a runtime dependency.
 
-End goal: web-based Network Model Management tool for PLN Transmisi.
-This repo is the parser/serializer kernel. The next product phase is an
-SLD-first web editor; topology processing and load-flow analysis are
-deferred until the diagram workflow and data-quality layer are useful.
+## Critical invariants
+
+1. Never modify or fork cimpy. Wrap it externally.
+2. Canonical round-trip key is rdf:ID with leading underscore stripped, NOT
+   IdentifiedObject.mRID when the two disagree.
+3. Preserve float coordinates bit-exact using Python repr(); no rounding.
+4. Model switching as explicit connected equipment. Inferred/assumed bay and
+   switching structures are authorized for the demo with visible provenance.
+   This supersedes the old annotation-only switching direction.
+5. Do not assume every GI is double busbar or apply a universal bay arrangement.
+   Follow evidence or mark the specific assumption.
+6. Separate physical connectivity/ratings, normal position, scenario state,
+   snapshot values and diagram geometry. Unknown is not zero or closed.
+7. Do not fabricate verified nameplate ratings. Dummy operating values belong
+   to explicitly labeled scenarios. Inom, IKHA and OCR settings remain distinct.
+8. Use supported CIM16/CGMES 2.4.15 EQ structure. Unsupported asset objects
+   (including CT/CVT) require explicit tested extension preservation; current
+   property preservation does not guarantee whole-object round-trip.
+9. Scenario open state must not be presented as standard EQ normalOpen.
+   Scenario companions are planned; native SSH/TP/SV/DL/GL remain later work.
+10. Primary connectivity validation is in scope now. Solver bus-branch reduction,
+    load flow, short circuit and defense-scheme execution follow the SLD milestone.
+
+Use PMS/disconnector for switching and ?defense scheme? for the protection scheme
+to avoid ambiguous DS labels. Opening a coupler does not automatically shed load.
 
 ## How to run
 
-```bash
-pip install -e ".[dev]"   # Python 3.10+
-pytest                     # 31 tests, ~10s
+```powershell
+python -m pip install -e ".[dev,web]"
+python -m pytest -q
 python examples/roundtrip_demo.py
+python -m uvicorn pln_nmm_web.api:app --host 127.0.0.1 --port 8000 --reload
 ```
+
+Frontend in a separate terminal:
+
+```powershell
+cd web
+npm install
+npm run dev -- --port 5173 --strictPort
+npm run build
+```
+
+CLI: python -m pln_nmm.cli inspect path/to/file.xml
+See README for preserve/standard export commands.
 
 ## Source layout
 
-- `src/pln_nmm/adapter.py` — pure-XML extract/strip/reinject. The core IP.
-- `src/pln_nmm/importer.py` — wraps `cimpy.cim_import` with the strip step.
-- `src/pln_nmm/exporter.py` — wraps `cimpy.cim_export` with the reinject step.
-- `src/pln_nmm/cli.py` — argparse CLI.
-- `tests/` — pytest suite, fixtures in `tests/fixtures/`.
-- `docs/` — design specs and roadmap.
+- src/pln_nmm/adapter.py: pure XML extract/strip/reinject.
+- importer.py / exporter.py: cimpy wrappers.
+- diagnostics.py / sld.py / topology.py: diagnostics and derived inspection.
+- src/pln_nmm_web/api.py: local FastAPI inspection.
+- web/: React/TypeScript workspace.
+- tests/: regression tests and fixtures.
+- docs/: direction, minimum field contract, acceptance and historical evidence.
 
-## Critical invariants — do not break these
+## Domain and verification
 
-1. cimpy must remain unmodified. Wrap it externally; never fork or patch
-   files inside the cimpy package.
-2. The canonical key for matching elements between import and re-export
-   is `rdf:ID` with leading underscore stripped. Do not switch to
-   `cim:IdentifiedObject.mRID` even when the two disagree (~9 elements
-   in the sample disagree; cimpy emits the rdf:ID form).
-3. Float coordinates must round-trip bit-exact via Python `repr()`.
-   Tests assert `before.x == after.x` after the round-trip. Do not
-   change the float-to-string formatting.
-4. SLD-first for the next app phase. Do not prioritize bus-branch topology
-   processing yet. Focus the web MVP on CIM import, diagnostics, and SLD
-   creation/editing. Switching equipment (Breaker, Disconnector) should be
-   treated as schematic/annotation-only unless the source CIM clearly
-   identifies it.
+CIM namespace: http://iec.ch/TC57/2013/CIM-schema-cim16#
+PLN coordinate namespace: http://iconpln.co.id#
+PLN nhftui namespace: https://eng.ui.ac.id/lab-simulasi/nhjarman2025#
+Preserve supported plnnmm review metadata as well.
 
-## Domain context
+Unresolved $(Isi_*) values are template prompts; diagnose before cimpy typed
+import. Keep raw evidence and identity mappings. New round-trip support requires
+regressions for IDs, references, values, attachments and coordinate equality.
+Check web builds for UI changes and visually review system/detail diagrams.
 
-- CIM = Common Information Model, IEC 61970 standard for power system
-  data exchange.
-- CGMES 2.4.15 = ENTSO-E's CIM 16 profile. PLN files use this exact
-  namespace: `http://iec.ch/TC57/2013/CIM-schema-cim16#`.
-- EQ profile = Equipment, the static topology and parameters. Other
-  profiles (TP, SSH, SV, DL, GL) are out of scope for v1.
-- `plnicp` namespace `http://iconpln.co.id#` and `nhftui` namespace
-  `https://eng.ui.ac.id/lab-simulasi/nhjarman2025#` are PLN-internal
-  extensions, not standard CGMES.
-
-## Common tasks
-
-**Add a regression fixture**: drop the XML in `tests/fixtures/`, write
-a test that imports it, exports it, and compares the rdf:ID set.
-
-**Run the full sanity check**: `pytest && python examples/roundtrip_demo.py`.
-The demo writes round-tripped files into `examples/out/` for visual
-inspection.
-
-**Inspect a CIM file without round-tripping**:
-`python -m pln_nmm.cli inspect path/to/file.xml`
+The one-week target is a timebox. Report measured coverage and unfinished
+acceptance honestly. Prefer deferring layout polish and analysis overlays over
+silently dropping primary equipment or provenance.
 
 ## Dependencies and licensing
 
-Permissively licensed only:
-- cimpy — Apache 2.0
-- lxml — BSD
-- pytest — MIT
+Permissive dependencies only (MIT/BSD/Apache-2.0 etc.). No GPL/AGPL dependencies.
+cimpy remains unmodified. Production deployment/authentication and a production
+database are not prerequisites for the local demo.
 
-No GPL / AGPL dependencies. The product will be deployed on a public PLN
-web property; copyleft licenses are off the table by procurement policy.
+AGENTS.md and CLAUDE.md intentionally contain the same project conventions.
+Keep them synchronized when updating direction.

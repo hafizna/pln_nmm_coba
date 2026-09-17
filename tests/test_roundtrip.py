@@ -10,13 +10,27 @@ from pln_nmm import (
     extract_pln_extensions,
     import_pln_eq,
 )
-from pln_nmm.exporter import _normalize_cimpy_xml_encoding
+from pln_nmm.exporter import _normalize_cimpy_xml_encoding, _normalize_local_references
 
 
 FIXTURES = Path(__file__).parent / "fixtures"
 SAMPLE_EQ = FIXTURES / "sample_EQ.xml"
 
 NS_RDF = "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}"
+
+
+def test_reference_repair_only_resolves_unambiguous_local_aliases(tmp_path):
+    path = tmp_path / "references.xml"
+    path.write_text('''<root xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <object rdf:ID="_known"/><object rdf:ID="_ambiguous"/><object rdf:ID="__ambiguous"/>
+      <ref rdf:resource="#known"/><ref rdf:resource="#_known"/>
+      <ref rdf:resource="#missing"/><ref rdf:resource="#ambiguous"/>
+      <ref rdf:resource="https://example.org/model#known"/>
+    </root>''', encoding="utf-8")
+    assert _normalize_local_references(path) == 1
+    refs = [e.get(NS_RDF + "resource") for e in etree.parse(str(path)).findall("ref")]
+    assert refs == ["#_known", "#_known", "#missing", "#ambiguous", "https://example.org/model#known"]
+    assert _normalize_local_references(path) == 0
 
 
 def test_normalizes_legacy_bytes_in_nominally_utf8_cimpy_output(tmp_path):
