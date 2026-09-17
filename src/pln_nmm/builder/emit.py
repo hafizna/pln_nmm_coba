@@ -394,7 +394,9 @@ class CimBuilder:
         head = (
             "<?xml version='1.0' encoding='UTF-8'?>\n"
             f'<rdf:RDF xmlns:cim="{NS_CIM}" xmlns:rdf="{NS_RDF}" '
-            f'xmlns:md="{NS_MD}" xmlns:plnicp="{NS_PLNICP}" '
+            # No plnicp here: layout belongs to the DL profile. The PLN
+            # compatibility shadow is written by emit/plnicp.py when asked.
+            f'xmlns:md="{NS_MD}" '
             f'xmlns:plnnmm="{NS_PLNNMM}">\n'
             f'  <md:FullModel rdf:about="urn:uuid:{model_id}">\n'
             f"    <md:Model.created>{now}</md:Model.created>\n"

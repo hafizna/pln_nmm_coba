@@ -18,18 +18,10 @@ provenance from the row that produced it.
 
 from __future__ import annotations
 
-import uuid
 from dataclasses import dataclass, field
 from typing import Iterable, Literal
 
-# Deterministic IDs: the same workbook must always yield the same mRIDs, so a
-# re-export is diffable. UUID5 over a stable business key does that.
-_NAMESPACE = uuid.UUID("6f2a1c4e-8b3d-5f7a-9c1e-2d4b6a8c0e2f")
-
-
-def stable_id(*parts: str) -> str:
-    """Deterministic UUID for a business key."""
-    return str(uuid.uuid5(_NAMESPACE, "|".join(parts)))
+from ..model.identity import stable_id
 
 
 SwitchKind = Literal["BREAKER", "DISCONNECTOR"]
