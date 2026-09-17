@@ -8,10 +8,10 @@ The workbook must pass scripts/validate_workbook.py first; this package assumes
 valid input and does not re-check domain rules.
 """
 
+from ..sources.workbook import Workbook, read_workbook
 from .check import TopologyReport, check_topology
 from .emit import BuildReport, build_cim
 from .templates import BayExpansion, expand_all, expand_bay, stable_id
-from .workbook import Workbook, read_workbook
 
 __all__ = [
     "BuildReport",
