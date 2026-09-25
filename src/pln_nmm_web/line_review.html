@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NMM | Review XML Kelapa</title>
+<style>
+body{margin:0;font:15px system-ui;background:#eef2f6;color:#172b42}header{padding:24px 32px;background:#142d47;color:white}
+h1{font-size:25px;margin:0 0 8px}main{padding:24px 32px}button,.upload,a.download{display:inline-block;padding:11px 15px;border-radius:6px;border:1px solid #9baebe;background:white;color:#123b60;cursor:pointer;font:inherit;text-decoration:none;margin:4px}
+button.primary{background:#126783;color:white}button:disabled{opacity:.5;cursor:default}#status{padding:12px;background:white;border-left:4px solid #126783;white-space:pre-wrap}
+#controls{background:white;padding:16px;display:flex;flex-wrap:wrap;gap:14px}label.switch{display:grid;gap:5px;max-width:260px;font-size:13px}select{padding:8px}iframe{width:100%;height:1050px;border:1px solid #bccbd8;background:white;margin-top:16px}details{margin:16px 0}input[type=file]{max-width:280px}
+</style>
+<header><h1>NMM — Review XML bay Kelapa</h1><div>Contoh asumsi • XML → impor ulang → diagram → edit status → unduh XML</div></header>
+<main><p>Mulai dengan contoh Kelapa–Muntok #1. Bus 1 dipilih, PMS line masuk dan ES keluar.
+Ini pemeriksaan model dan status kontak; belum simulasi aliran daya atau model GI lengkap.</p>
+<button id="example" class="primary">Muat contoh Kelapa</button>
+<label class="upload">Impor ulang XML <input id="upload" type="file" accept=".xml,application/xml"></label>
+<button id="download" disabled>Unduh XML yang tampil</button>
+<p id="status" role="status">Belum ada XML dibuka. Pilih contoh atau unggah XML NMM review.</p>
+<details id="editor"><summary>Ubah status skenario asumsi</summary>
+<p>Posisi normal aktual tetap unknown. Aturan demo menolak PMS line dan ES tertutup bersamaan.
+Interlock lainnya dan status bertegangan belum dievaluasi.</p><div id="controls"></div>
+<button id="apply" disabled>Terapkan → tulis XML → impor ulang</button></details>
+<iframe id="diagram" title="SLD dari XML NMM" sandbox=""></iframe>
+<p>Format contoh: RDF/XML NMM eksperimental dengan objek CIM16 dan ekstensi primer.
+Gunakan halaman ini untuk impor contoh; uploader EQ umum belum mendukung paket ini.</p></main>
+<script>
+let current=null;
+const el=id=>document.getElementById(id);
+async function check(response){if(!response.ok){let message=await response.text();try{message=JSON.parse(message).detail}catch{}throw Error(message)}return response}
+function report(error){el('status').textContent='Gagal: '+error.message}
+async function load(blob){
+ const form=new FormData();form.append('file',blob,'review.xml');
+ const response=await check(await fetch('/api/line-review/import',{method:'POST',body:form}));
+ const result=await response.json();current=blob;el('diagram').srcdoc=result.html;
+ el('controls').replaceChildren();
+ for(const item of result.switches){const label=document.createElement('label');label.className='switch';label.textContent=item.name;
+ const select=document.createElement('select');select.dataset.id=item.id;
+ for(const [value,text] of [['null','Unknown'],['false','Closed / masuk'],['true','Open / keluar']]){const option=new Option(text,value);select.add(option)}
+ select.value=String(item.open);label.append(select);el('controls').append(label)}
+ el('download').disabled=false;el('apply').disabled=false;
+ el('status').textContent='XML berhasil diimpor. Diagram membaca sambungan dan status dari XML ini; semua susunan contoh berlabel asumsi.';
+}
+el('example').onclick=async()=>{try{await load(await (await check(await fetch('/api/line-review/example'))).blob())}catch(e){report(e)}};
+el('upload').onchange=async event=>{try{if(event.target.files[0])await load(event.target.files[0])}catch(e){report(e)}};
+el('download').onclick=()=>{const url=URL.createObjectURL(current);const a=document.createElement('a');a.href=url;a.download='Kelapa_review_NMM.xml';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+el('apply').onclick=async()=>{try{const states={};for(const s of el('controls').querySelectorAll('select'))states[s.dataset.id]=JSON.parse(s.value);
+ const form=new FormData();form.append('file',current,'review.xml');form.append('states',JSON.stringify(states));
+ await load(await (await check(await fetch('/api/line-review/scenario',{method:'POST',body:form}))).blob());
+ }catch(e){report(e)}};
+</script></html>

@@ -1,11 +1,14 @@
-# PLN NMM — Kernel CIM & Model Input untuk SLD Bali
+# PLN NMM — Konversi Sumber, Model CIM, dan SLD Bali
 
 Repo ini membangun model CIM sistem Bali dari data yang PLN benar-benar punya,
 dengan setiap angka membawa sumber dan tingkat keyakinannya.
 
-Tujuan akhirnya adalah SLD peralatan primer Bali yang lengkap — GI, busbar, bay,
-PMT, PMS, trafo, pembangkit — yang bisa diimpor, diperiksa, diedit, dan diekspor
-kembali sebagai CIM tanpa kehilangan informasi.
+Tujuannya adalah mengelola alur dari sumber menjadi model, mengekspornya ke XML
+CIM, lalu mengimpor kembali XML itu untuk SLD, pemeriksaan, dan pengeditan.
+Cakupan peralatan primer Bali meliputi GI, busbar, bay, PMT, PMS, earthing switch,
+CT, CVT/PT, arrester, trafo, pembangkit, dan shunt sesuai sumber. Identitas,
+konektivitas, parameter, provenance, skenario, dan layout harus tetap utuh saat
+disimpan dan dibuka kembali.
 
 **NMM menyediakan model; aplikasi sekitar mengeksekusi studi.** Load flow,
 hubung singkat, dan studi pola operasi dijalankan di PowerFactory, PSS/E, atau
@@ -13,6 +16,11 @@ ETAP dengan model dari sini — bukan di NMM. Lihat
 [docs/12_CIM_SCOPE.md](docs/12_CIM_SCOPE.md).
 
 Sebagian sudah jalan. Sebagian besar belum. Dokumen ini membedakan keduanya.
+
+**Prioritas sekarang: core penggabungan ED dan informasi pelengkap, lalu satu
+alur konversi → XML → impor ulang → SLD yang terbukti.** Viewer yang sudah ada
+dipakai untuk pemeriksaan. Pengembangan web upload mengikuti kontrak core yang
+sudah teruji; kelengkapan data seluruh Bali bukan prasyarat untuk menguji alur.
 
 ---
 
@@ -37,13 +45,14 @@ Pemeriksaan pada `CIM_sample-db_userdef_python.xml` (3.716 objek) menunjukkan:
 
 Dua hal yang perlu dipisahkan dari angka-angka ini:
 
-**Parameter kosong bukan masalah utama.** Sekalipun 4.061 placeholder diisi
-angka yang benar, file itu tetap tidak menghasilkan load flow yang bermakna —
-karena grafnya salah. 44% node tidak menyambung apa pun, sementara satu node
-meringkus seluruh GI jadi satu titik listrik.
+**Mengisi parameter saja belum menyelesaikan konektivitas.** Node berderajat 1
+memiliki satu terminal, bukan tanpa sambungan, dan bisa sah pada batas model.
+Node dengan banyak terminal juga bisa merupakan bus yang sah. Angka-angka ini
+menjadi petunjuk pemeriksaan, bukan bukti tunggal graf salah: hubungan terminal,
+batas model, dan susunan bay harus dibandingkan dengan sumber SLD.
 
-**Akar penyebabnya ada di ED, dan itu bukan kegagalan ED.** Enterprise Data
-adalah hierarki lokasi fungsional SAP:
+**Hierarki ED belum cukup untuk menetapkan konektivitas.** Struktur Enterprise
+Data yang dirujuk adalah hierarki lokasi fungsional SAP:
 
 ```
 UI/UPT | Gardu Induk | Bay | ID_FUNCTLOC | SUP_FUNCTLOC | NM_LOKASI |
@@ -59,7 +68,7 @@ listrik sama seperti meminta daftar inventaris menjelaskan cara merakit.
 Laporan PoC menyebutnya "tidak ada distinct indicator" untuk CB, DS, koneksi
 generator, trafo, dan penghantar (hal. 30–34).
 
-## Pendekatan: tiga sumber, tiga peran
+## Pendekatan: gabungkan sumber melalui core NMM
 
 Pertanyaan yang tepat bukan *"bagaimana mengisi field kosong di ED?"* melainkan
 *"dari sumber mana tiap jenis pengetahuan seharusnya datang?"*
@@ -71,20 +80,133 @@ Pertanyaan yang tepat bukan *"bagaimana mengisi field kosong di ED?"* melainkan
 | Beban, aliran, tegangan, kapasitor | **Buku Kerawanan / laporan P2B** | terisi untuk 1 skenario |
 | Impedansi saluran, data trafo | **database & dokumen setting** | belum tersedia |
 
-```
-ED (identitas)  ──┐
-                  ├──►  Workbook  ──►  builder/  ──►  CIM EQ  ──►  PowerFactory
-SLD (relasi)    ──┘      + provenance
+Alur target berikut belum tersambung sepenuhnya:
+
+```text
+ED / workbook pelengkap / SLD / XML lama / laporan operasi
+                         ↓
+      Baca → normalisasi → rekonsiliasi ID → validasi
+                         ↓
+                  Model internal NMM
+        ├── peralatan, parameter, konektivitas, posisi normal
+        ├── skenario dan snapshot
+        ├── layout per diagram
+        └── provenance per field, asumsi, konflik, dan gap
+                         ↓
+       Ekspor paket: EQ + DL + pendamping yang diperlukan
+                         ↓
+        Impor ulang → periksa → SLD sistem / GI / bay
+                         ↓
+       Edit → validasi → simpan → buka dan periksa kembali
+
+Paket pertukaran → uji impor dan interpretasi di aplikasi studi
 ```
 
-Workbook di tengah hanya menampung **delta** — apa yang ED tidak tahu. Bukan
-salinan jaringan, bukan pengganti ED.
+Workbook adalah salah satu pintu masuk dan kontrak pelengkapan **delta** terhadap
+ED. Saat ED belum tersedia, identitas sementara boleh dipakai dengan sumber dan
+status yang jelas. ED asli nanti dipetakan ke identitas model yang sama; refresh
+sumber tidak boleh menghilangkan pelengkapan, skenario, atau layout pengguna.
+
+Core perlu menyediakan kemampuan berikut tanpa bergantung pada web:
+
+1. Membaca sumber dan menyimpan bukti asli beserta lokasi baris/objek, versi,
+   satuan, dan tanggal yang tersedia. Adapter ED nyata mengikuti sampel ED yang
+   diterima; contoh sintetis untuk pengembangan harus diberi label.
+2. Menormalisasi nama, jenis, dan satuan; memetakan ID sumber seperti
+   `ed_functloc` ke ID model yang stabil. Nama sama saja tidak cukup untuk merge.
+3. Menggabungkan field pelengkap, mencatat kandidat yang konflik dan keputusan
+   reviewer. Impor ulang sumber harus dapat dibandingkan tanpa menduplikasi aset
+   atau diam-diam menimpa nilai yang telah ditinjau.
+4. Membentuk peralatan dan konektivitas eksplisit dari bukti atau template
+   berstatus asumsi, lalu memvalidasi struktur dan hubungan listriknya.
+5. Mengekspor dan mengimpor kembali model, skenario, provenance, serta layout.
+   Viewer demonstrasi membaca hasil impor ulang agar gambar membuktikan isi XML.
+
+CLI dan API nantinya memanggil fungsi core yang sama. Halaman upload menampilkan
+apa yang dikenali, berubah, konflik, dan belum diketahui dari laporan core.
+
+### Dua sasaran penerimaan
+
+| Sasaran | Bukti keberhasilan |
+|---|---|
+| **Kemampuan NMM** | Contoh representatif dapat dikonversi, ditampilkan, diedit, disimpan, dan dibuka kembali tanpa kehilangan arti atau informasi |
+| **Kelengkapan Bali** | Cakupan GI/bay/peralatan/parameter terukur terhadap revisi sumber, dengan asumsi dan bagian yang belum diketahui tetap terlihat |
+
+Asumsi yang dilabeli diperbolehkan untuk membuktikan kemampuan aplikasi.
+Lulus demonstrasi tidak menjadikan data Bali terverifikasi. Data riil dikumpulkan
+sambil membangun core; model lengkap yang terverifikasi tetap sasaran produk.
+
+### Validasi bertingkat
+
+| Tingkat | Yang diperiksa |
+|---|---|
+| Struktur | ID unik, referensi terurai, tipe, satuan, dan field wajib |
+| Konektivitas | Urutan peralatan bay, terminal/CN, bus pilihan, ujung saluran, dan batas model |
+| Pelestarian data | ID, objek, nilai/unknown, attachment, provenance, skenario, dan koordinat setelah ekspor–impor |
+| Tampilan | SLD dari hasil impor ulang sesuai model; diagram sistem dan detail diperiksa visual |
+| Interoperabilitas | Aplikasi tujuan menerima paket dan menafsirkan peralatan, sambungan, satuan, serta parameter sesuai model |
+
+Uji aplikasi tujuan dimulai dengan paket kecil. Berhasil membuka XML belum
+membuktikan interpretasinya benar; bandingkan isi model terlebih dahulu, kemudian
+hasil studi setelah parameter studi mencukupi. Dukungan tiap aplikasi/profil
+harus dibuktikan tersendiri.
 
 ---
 
 ## Yang sudah jalan
 
-### 1. Kernel round-trip CIM (selesai, teruji)
+### Intake aset Babel (23 September 2026)
+
+Adapter PST/MxLoader tersedia di `sources/maximo.py`. Workbook Babel terpisah
+memuat 10 GI, 65 kandidat bay dan 3.385 record aset terhubung (1.019 primer).
+ID sumber, sheet/baris dan hash berkas tetap tersimpan. Statusnya
+`INVENTORY_ONLY`: builder menolak ekspor CIM sebelum rekonsiliasi SLD.
+Nama GI sama dengan ID berbeda dan penempatan aset yang perlu diperiksa dicatat
+sebagai temuan. Ini intake inventaris; belum merge refresh atau model listrik.
+Lihat [14_BABEL_INVENTORY.md](docs/14_BABEL_INVENTORY.md) untuk cakupan dan cara
+mengulang ekstraksi. Data Babel tidak mengganti model atau template Bali.
+
+Rekonstruksi bay penghantar tersedia sebagai **tahap review core**, terpisah dari
+builder CIM: `scripts/reconstruct_babel_lines.py`. Dengan pilihan eksplisit
+`--assume-double-bus`, register Babel menghasilkan 33 kandidat bay pada 10 GI,
+264 posisi fungsional asumsi, manifest per GI, JSON konektivitas, dan laporan
+HTML dari JSON yang dibuka ulang. CVT, LA dan PMS tanah adalah cabang; CT berada
+seri. Kandidat aset belum menjadi pemetaan fase/peran terverifikasi. Posisi
+normal tetap unknown; `--demo-scenario` menyimpan status ilustratif terpisah.
+Ini **belum ekspor CIM atau integrasi viewer utama**. Lihat
+[kontrak dan batas rekonstruksi](docs/15_LINE_BAY_RECONSTRUCTION.md).
+
+### Review XML Kelapa yang bisa dijalankan
+
+Contoh satu bay **Kelapa–Muntok #1** sekarang dapat diekspor sebagai RDF/XML NMM
+eksperimental, diimpor ulang, digambar, diubah status skenarionya, dan diunduh.
+Bus 1 dipilih; PMS rel 1, PMT dan PMS line closed; PMS rel 2 dan ES open.
+PMS line/ES adalah dua fungsi dalam satu rakitan asumsi; posisi normal unknown.
+
+```powershell
+python scripts/prepare_kelapa_demo.py outputs/babel_inventory_20260923/inventory.json outputs/kelapa_xml_demo
+python -m uvicorn pln_nmm_web.api:app --host 127.0.0.1 --port 8000
+```
+
+Buka **http://127.0.0.1:8000/line-review** lalu klik **Muat contoh Kelapa**.
+Tampilan 25 September memakai bay vertikal, busbar horizontal, dan cabang
+CVT/LA/ES ringkas. SVG CT/CVT/LA bersumber dari QElectroTech melalui SynergyCodes
+dengan atribusi CC-BY 3.0; detail revisi ada di `web/public/devices/qet/SOURCE.txt`.
+Urutan perangkat ditelusuri dari konektivitas XML. Layout ini merupakan proyeksi
+skematik otomatis dan tidak menimpa koordinat yang tersimpan di XML.
+Gunakan **Unduh XML yang tampil**, kemudian **Impor ulang XML** untuk memeriksa
+hasil yang sama. Bagian status dapat ditampilkan melalui **Ubah status skenario
+asumsi**. Halaman ini dilayani backend yang sama; tidak memerlukan Vite.
+Script pembuatan contoh menolak overwrite; tidak perlu dijalankan ulang bila
+contohnya sudah tersedia.
+
+Ini **bukan paket CGMES EQ standar atau uji PowerFactory**, dan belum seluruh GI.
+Objek primer dan fungsi ES memakai ekstensi NMM dengan pembaca tersendiri;
+uploader EQ umum/cimpy menolak format ini agar perangkat tidak hilang diam-diam.
+Interlock yang diuji baru larangan demo PMS line/ES closed bersamaan; tidak ada
+perhitungan energized, load flow atau impedansi.
+
+### 1. Kernel round-trip CIM untuk cakupan yang didukung
 
 Membungkus cimpy agar ekstensi PLN tidak hilang saat impor–ekspor.
 
@@ -92,7 +214,8 @@ Membungkus cimpy agar ekstensi PLN tidak hilang saat impor–ekspor.
 - Koordinat float bit-exact lewat `repr()` — `float(repr(x)) == x`
 - Kunci kanonik `rdf:ID` tanpa underscore, bukan `mRID` saat keduanya berbeda
 - Diagnostik `$(Isi_*)` sebelum impor bertipe
-- **49 test, 48 passed / 1 xfailed**
+- Regresi tersedia di `tests/`; jalankan suite untuk status pada revisi aktif.
+  Preservasi properti yang ada belum membuktikan preservasi seluruh objek CT/CVT.
 
 ### 2. Model input workbook (baru, terisi untuk Bali)
 
@@ -157,7 +280,8 @@ Beban termodel 1.153,5 MW vs puncak 1.296 MW = **89%**.
 python -m pln_nmm.cli build NMM_Model_Input_TEMPLATE.xlsx out\bali_EQ.xml --scenario BP-2026-05-15
 ```
 
-Dari 10 bay Bali yang terisi, menghasilkan 378 objek:
+Catatan build workbook Bali yang tersedia mencatat 10 bay dan 378 objek
+(angka ini bukan hasil pengukuran ulang pada setiap perubahan README):
 
 | Objek | Jumlah |
 |---|---:|
@@ -183,15 +307,28 @@ Sifat yang dijamin dan diuji:
 - Setiap objek turunan membawa `plnnmm:provenance`
 - Output deterministik: workbook sama → byte sama, sehingga bisa di-diff
 
-`check_topology()` memeriksa hasilnya dan menolak cacat struktural. Pada model
-sekarang ia melaporkan node berderajat-1 26% (file aset PoC: 44%) dan satu node
-berderajat-56 — keduanya **akibat gap bay yang belum tertutup**, bukan bug
-builder: 55 sirkit masih menunjuk `dari_bay` placeholder yang sama.
+`check_topology()` memeriksa sebagian cacat struktural. Catatan build melaporkan
+node berderajat-1 26% dan satu node berderajat-56, dengan 55 sirkit masih menunjuk
+`dari_bay` placeholder yang sama. Lulus pemeriksaan referensi belum menjamin
+konektivitas benar; pemetaan endpoint dan penanganan placeholder perlu dibereskan.
+
+Perintah `build` saat ini menulis EQ saja. Nilai P/Q dari skenario yang dipilih
+masih ditulis ke `EnergyConsumer.pfixed/qfixed`; pemisahan snapshot ke pendamping
+skenario belum selesai dan menjadi pekerjaan core berikutnya.
 
 ### 6. Viewer dan API (dari milestone sebelumnya)
 
 FastAPI inspection API dan React/TypeScript viewer dengan canonical coordinates
-dan derived topology schematic. Belum tersambung ke workbook.
+dan derived topology schematic. Jalur inspeksi SLD masih membaca koordinat
+`plnicp` atau memakai posisi otomatis. Belum tersambung ke workbook atau impor
+paket EQ + DL + skenario dalam satu alur aplikasi.
+
+### 7. Modul DL dan pemeriksaan profil
+
+`src/pln_nmm/emit/dl.py` menyediakan penulisan DL terpisah;
+`src/pln_nmm/check/profile.py` dan `tests/test_profiles.py` memeriksa pemisahan
+profil dan referensinya. Modul ini belum dihubungkan ke perintah `build` maupun
+pembacaan layout viewer. Keberadaan modul bukan bukti alur EQ + DL sudah utuh.
 
 ---
 
@@ -206,15 +343,17 @@ Tiga gap ini memblokir model Bali yang utuh. Rincian di
 | **Impedansi saluran** | **0 dari 55** | database setting |
 | **Data trafo** | **0 dari ~40** | ED + dokumen perhitungan setting |
 
-Bay adalah yang terbesar. Gambar 6.2 adalah diagram tingkat sistem — ia
-menunjukkan GI sebagai kotak, bukan isi switchyard. Tanpa bay: tidak ada CB, DS,
-Terminal, ConnectivityNode, sehingga topologi tidak terbentuk — gap yang sama
-persis dengan penyebab 283 node berderajat-1 pada file aset PoC.
+Gambar 6.2 menunjukkan hubungan tingkat sistem, bukan rincian seluruh switchyard.
+Detail bay diperlukan untuk sasaran SLD primer kita. Core dapat dikembangkan
+dengan contoh representatif dan susunan asumsi yang dilabeli sambil menunggu
+SLD per-GI untuk memverifikasi model Bali.
 
 Belum ditulis juga: penanganan CT/CVT, paket skenario, dan persistensi edit.
 
-Builder sudah ada, tetapi hasilnya hanya sebaik masukannya: dengan bay 6% dan
-impedansi 0%, model yang dihasilkan belum bisa diterima solver.
+Builder sudah ada, tetapi model saat ini belum terbukti siap untuk studi.
+Kelengkapan parameter, kebenaran konektivitas, dan penerimaan aplikasi tujuan
+adalah pemeriksaan yang berbeda. Adapter ED nyata, model internal terpadu, merge
+per field, dan laporan perubahan lintas sumber juga belum menjadi alur utuh.
 
 ---
 
@@ -223,7 +362,11 @@ impedansi 0%, model yang dihasilkan belum bisa diterima solver.
 Aturan ini lahir dari cacat nyata pada data PLN dan dari kesalahan yang
 tertangkap saat mengisi workbook ini.
 
-### Error — memblokir generator CIM
+### Error — harus diselesaikan sebelum build
+
+Saat ini validator workbook dijalankan terpisah melalui
+`scripts/validate_workbook.py`; perintah `build` belum memanggilnya otomatis.
+Menjadikan validasi sebagai gerbang wajib pada alur core adalah pekerjaan berikutnya.
 
 | Aturan | Alasan |
 |---|---|
@@ -358,13 +501,20 @@ src/pln_nmm/
   sld.py           - ekstraksi SLD
   topology.py      - inspeksi topologi turunan
   cli.py           - CLI argparse
-src/pln_nmm_web/api.py  - FastAPI inspection
-
+  sources/
+    workbook.py    - baca workbook
+    sld_engine.py  - baca bukti sumber SLD engine
+    reconcile.py  - bandingkan bukti SLD engine dengan workbook
+  model/
+    identity.py    - ID deterministik; model internal terpadu masih perlu dibangun
   builder/
-    workbook.py    - baca .xlsx menjadi dict
     templates.py   - ekspansi template bay -> switch, terminal, node
     emit.py        - serialisasi CIM16 / CGMES 2.4.15 EQ
-    check.py       - pemeriksaan topologi hasil
+  emit/dl.py       - penulisan layout DL terpisah
+  check/
+    topology.py    - pemeriksaan konektivitas struktural
+    profile.py     - pemeriksaan pemisahan EQ/DL
+src/pln_nmm_web/api.py  - FastAPI inspection
 
 scripts/
   build_workbook_template.py - generator workbook (kosakata = sumber kebenaran)
@@ -374,11 +524,17 @@ scripts/
 sources/sld_engine/ - bukti sumber dari repo SLD_engine
 
 web/               - workspace React/TypeScript
-tests/             - 49 test + fixture
+tests/             - regresi + fixture
 docs/              - spesifikasi, rekap, laporan gap
 ```
 
 ## Dokumen
+
+Urutan kerja dan status integrasi pada README ini menjadi acuan terbaru.
+Dokumen 07 mengikuti urutan core terlebih dahulu. Beberapa catatan lain masih
+merekam tahap sebelumnya: dokumen 10 menyebut builder belum ada; dokumen 13
+menjelaskan rancangan EQ/DL yang belum sepenuhnya terhubung ke CLI dan viewer.
+Jangan membaca contoh atau target tersebut sebagai jaminan fitur telah selesai.
 
 | Dokumen | Isi |
 |---|---|
@@ -399,20 +555,32 @@ dan digantikan alur workbook → `builder/`. Berkas sumbernya diselamatkan di
 
 ## Langkah berikutnya
 
-1. **SLD per-GI** — membuka gap bay yang memblokir topologi. Prioritas tertinggi.
-2. **Database setting** — mengisi 55 baris impedansi yang sudah menunggu.
-3. **Q atau cos φ** — tanpa ini profil tegangan tidak bisa dihitung.
-4. **ED** — mengisi kolom `ed_functloc` dan sebagian data trafo.
-5. **Uji ekspor ke PowerFactory** dengan cakupan apa adanya, untuk menemukan
-   persyaratan impor yang belum terlihat.
+1. **Tetapkan contoh penerimaan kecil:** satu GI dengan bay penghantar dan ujung
+   GI lawan, trafo–beban, kopel, serta peralatan primer yang berlaku. Uji susunan
+   1½ CB secara terpisah untuk membuktikan CB bersama. Asumsi dan batas contoh
+   harus eksplisit.
+2. **Bangun core rekonsiliasi:** adapter sumber, kontrak model internal, ID
+   stabil, pelengkapan per field, konflik, dan laporan perubahan. Gunakan contoh
+   input berlabel sintetis bila ED nyata belum tersedia; validasi adapter ED
+   terhadap sampel asli sebelum mengklaim kompatibilitas.
+3. **Sambungkan alur CLI:** input → model → validasi → paket EQ/DL/pendamping →
+   impor ulang. Hubungkan validator ke alur tersebut; pertahankan unknown dan
+   pisahkan snapshot dari parameter aset. Tambahkan preservasi objek yang belum
+   didukung, termasuk CT/CVT, sebelum mengklaim SLD primer lengkap.
+4. **Pakai viewer untuk membuktikan hasil impor:** tampilkan sistem/detail,
+   sumber, dan gap; uji perubahan parameter, skenario, serta layout melalui
+   fungsi core lalu simpan dan buka kembali. Identitas dan bagian lain tetap utuh.
+5. **Uji paket kecil di PowerFactory lebih awal:** periksa penerimaan dan
+   interpretasi model. Tambahkan pembandingan hasil studi setelah parameter
+   cukup; perluasan ke aplikasi lain memerlukan pengujian tersendiri.
+6. **Perluas cakupan Bali dan web upload:** terapkan alur yang sudah terbukti
+   pada sumber yang lebih luas. Upload menggunakan fungsi dan laporan core yang
+   sama, tanpa menduplikasi aturan konversi di frontend.
 
-Langkah 1–3 bisa paralel; sumbernya berbeda. Langkah 5 layak dilakukan lebih
-awal daripada terasa nyaman — lebih murah menemukan penolakan saat model masih
-kecil.
-
-Parser dan halaman unggah dibangun **setelah** workbook terbukti terisi: kolom
-yang benar-benar dipakai engineer adalah spesifikasi parser yang tidak perlu
-ditebak.
+Pengumpulan ED, SLD per-GI, impedansi, serta Q/cos φ berjalan bersamaan dengan
+pengembangan core. Kekurangan data Bali tidak menghalangi pengujian kemampuan
+NMM memakai contoh asumsi yang terlihat. Target satu minggu adalah timebox untuk
+hasil yang bisa dibuktikan; kelengkapan Bali dilaporkan terpisah.
 
 ---
 
@@ -425,7 +593,9 @@ ditebak.
 - Unknown bukan nol dan bukan closed.
 - Inom, IKHA, dan setting OCR adalah field berbeda.
 - Status skenario tidak boleh disajikan sebagai `Switch.normalOpen` standar.
-- v1 hanya profil EQ. TP/SSH/SV/GL/DL menyusul.
+- EQ menyimpan struktur peralatan; DL menjadi target layout terpisah. Modul
+  penulis DL tersedia, integrasi paket dan viewer belum lengkap. Native
+  TP/SSH/SV/GL menyusul; skenario memakai pendamping yang masih perlu dibangun.
 - Dependency berlisensi permisif (MIT/BSD/Apache-2.0); GPL/AGPL ditolak.
 
 SLD engine tetap repo terpisah — dipakai sebagai bukti sumber yang

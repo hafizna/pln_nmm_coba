@@ -1,4 +1,4 @@
-# 13 — Pemisahan Diagram Layout: apa yang salah dan bagaimana diperbaiki
+s# 13 — Pemisahan Diagram Layout: apa yang salah dan bagaimana diperbaiki
 
 Catatan ini untuk ditunjukkan kepada tim PoC dan pengguna. Seluruh isinya
 berasal dari file nyata di repo, bukan penjelasan konseptual. Setiap klaim bisa

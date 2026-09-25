@@ -13,6 +13,16 @@ product work. Those describe planned acceptance, not features already complete.
 SLD_engine remains a separate repository used as reconciled source evidence;
 do not merge it or assume a runtime dependency.
 
+Build the core source-reconciliation and model workflow before expanding upload
+UI. Workbook is one input adapter. Preserve raw evidence, stable source-to-model
+identity mappings, per-field provenance and explicit conflicts on refresh. Prove
+a representative source -> XML export -> re-import -> SLD -> edit/save/reopen
+workflow using CLI and the existing viewer; separate capability acceptance from
+verified full-Bali coverage. Labeled synthetic inputs/assumptions are permitted
+while real ED is pending; do not claim ED compatibility without an actual sample.
+Start external application import/interpretation checks with a small package.
+NMM provides models; external applications execute electrical studies.
+
 ## Critical invariants
 
 1. Never modify or fork cimpy. Wrap it externally.
@@ -32,9 +42,11 @@ do not merge it or assume a runtime dependency.
    (including CT/CVT) require explicit tested extension preservation; current
    property preservation does not guarantee whole-object round-trip.
 9. Scenario open state must not be presented as standard EQ normalOpen.
-   Scenario companions are planned; native SSH/TP/SV/DL/GL remain later work.
+   Scenario companions are planned. A DL writer exists; package/viewer integration
+   is pending. Native SSH/TP/SV/GL remain later work.
 10. Primary connectivity validation is in scope now. Solver bus-branch reduction,
-    load flow, short circuit and defense-scheme execution follow the SLD milestone.
+    load flow, short circuit and defense-scheme studies belong to external
+    applications; exchange and study-readiness validation follow the SLD milestone.
 
 Use PMS/disconnector for switching and ?defense scheme? for the protection scheme
 to avoid ambiguous DS labels. Opening a coupler does not automatically shed load.

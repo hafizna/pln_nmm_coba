@@ -416,6 +416,8 @@ class CimBuilder:
 
 def build_cim(wb, output_path: str | Path, scenario_id: str | None = None) -> BuildReport:
     """Build CIM EQ from a workbook and write it to output_path."""
+    if any(r.get('stage') == 'INVENTORY_ONLY' for r in wb.rows('00_IMPORT_STATUS')):
+        raise ValueError('Inventory-only workbook: reconcile SLD connectivity and equipment before CIM build.')
     builder = CimBuilder(wb, scenario_id=scenario_id)
     xml = builder.build()
     out = Path(output_path)

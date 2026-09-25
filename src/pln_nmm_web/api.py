@@ -6,7 +6,7 @@ import tempfile
 from dataclasses import asdict
 from pathlib import Path
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -23,6 +23,9 @@ from pln_nmm.topology import TopologyModel
 
 
 app = FastAPI(title="PLN NMM Local SLD API")
+
+from .line_review_api import router as line_review_router
+app.include_router(line_review_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -57,6 +60,8 @@ async def inspect_cim(file: UploadFile = File(...)) -> JSONResponse:
 
 
 def _inspect_xml_payload(xml_path: Path, *, filename: str | None, source_mode: str) -> dict:
+    if b'pln-nmm.line-review-xml.v1' in xml_path.read_bytes():
+        raise HTTPException(422, 'Use /line-review for this NMM primary XML; the generic EQ viewer does not preserve its devices.')
     extensions = extract_pln_extensions(xml_path)
     diagnostics = diagnose_pln_eq(xml_path)
     sld = extract_sld_model(xml_path)

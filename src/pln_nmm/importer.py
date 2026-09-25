@@ -58,6 +58,10 @@ def import_pln_eq(xml_path: str | Path) -> ImportResult:
     if not xml_path.exists():
         raise FileNotFoundError(f"Source CIM file not found: {xml_path}")
 
+    if b'pln-nmm.line-review-xml.v1' in xml_path.read_bytes():
+        raise ValueError('NMM line-review XML requires loads_line_xml or /line-review; '
+                         'cimpy would discard primary-device extensions.')
+
     extraction = extract_pln_extensions(xml_path)
     diagnostics = diagnose_pln_eq(xml_path)
 
