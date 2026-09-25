@@ -2,26 +2,40 @@
 
 ## Product direction
 
-This repository contains the CIM parser/serializer kernel AND the local web
-workspace. The next milestone is a complete primary-equipment SLD model of Bali:
-system overview down to GI/bay, busbars, CB/PMT, disconnector/PMS, earthing switch,
-CT, CVT/PT, arrester, transformers, generators and shunts applicable to sources.
-Ratings, scenario status and per-field provenance must be inspectable.
+The active milestone is the **One-GI SSOT feasibility MVP**. Do not optimize for
+full-Bali coverage first.
 
-Read README.md, docs/09_BALI_PRIMARY_SLD_SPEC.md and docs/07_PHASES.md before
-product work. Those describe planned acceptance, not features already complete.
-SLD_engine remains a separate repository used as reconciled source evidence;
-do not merge it or assume a runtime dependency.
+The product question is whether existing PLN evidence can be transformed into a
+maintainable electrical network model with minimal re-entry:
 
-Build the core source-reconciliation and model workflow before expanding upload
-UI. Workbook is one input adapter. Preserve raw evidence, stable source-to-model
-identity mappings, per-field provenance and explicit conflicts on refresh. Prove
-a representative source -> XML export -> re-import -> SLD -> edit/save/reopen
-workflow using CLI and the existing viewer; separate capability acceptance from
-verified full-Bali coverage. Labeled synthetic inputs/assumptions are permitted
-while real ED is pending; do not claim ED compatibility without an actual sample.
-Start external application import/interpretation checks with a small package.
-NMM provides models; external applications execute electrical studies.
+- ingest the existing asset/MxLoader/ED source as immutable evidence;
+- ingest an approved GI SLD as topology evidence;
+- normalize physical assets without inventing electrical connectivity;
+- reconcile physical assets to functional equipment;
+- ask humans only about ambiguity/conflict;
+- build explicit Terminal/ConnectivityNode topology;
+- publish a versioned canonical model, CIM/XML and generated SLD;
+- keep provenance and readiness visible.
+
+Read `docs/16_REENGINEERING_DIRECTION.md`,
+`docs/17_SSOT_GOVERNANCE.md`, `docs/18_ONE_GI_MVP.md`, and
+`docs/19_REPO_TARGET_STRUCTURE.md` before product changes.
+
+The workbook is an adapter/review artifact, not the canonical database. Diagram
+XY is presentation, not topology. Existing Bali work remains useful evidence and
+test material but is not the next acceptance milestone.
+
+NMM provides governed models. External applications execute load flow,
+short-circuit, protection and other engineering studies.
+
+Additional product invariants:
+
+- no source adapter may silently assign unverified electrical topology;
+- raw evidence is immutable and source refresh must produce a diff;
+- a published network object can map to multiple physical asset records;
+- readiness states are separate: ASSET_READY, TOPOLOGY_READY, CIM_READY,
+  LOADFLOW_READY, PROTECTION_STUDY_READY;
+- UI code must not become the source of domain truth.
 
 ## Critical invariants
 

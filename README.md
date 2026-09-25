@@ -1,26 +1,56 @@
-# PLN NMM — Konversi Sumber, Model CIM, dan SLD Bali
+# PLN NMM — One-GI SSOT Feasibility & CIM Interchange
 
-Repo ini membangun model CIM sistem Bali dari data yang PLN benar-benar punya,
-dengan setiap angka membawa sumber dan tingkat keyakinannya.
+> **Direction update — 25 September 2026**
+>
+> The immediate milestone is no longer “complete Bali SLD” or “fill a workbook until
+> simulation works.” The repository now tests whether **existing PLN asset data +
+> existing SLD evidence can produce a governed network model with minimal manual
+> re-entry**.
+>
+> Start here:
+>
+> - [Reengineering direction](docs/16_REENGINEERING_DIRECTION.md)
+> - [SSOT governance proposal](docs/17_SSOT_GOVERNANCE.md)
+> - [One-GI MVP flow](docs/18_ONE_GI_MVP.md)
+> - [Target repository structure](docs/19_REPO_TARGET_STRUCTURE.md)
+> - [BPO presentation (HTML)](docs/bpo/NMM_SSOT_BPO_BRIEF.html)
 
-Tujuannya adalah mengelola alur dari sumber menjadi model, mengekspornya ke XML
-CIM, lalu mengimpor kembali XML itu untuk SLD, pemeriksaan, dan pengeditan.
-Cakupan peralatan primer Bali meliputi GI, busbar, bay, PMT, PMS, earthing switch,
-CT, CVT/PT, arrester, trafo, pembangkit, dan shunt sesuai sumber. Identitas,
-konektivitas, parameter, provenance, skenario, dan layout harus tetap utuh saat
-disimpan dan dibuka kembali.
+## Current product thesis
 
-**NMM menyediakan model; aplikasi sekitar mengeksekusi studi.** Load flow,
-hubung singkat, dan studi pola operasi dijalankan di PowerFactory, PSS/E, atau
-ETAP dengan model dari sini — bukan di NMM. Lihat
-[docs/12_CIM_SCOPE.md](docs/12_CIM_SCOPE.md).
+NMM is the canonical **network-model layer** between asset systems, approved SLD /
+as-built evidence, operational systems, engineering data, and downstream study
+applications.
 
-Sebagian sudah jalan. Sebagian besar belum. Dokumen ini membedakan keduanya.
+It is **not** a second asset register and it should not require engineers to
+retype fields that already exist upstream.
 
-**Prioritas sekarang: core penggabungan ED dan informasi pelengkap, lalu satu
-alur konversi → XML → impor ulang → SLD yang terbukti.** Viewer yang sudah ada
-dipakai untuk pemeriksaan. Pengembangan web upload mengikuti kontrak core yang
-sudah teruji; kelengkapan data seluruh Bali bukan prasyarat untuk menguji alur.
+The near-term feasibility test is:
+
+```text
+real asset register + real GI SLD
+              ↓
+       normalize evidence
+              ↓
+  reconcile physical assets ↔ functional equipment
+              ↓
+     review only ambiguities
+              ↓
+       canonical network graph
+              ↓
+CIM/XML + generated SLD + readiness/provenance report
+```
+
+Load flow, short-circuit, protection-setting calculation and CGMES external
+exchange remain later enrichment/integration stages. NMM provides the governed
+model; PowerFactory/PSS®E/ETAP and other tools execute studies.
+
+## What the current branch already contributes
+
+The existing Babel intake, CIM round-trip kernel, workbook/builder experiments,
+line-bay review, validation code and viewer are **retained as engineering assets**.
+They are being repositioned around a canonical model and evidence/reconciliation
+workflow. The workbook becomes an adapter/review surface, not the permanent SSOT.
+
 
 ---
 

@@ -1,32 +1,71 @@
-# 00 ? Project Brief
+# 00 — Project Brief
 
-Arah disepakati 16 September 2026: repo ini menjadi workspace NMM berbasis CIM
-untuk SLD peralatan primer seluruh sistem Bali, dengan kernel preservasi XML
-sebagai fondasinya. Web API dan UI sudah berada di repo ini.
+Direction updated 25 September 2026.
 
-## Hasil yang dituju
+## Why this repository exists
 
-SLD sistem dan detail GI/bay berasal dari model yang sama. Peralatan memiliki
-identitas, koneksi, rating, status skenario, dan provenance. Data sumber yang
-belum lengkap dapat dilengkapi struktur asumsi yang direview; unknown tetap
-terlihat. Kelengkapan primer tidak mencakup wiring sekunder atau pembuktian
-kelayakan operasi lapangan.
+The 2025 NMM PoC demonstrated that a CIM-based integration path can reach
+PowerFactory and return simulation state variables. It did not yet prove that
+existing PLN data can populate and maintain an authoritative network model at
+scale.
 
-Lihat [spesifikasi minimum](09_BALI_PRIMARY_SLD_SPEC.md) untuk field,
-[roadmap](07_PHASES.md) untuk timebox dan acceptance, serta README untuk status
-implementasi dan cara menjalankan.
+This repository now focuses on that missing feasibility question.
 
-## Keputusan lingkup
+## Immediate milestone
 
-- Bali adalah kasus integrasi pertama; model umum tetap dapat dipakai GI lain.
-- SLD_engine tetap repo terpisah dan menjadi sumber masukan, bukan sumber
-  kebenaran otomatis atau dependency runtime.
-- SLD buku, gambar aliran daya, dan data aset direkonsiliasi berdasarkan tanggal,
-  identitas, dan granularitas.
-- Equipment switching menjadi objek jaringan eksplisit, termasuk ketika
-  provisional. Aturan lama ?switching hanya annotation? digantikan keputusan ini.
-- EQ menjadi inti pertukaran; detail aset yang belum didukung dan skenario
-  memerlukan jalur preservasi tambahan, bukan patch cimpy.
-- Snapshot/dummy operation diperbolehkan dengan label; solver dan defense scheme
-  execution ditunda sampai SLD tersimpan dan round-trip berjalan.
-- Tidak ada jaminan as-built atau load-flow-ready hanya karena diagram lengkap.
+Prove one real GI end-to-end using existing evidence:
+
+1. ingest asset/MxLoader/ED data without retyping it;
+2. ingest the approved GI SLD as topology evidence;
+3. reconcile assets to functional equipment;
+4. ask an engineer only about unresolved mappings/conflicts;
+5. build explicit electrical topology;
+6. validate and publish a versioned canonical model;
+7. export CIM/XML and an automatically generated SLD;
+8. measure automation rate and review burden.
+
+A poor automation result is still useful: it indicates that upstream data
+governance must improve before scaling.
+
+## Product boundary
+
+NMM is the governed network-model layer. It does not replace:
+
+- Maximo / enterprise asset master;
+- EMS/SCADA operational systems;
+- SLD/as-built repositories;
+- protection/setting repositories;
+- PowerFactory, PSS®E or ETAP.
+
+Upstream systems remain authoritative for their native facts. NMM reconciles
+those facts into one published network model with stable identity, topology,
+provenance, versioning and readiness.
+
+## Core concepts
+
+Keep separate:
+
+- raw source evidence;
+- physical asset;
+- functional electrical equipment;
+- Terminal/ConnectivityNode topology;
+- scenario/operating state;
+- engineering parameters;
+- diagram layout;
+- published model version.
+
+Unknown is never silently converted into zero, closed, or verified.
+
+## Governance
+
+SSOT requires an accountable Network Model Owner plus domain owners/stewards.
+See [17_SSOT_GOVERNANCE.md](17_SSOT_GOVERNANCE.md). Proposed organizational
+assignments are discussion material for BPO and must not be treated as formal
+mandate until confirmed.
+
+## Repository direction
+
+Existing CIM kernel, Babel intake, validators, line-review work, Bali fixtures
+and workbook experiments are retained. New work should migrate toward the target
+architecture in [19_REPO_TARGET_STRUCTURE.md](19_REPO_TARGET_STRUCTURE.md)
+without a big-bang rewrite.

@@ -1,74 +1,107 @@
-# 07 ? Bali SLD Milestone
+# 07 — One-GI SSOT MVP Phases
 
-Direction updated 2026-09-17: prove the core source-to-model-to-XML-to-SLD
-workflow before expanding web uploads. One week is a proposed timebox, not a
-promise of full-Bali acceptance. Capability acceptance and verified Bali data
-coverage are separate. The steps below are targets, not completed features.
+Direction updated 25 September 2026. The previous full-Bali milestone is deferred
+until the source-to-canonical-model workflow is proven on one real GI.
 
-## Sequence
+## Phase 0 — Governance contract
 
-| Order | Deliverable |
-|---|---|
-| 1 | Representative GI fixture with line/remote endpoint, transformer/load, coupler, applicable primary equipment, and explicit source/assumption manifest; separate shared-breaker diameter example |
-| 2 | Core source adapters and internal model contract: stable identity, per-field provenance, reconciliation, conflicts, and repeat-import change reports; validate the ED adapter against actual ED when received |
-| 3 | CLI input → model → validation → EQ/DL/required companions → re-import; preserve unsupported primary objects and separate scenario values from asset parameters |
-| 4 | Existing viewer displays the re-imported model at system/GI level, including DL, ratings, sources and gaps; core edits survive save/reopen |
-| 5 | Early small-package import into PowerFactory; compare model interpretation before study results; each additional application needs its own evidence |
-| 6 | Expand Bali coverage and build guided uploads using the same core functions and diagnostics |
+Before production scale, BPO must designate:
 
-Collect ED, per-GI SLDs and study parameters while implementing the core. Labeled
-synthetic input and assumptions can demonstrate capability without claiming
-verified Bali data. Workbook input is one adapter, not the permanent model store.
-Study execution belongs to external applications; native result exchange is later.
+- Network Model Owner;
+- authoritative source per data domain;
+- domain stewards/reviewers;
+- publication approval flow;
+- security/access classification;
+- downstream model consumers and refresh SLA.
 
-## Core capability acceptance
+The software pilot may proceed before all production governance is finalized,
+but assumptions must remain explicit.
 
-- [ ] Representative sources reconcile to stable model identities; ambiguous
-      matches remain visible and source refresh preserves reviewed enrichment.
-- [ ] Structural validity and electrical connectivity are checked separately;
-      valid references alone do not establish correct bay or remote-end wiring.
-- [ ] XML is exported and independently re-imported for the demonstration SLD;
-      the viewer does not bypass this check by rendering the pre-export workbook.
-- [ ] Model, provenance, scenario and layout retain their values and references
-      after core edits and save/reopen, including unknowns and applicable CT/CVT.
-- [ ] A small package has an application-specific import/interpretation report,
-      or an explicit untested status if that application is unavailable.
-- [ ] Demonstration data assumptions and measured Bali coverage are reported
-      separately; successful capability tests do not verify source data.
+## Phase 1 — One-GI source intake
 
-## Full-Bali milestone acceptance
+- Choose one GI with a usable asset register and approved SLD.
+- Preserve raw source files, hashes, timestamps and source row/page references.
+- Reuse the Babel MxLoader adapter where applicable.
+- Do not infer electrical connectivity from LOCATION/PARENT hierarchy.
 
-- [ ] Manifest enumerates all GI, boundary, circuits and applicable equipment
-      in the selected Bali source revision; exclusions/conflicts are explicit.
-- [ ] Every scoped GI/circuit appears in system SLD and links to detail.
-- [ ] Bay equipment has stable IDs and valid attachment/connectivity references;
-      no duplicate IDs, dangling internal references or silently omitted objects.
-- [ ] Bus configurations and equipment order follow evidence or labeled assumptions.
-- [ ] CT/CVT and other applicable primary equipment are present; unknown rating
-      fields remain inspectable. Source-limited detail is labeled provisional.
-- [ ] Rating/unit/source/quality are inspectable; OCR setting, Inom and IKHA
-      are distinct; inferred values cannot masquerade as verified.
-- [ ] Switch state supports open/closed/unknown per scenario; normal state separate.
-- [ ] Edit/save/reopen preserves model, scenario, layout and identity.
-- [ ] Preserve export/import retains primary objects, CT/CVT attachments, supported
-      ratings, provenance and bit-exact coordinates; companion files remain linked.
-- [ ] Standard export explicitly reports excluded PLN data.
-- [ ] Appropriate Python regression checks and web build pass; overview/detail
-      visually reviewed for connectivity, symbols and readability.
+Acceptance:
 
-## If the timebox is too tight
+- source assets are ingested without manual re-entry;
+- duplicate/source-identity findings are explicit;
+- source refresh can be compared.
 
-Reduce automated layout polish, bulk editing and snapshot overlays first.
-Use reviewed template-assisted bay modeling with explicit assumptions.
-Do not hide missing primary equipment, drop fields on export, or call partial
-coverage ?full Bali.? If source review remains incomplete, deliver a provisional
-Bali model with a measured coverage/gap report and record unfinished acceptance.
+## Phase 2 — Functional equipment reconciliation
 
-## Later
+- Group phase-level physical assets where evidence supports one functional object.
+- Map physical asset type to functional CIM/network role.
+- Use SLD evidence to resolve bus/line/transformer/coupler roles.
+- Generate AUTO_RESOLVED / REVIEW_REQUIRED / UNRESOLVED decisions.
 
-1. Replace assumptions using per-bay asset registers and as-built SLDs.
-2. Add operating snapshots and illustrative risk/defense-scheme scenarios.
-3. Establish solver-ready parameter coverage and validate load flow/short-circuit
-   studies in external applications using NMM exports.
-4. Add model/result exchange for further studies, native additional CGMES
-   profiles and production hosting. NMM remains the model provider.
+Acceptance:
+
+- no silent assignment of ambiguous PMS/DS roles;
+- all mapping decisions preserve evidence and reviewer state;
+- one functional object may map to multiple physical assets.
+
+## Phase 3 — Canonical topology
+
+- Build Substation, VoltageLevel, Bay, Equipment, Terminal and ConnectivityNode.
+- Keep CT/PT/CVT/LA semantics distinct from switching/conducting topology.
+- Validate dangling references, branch structure and boundary nodes.
+- Separate normal state, scenario state and diagram layout.
+
+Acceptance:
+
+- zero dangling references in publishable topology;
+- assumptions/conflicts remain visible;
+- same evidence produces deterministic canonical identities.
+
+## Phase 4 — Publish and review
+
+- Auto-render PLN-oriented SLD from topology.
+- Make XY drag an optional layout override, never a connectivity input.
+- Export canonical JSON/model state and CIM/XML.
+- Re-import the export and compare identity/topology/provenance.
+- Publish model-version manifest and readiness states.
+
+Acceptance:
+
+- ASSET_READY / TOPOLOGY_READY / CIM_READY reported independently;
+- round-trip does not silently drop supported objects/relations;
+- model can be rebuilt from the same evidence.
+
+## Phase 5 — Feasibility decision
+
+Measure:
+
+- source rows ingested without retyping;
+- automatic functional grouping;
+- automatic topology derivation;
+- number of human review decisions;
+- unresolved/conflicting evidence;
+- elapsed time to reviewed publication;
+- change behavior after source refresh.
+
+BPO uses the results to decide whether to scale to more GI or first improve
+upstream data governance.
+
+## Phase 6 — Engineering enrichment
+
+Only after topology feasibility:
+
+- line R/X/B and ratings;
+- transformer electrical model;
+- load/generation P/Q and scenario;
+- study-ready parameter validation;
+- early PowerFactory/PSS®E/ETAP import tests.
+
+NMM remains the model provider; solvers remain external.
+
+## Phase 7 — Scale and advanced integration
+
+- multiple GI / SS / system model;
+- operational-state integration;
+- protection/defense-scheme context;
+- broader CGMES profiles and package validation;
+- controlled external/cross-utility exchange where required;
+- production hosting, RBAC, audit and release automation.
