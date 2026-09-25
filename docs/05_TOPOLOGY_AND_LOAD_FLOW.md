@@ -1,32 +1,32 @@
-# 05 - Topology And Load Flow
+# 05 ? Connectivity, Scenarios, And Later Analysis
 
-## Topology
+## Sekarang: konektivitas untuk SLD lengkap
 
-The next backend milestone is bus-branch derivation from the cimpy object graph.
-The first spike should test cimpy's `convert_node_breaker_to_bus_branch` on the
-small valid PLN EQ fixture.
+Bangun dan validasi Equipment?Terminal?ConnectivityNode, winding trafo, dan
+mapping bay/bus. Ini bagian milestone SLD. Bus-branch reduction untuk solver
+bukan milestone pertama. Switching provisional tetap objek berkoneksi dengan
+asumsi eksplisit; jangan dianggap koneksi lapangan terverifikasi.
 
-If cimpy works directly, wrap it lightly so PLN diagnostics and naming rules are
-kept outside cimpy. If it does not, derive a NetworkX graph from:
+## Skenario
 
-- ConductingEquipment
-- Terminal
-- ConnectivityNode
-- PowerTransformerEnd
-- BaseVoltage / VoltageLevel
+Pisahkan normal position, scenario open/closed/unknown, availability, dan
+snapshot. Buka kopel tidak otomatis melepas beban: hasilnya bergantung koneksi
+bay dan sumber. Defense scheme perlu trigger, delay, target breaker, serta
+beban/pembangkit yang terdampak sebelum dapat dieksekusi.
 
-## Load Flow
+Snapshot 15 Mei 2026 pukul 19.00 WITA adalah satu operating point, bukan profil
+harian. Nilai dampak kontingensi dalam tabel kerawanan bukan otomatis loading
+busbar. Nilai dummy harus berlabel illustrative; jangan disebut hasil solver.
 
-pandapower should be the first load-flow target because it is pragmatic for
-operational power-flow studies in Python. PyPSA can come later for planning and
-optimization workflows.
+## Setelah milestone
 
-Load-flow readiness requires more than EQ import. The platform will need
-complete enough values for line impedances, transformer parameters, nominal
-voltages, generators, loads, and operating state. Current `$(Isi_*)`
-placeholders block that readiness.
+- Load flow: line R/X/B, transformer impedance/loss/tap, P/Q loads,
+  generator dispatch/voltage control, reference source, operating topology.
+- Short circuit: source fault level, sequence impedances sesuai jenis gangguan,
+  grounding dan parameter mesin/trafo.
+- Equipment duty: evaluasi hasil gangguan terhadap kemampuan PMT dan rating
+  short-time peralatan. Breaking capacity bukan input load flow.
+- Protection/defense scheme: CT/PT, relay settings, logic, delay, target mapping.
 
-## Boundary
-
-The parser kernel should not become the solver. It should produce validated,
-traceable model data that topology and solver modules can consume.
+Pemilihan solver dan tambahan dependency menunggu kebutuhan studi; lisensi wajib
+permisif. Solver mengonsumsi model tervalidasi dan tidak masuk kernel preservasi.

@@ -15,12 +15,14 @@ authors = [
 dependencies = [
     "cimpy>=1.1.0",
     "lxml>=4.9",
+    "openpyxl>=3.1",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
     "pytest-cov>=4.1",
+    "httpx>=0.27",
 ]
 web = [
     "fastapi>=0.115",
@@ -33,6 +35,9 @@ pln-nmm = "pln_nmm.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+pln_nmm_web = ["*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

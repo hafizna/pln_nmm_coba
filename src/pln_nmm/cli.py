@@ -60,9 +60,68 @@ def cmd_inspect(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build(args) -> int:
+    """Build CIM EQ from a model-input workbook."""
+    from .builder import build_cim, check_topology, read_workbook
+
+    wb = read_workbook(args.workbook)
+    report = build_cim(wb, args.output, scenario_id=args.scenario)
+    print(report)
+    print()
+    print("Pemeriksaan topologi:")
+    topo = check_topology(args.output)
+    print(topo)
+    print()
+    print(f"Ditulis ke {args.output}")
+    # Structural faults fail the command; degree-1 nodes are only reported,
+    # because an incomplete model legitimately has loose ends.
+    return 0 if topo.ok else 1
+
+
+def cmd_reconcile(args) -> int:
+    """Compare SLD engine evidence against the workbook."""
+    from .sources import load, read_workbook, reconcile
+
+    evidence = load(args.evidence)
+    print(evidence)
+    print()
+
+    wb = read_workbook(args.workbook)
+    report = reconcile(evidence, wb)
+    print(report)
+    print()
+    # Conflicts need a person, so surface them in the exit code without
+    # pretending the run failed.
+    if report.conflicts:
+        print(
+            f"{len(report.conflicts)} konflik menunggu keputusan. "
+            "Catat hasilnya di 09_ASUMSI setelah diputuskan."
+        )
+        return 1
+    print("Tidak ada konflik.")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="pln_nmm")
     sub = parser.add_subparsers(dest="cmd", required=True)
+
+    p_rec = sub.add_parser(
+        "reconcile", help="Bandingkan bukti SLD engine dengan workbook"
+    )
+    p_rec.add_argument("evidence", help="handoff .json atau mantaps .db")
+    p_rec.add_argument("workbook")
+    p_rec.set_defaults(func=cmd_reconcile)
+
+    p_build = sub.add_parser("build", help="Build CIM EQ from a model-input workbook")
+    p_build.add_argument("workbook")
+    p_build.add_argument("output")
+    p_build.add_argument(
+        "--scenario",
+        default=None,
+        help="skenario_id untuk nilai beban (mis. BP-2026-05-15)",
+    )
+    p_build.set_defaults(func=cmd_build)
 
     p_round = sub.add_parser("roundtrip", help="Import then re-export a CIM EQ file")
     p_round.add_argument("input")

@@ -23,12 +23,40 @@ from pathlib import Path
 from typing import Literal
 
 import cimpy
+from lxml import etree
 
-from .adapter import reinject_pln_extensions
+from .adapter import NS_RDF, reinject_pln_extensions
 from .importer import CGMES_VERSION, ImportResult
 
 
 ExportMode = Literal["preserve_extensions", "standard_cgmes"]
+
+
+def _normalize_local_references(xml_path: Path) -> int:
+    """Match local resource fragments to emitted rdf:ID spelling.
+
+    cimpy can emit rdf:ID="_uuid" but rdf:resource="#uuid". Only repair
+    uniquely resolvable local aliases. External and unresolved references stay
+    untouched so this does not invent connections or conceal missing objects.
+    """
+    tree = etree.parse(str(xml_path))
+    id_attr, resource_attr = f"{{{NS_RDF}}}ID", f"{{{NS_RDF}}}resource"
+    ids = {e.get(id_attr) for e in tree.iter() if e.get(id_attr)}
+    aliases: dict[str, set[str]] = {}
+    for identifier in ids:
+        aliases.setdefault(identifier.lstrip("_"), set()).add(identifier)
+    changed = 0
+    for elem in tree.iter():
+        resource = elem.get(resource_attr, "")
+        if not resource.startswith("#") or resource[1:] in ids:
+            continue
+        candidates = aliases.get(resource[1:].lstrip("_"), set())
+        if len(candidates) == 1:
+            elem.set(resource_attr, "#" + next(iter(candidates)))
+            changed += 1
+    if changed:
+        tree.write(str(xml_path), encoding="UTF-8", xml_declaration=True)
+    return changed
 
 
 def _normalize_cimpy_xml_encoding(xml_path: Path) -> bool:
@@ -99,6 +127,7 @@ def export_pln_eq(
             )
 
         encoding_normalized = _normalize_cimpy_xml_encoding(cimpy_eq)
+        references_normalized = _normalize_local_references(cimpy_eq)
 
         if mode == "standard_cgmes":
             shutil.copyfile(cimpy_eq, output_path)
@@ -106,6 +135,7 @@ def export_pln_eq(
                 "mode": "standard_cgmes",
                 "reinjected": 0,
                 "encoding_normalized": encoding_normalized,
+                "references_normalized": references_normalized,
             }
 
         if mode == "preserve_extensions":
@@ -116,6 +146,7 @@ def export_pln_eq(
             )
             stats["mode"] = "preserve_extensions"
             stats["encoding_normalized"] = encoding_normalized
+            stats["references_normalized"] = references_normalized
             return stats
 
         raise ValueError(f"Unknown export mode: {mode!r}")

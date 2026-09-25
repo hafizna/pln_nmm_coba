@@ -1,0 +1,5 @@
+Source: https://github.com/synergycodes/ng-diagram-single-line-diagram
+Commit: 449df49147f8095143351139ab9d3bdac0e4cc96
+Artwork: QElectroTech team and contributors, CC-BY-3.0
+https://creativecommons.org/licenses/by/3.0/
+Downloaded unchanged; renderer applies translation/rotation/scaling.

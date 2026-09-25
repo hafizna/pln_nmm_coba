@@ -1,38 +1,23 @@
-# 04 - Editor UX
+# 04 ? Editor UX
 
-## First Useful Screen
+## Target alur
 
-The first screen should be the model workspace, not a landing page:
+Buka kasus Bali atau import XML ? SLD sistem ? pilih GI ? detail bay/peralatan
+? inspeksi/edit field ? validasi ? simpan versi ? export/import kembali.
 
-- Upload/import CIM XML.
-- Show validation status.
-- Show unresolved `$(Isi_*)` fields.
-- Show object counts and extension counts.
-- Render the SLD when coordinates/topology are sufficient.
+## Tampilan minimum
 
-## User Input Flow
+- Overview menampilkan semua GI dan sirkit dalam manifest lingkup.
+- Detail GI menampilkan bus/section, bay, PMT, PMS, ES, CT, CVT/PT, arrester,
+  trafo, generator, shunt, dan perangkat sumber lainnya yang berlaku.
+- Panel peralatan: ID, lokasi, terminal/koneksi, rating dan satuan, sumber,
+  kualitas per field, serta status skenario terpilih.
+- Pilihan skenario terpisah dari edit aset. Open/closed/unknown dibedakan;
+  warna energized tidak ditetapkan hanya berdasarkan closed.
+- Daftar gap membedakan objek hilang, koneksi unresolved, nilai unknown,
+  asumsi, konflik sumber, dan placeholder template.
+- Layer rating dan snapshot boleh ditoggle agar diagram tetap terbaca.
 
-Unresolved template fields should be editable as a review queue. The user should
-see the CIM object, field name, current placeholder token, and suggested input
-type when known.
-
-Examples:
-
-- `ACLineSegment.r`: numeric resistance.
-- `Conductor.length`: numeric length.
-- name-like fields: bay, bus, equipment, or circuit label depending on context.
-
-The UI should save these edits separately from the original uploaded file until
-the user chooses to export or commit a new model version.
-
-## Editing Guardrails
-
-The editor should distinguish:
-
-- CIM semantic data.
-- Diagram-only coordinates.
-- PLN custom UI annotations.
-- Generated helper values.
-
-This prevents accidental changes to electrical model data when the user only
-wants to adjust diagram layout.
+Drag hanya mengubah layout. Edit koneksi/parameter membuat perubahan model.
+Perubahan status switch membuat perubahan skenario. Semua view merujuk identitas
+aset yang sama. Simpan/export lengkap adalah target, belum klaim fitur tersedia.

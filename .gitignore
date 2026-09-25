@@ -35,6 +35,7 @@ out/
 *.log
 *.tmp
 /tmp/
+/outputs/
 
 # Frontend dependencies and build state
 web/node_modules/
