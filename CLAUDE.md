@@ -21,10 +21,9 @@ Read before product work:
 
 - `README.md`
 - `docs/07_PHASES.md`
-- `docs/16_REENGINEERING_DIRECTION.md`
-- `docs/17_SSOT_GOVERNANCE.md`
-- `docs/18_ONE_GI_MVP.md`
-- `docs/20_BPO_DATA_REQUEST.md`
+- `docs/16_NMM_SSOT_REALIGNMENT_AND_PILOT.md`
+- `docs/07_PHASES.md`
+- `docs/19_REPO_TARGET_STRUCTURE.md`
 
 NMM provides a governed network model. External tools execute load flow,
 short-circuit, protection and other studies.
