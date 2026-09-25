@@ -1,32 +1,61 @@
-# 00 ? Project Brief
+# 00 — Project Brief
 
-Arah disepakati 16 September 2026: repo ini menjadi workspace NMM berbasis CIM
-untuk SLD peralatan primer seluruh sistem Bali, dengan kernel preservasi XML
-sebagai fondasinya. Web API dan UI sudah berada di repo ini.
+Direction finalized 25 September 2026.
 
-## Hasil yang dituju
+## Objective
 
-SLD sistem dan detail GI/bay berasal dari model yang sama. Peralatan memiliki
-identitas, koneksi, rating, status skenario, dan provenance. Data sumber yang
-belum lengkap dapat dilengkapi struktur asumsi yang direview; unknown tetap
-terlihat. Kelengkapan primer tidak mencakup wiring sekunder atau pembuktian
-kelayakan operasi lapangan.
+Evaluate whether PLN can build a governed Network Model Management layer from
+existing data **without requiring large-scale manual re-entry**.
 
-Lihat [spesifikasi minimum](09_BALI_PRIMARY_SLD_SPEC.md) untuk field,
-[roadmap](07_PHASES.md) untuk timebox dan acceptance, serta README untuk status
-implementasi dan cara menjalankan.
+The first feasibility unit is **one GI**.
 
-## Keputusan lingkup
+## MVP contract
 
-- Bali adalah kasus integrasi pertama; model umum tetap dapat dipakai GI lain.
-- SLD_engine tetap repo terpisah dan menjadi sumber masukan, bukan sumber
-  kebenaran otomatis atau dependency runtime.
-- SLD buku, gambar aliran daya, dan data aset direkonsiliasi berdasarkan tanggal,
-  identitas, dan granularitas.
-- Equipment switching menjadi objek jaringan eksplisit, termasuk ketika
-  provisional. Aturan lama ?switching hanya annotation? digantikan keputusan ini.
-- EQ menjadi inti pertukaran; detail aset yang belum didukung dan skenario
-  memerlukan jalur preservasi tambahan, bukan patch cimpy.
-- Snapshot/dummy operation diperbolehkan dengan label; solver dan defense scheme
-  execution ditunda sampai SLD tersimpan dan round-trip berjalan.
-- Tidak ada jaminan as-built atau load-flow-ready hanya karena diagram lengkap.
+Input:
+
+- structurally cleaned asset extract for one GI;
+- matching/relevant GI SLD with revision/source information.
+
+Review:
+
+- per bay, exception-only.
+
+Output:
+
+- canonical GI network graph;
+- generated SLD;
+- CIM/XML;
+- reconciliation/provenance/readiness report;
+- published model version.
+
+## Why one GI
+
+Per bay is too narrow to establish busbar/coupler/inter-bay context.
+
+Raw UPT/ULTG bulk is too broad for the first feasibility test because it mixes
+enterprise cleansing with network reconstruction.
+
+Future bulk support will stage/clean data and split it into independent GI jobs.
+
+## Product boundary
+
+NMM is the SSOT for the **published network model**, not for every upstream
+native fact.
+
+It does not replace:
+
+- asset master/Maximo;
+- approved SLD/as-built source;
+- EMS/SCADA;
+- protection repositories;
+- PowerFactory/PSS®E/ETAP.
+
+It reconciles them through stable identity, topology, provenance, versioning and
+publication governance.
+
+## Immediate acceptance question
+
+> Can one GI be reconstructed from existing asset data + SLD evidence with
+> substantially less engineering effort than rebuilding the model manually?
+
+The result determines whether to scale, improve upstream data first, or re-scope.

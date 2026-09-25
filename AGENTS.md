@@ -2,26 +2,32 @@
 
 ## Product direction
 
-This repository contains the CIM parser/serializer kernel AND the local web
-workspace. The next milestone is a complete primary-equipment SLD model of Bali:
-system overview down to GI/bay, busbars, CB/PMT, disconnector/PMS, earthing switch,
-CT, CVT/PT, arrester, transformers, generators and shunts applicable to sources.
-Ratings, scenario status and per-field provenance must be inspectable.
+The active milestone is **One-GI SSOT Feasibility**.
 
-Read README.md, docs/09_BALI_PRIMARY_SLD_SPEC.md and docs/07_PHASES.md before
-product work. Those describe planned acceptance, not features already complete.
-SLD_engine remains a separate repository used as reconciled source evidence;
-do not merge it or assume a runtime dependency.
+Input contract:
 
-Build the core source-reconciliation and model workflow before expanding upload
-UI. Workbook is one input adapter. Preserve raw evidence, stable source-to-model
-identity mappings, per-field provenance and explicit conflicts on refresh. Prove
-a representative source -> XML export -> re-import -> SLD -> edit/save/reopen
-workflow using CLI and the existing viewer; separate capability acceptance from
-verified full-Bali coverage. Labeled synthetic inputs/assumptions are permitted
-while real ED is pending; do not claim ED compatibility without an actual sample.
-Start external application import/interpretation checks with a small package.
-NMM provides models; external applications execute electrical studies.
+- one GI;
+- structurally cleaned asset workbook;
+- corresponding GI SLD with source/revision metadata.
+
+Review is per bay. Publication is per GI. Raw UPT/ULTG/SS bulk ingestion is a
+later staging/orchestration feature and should split into independent GI jobs.
+
+Do not ask users to pre-enter Terminal, ConnectivityNode, electrical sequence,
+PMS Bus-I/Bus-II/Line role, or diagram XY. Those belong to reconciliation and
+topology-building.
+
+Read before product work:
+
+- `README.md`
+- `docs/07_PHASES.md`
+- `docs/16_REENGINEERING_DIRECTION.md`
+- `docs/17_SSOT_GOVERNANCE.md`
+- `docs/18_ONE_GI_MVP.md`
+- `docs/20_BPO_DATA_REQUEST.md`
+
+NMM provides a governed network model. External tools execute load flow,
+short-circuit, protection and other studies.
 
 ## Critical invariants
 
