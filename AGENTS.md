@@ -2,40 +2,32 @@
 
 ## Product direction
 
-The active milestone is the **One-GI SSOT feasibility MVP**. Do not optimize for
-full-Bali coverage first.
+The active milestone is **One-GI SSOT Feasibility**.
 
-The product question is whether existing PLN evidence can be transformed into a
-maintainable electrical network model with minimal re-entry:
+Input contract:
 
-- ingest the existing asset/MxLoader/ED source as immutable evidence;
-- ingest an approved GI SLD as topology evidence;
-- normalize physical assets without inventing electrical connectivity;
-- reconcile physical assets to functional equipment;
-- ask humans only about ambiguity/conflict;
-- build explicit Terminal/ConnectivityNode topology;
-- publish a versioned canonical model, CIM/XML and generated SLD;
-- keep provenance and readiness visible.
+- one GI;
+- structurally cleaned asset workbook;
+- corresponding GI SLD with source/revision metadata.
 
-Read `docs/16_REENGINEERING_DIRECTION.md`,
-`docs/17_SSOT_GOVERNANCE.md`, `docs/18_ONE_GI_MVP.md`, and
-`docs/19_REPO_TARGET_STRUCTURE.md` before product changes.
+Review is per bay. Publication is per GI. Raw UPT/ULTG/SS bulk ingestion is a
+later staging/orchestration feature and should split into independent GI jobs.
 
-The workbook is an adapter/review artifact, not the canonical database. Diagram
-XY is presentation, not topology. Existing Bali work remains useful evidence and
-test material but is not the next acceptance milestone.
+Do not ask users to pre-enter Terminal, ConnectivityNode, electrical sequence,
+PMS Bus-I/Bus-II/Line role, or diagram XY. Those belong to reconciliation and
+topology-building.
 
-NMM provides governed models. External applications execute load flow,
-short-circuit, protection and other engineering studies.
+Read before product work:
 
-Additional product invariants:
+- `README.md`
+- `docs/07_PHASES.md`
+- `docs/16_REENGINEERING_DIRECTION.md`
+- `docs/17_SSOT_GOVERNANCE.md`
+- `docs/18_ONE_GI_MVP.md`
+- `docs/20_BPO_DATA_REQUEST.md`
 
-- no source adapter may silently assign unverified electrical topology;
-- raw evidence is immutable and source refresh must produce a diff;
-- a published network object can map to multiple physical asset records;
-- readiness states are separate: ASSET_READY, TOPOLOGY_READY, CIM_READY,
-  LOADFLOW_READY, PROTECTION_STUDY_READY;
-- UI code must not become the source of domain truth.
+NMM provides a governed network model. External tools execute load flow,
+short-circuit, protection and other studies.
 
 ## Critical invariants
 

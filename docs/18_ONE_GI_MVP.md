@@ -1,120 +1,170 @@
-# 18 — One-GI MVP Product Flow
+# 18 — One-GI MVP Product Contract
 
 ## Goal
 
-Prove that one real GI can be reconstructed from existing PLN evidence with
-minimal manual re-entry and published as a versioned canonical network model.
+Prove one real GI end-to-end from **cleaned asset data + existing SLD** into a
+versioned canonical model with minimal manual re-entry.
 
-## User flow
+## Input contract
 
-### 1. Create/import GI scope
+### A. Cleaned asset workbook
 
-User selects one GI and uploads:
+Minimum logical fields:
 
-- asset/MxLoader workbook;
-- approved SLD file (PDF, image, VSD/export, or structured SLD source if available).
+| Field | Required | Purpose |
+|---|---|---|
+| source_asset_id / ASSETNUM | yes | source identity |
+| gi_id / gi_name | yes | scope |
+| location_id / bay/location name | yes | containment |
+| asset_type_raw | yes | traceability |
+| asset_type_normalized | yes | basic normalization |
+| description | yes | matching evidence |
+| phase | if available | grouping evidence |
+| NIA / TECHIDENTNO | if available | additional identity/matching |
+| manufacturer / serial / install date | if available | asset facts, not topology |
+| source reference/version | yes | provenance |
 
-The original files are stored as immutable evidence.
+The input must not require pre-filled electrical topology.
 
-### 2. Inventory normalization
+### B. SLD
 
-The backend:
+Preferred:
 
-- resolves GI and bay containment from explicit source keys;
-- normalizes equipment types;
-- retains every physical asset row;
-- detects phase labels and possible R/S/T grouping;
-- never infers electrical connection from LOCATION hierarchy alone.
+- one GI;
+- full primary SLD;
+- known revision/date;
+- approved/as-built if available;
+- legible equipment/bay/circuit labels.
 
-### 3. SLD evidence extraction
+The SLD supplies topology evidence that the asset table does not contain.
 
-Initial implementation may be manual-assisted. The target extractor identifies:
+## User workflow
+
+### 1. Upload GI package
+
+System stores source fingerprints and validates scope.
+
+### 2. Inventory check
+
+System verifies:
+
+- one GI scope;
+- unique source identities;
+- containment consistency;
+- supported/basic asset types;
+- missing/duplicate findings.
+
+### 3. Functional grouping
+
+Examples:
+
+```text
+CB-R
+CB-S
+CB-T
+  ↓
+candidate functional Breaker ABC
+```
+
+Grouping remains evidence-based and reviewable.
+
+### 4. SLD evidence extraction
+
+Represent:
 
 - busbars;
-- bay boundaries/labels;
-- PMT/PMS/earth-switch roles;
+- bay boundaries;
+- PMT/PMS/ES role;
 - line/transformer/generator endpoints;
-- CT/PT/CVT/LA presence where visible;
-- connection order.
+- measurement/protection primary equipment presence where visible;
+- connection sequence.
 
-The SLD is evidence. It is not automatically authoritative when ambiguous.
+### 5. Reconciliation
 
-### 4. Reconciliation
+Results:
 
-The engine compares asset inventory and SLD evidence.
+- `AUTO_RESOLVED`
+- `REVIEW_REQUIRED`
+- `CONFLICT`
+- `UNRESOLVED`
 
-Three outcomes:
+Only exceptions go to user review.
 
-- **AUTO_RESOLVED** — source evidence is unambiguous;
-- **REVIEW_REQUIRED** — multiple candidates or conflicting evidence;
-- **UNRESOLVED** — required fact is absent.
+### 6. Bay review
 
-Only REVIEW_REQUIRED items are shown to the engineer.
+Example:
 
-### 5. Canonical graph
+```text
+Bay MUNTOK #1
+✓ CB group resolved
+✓ CT set resolved
+? DS #1 = PMS Bus-I
+? DS #2 = PMS Bus-II
+? DS #3 = PMS Line
+```
 
-After review, the model contains at minimum:
+User confirms ambiguous engineering facts, not source-known asset metadata.
+
+### 7. Canonical graph
+
+Minimum domain objects:
 
 - Substation;
 - VoltageLevel;
 - Bay;
-- functional ConductingEquipment;
-- AuxiliaryEquipment/asset attachments where supported;
+- functional Equipment;
 - Terminal;
 - ConnectivityNode;
-- physical-asset mapping;
-- provenance per mapping/field.
+- physical Asset mapping;
+- provenance/evidence;
+- boundary;
+- readiness state.
 
-### 6. Validation
+### 8. Validate and publish
 
-Validation produces independent readiness states:
+Outputs:
+
+- canonical model state;
+- generated SLD;
+- CIM/XML;
+- review/conflict report;
+- model version;
+- readiness status.
+
+## UI
+
+Five main views:
+
+1. **Sources**
+2. **Inventory**
+3. **Reconcile**
+4. **Topology**
+5. **Publish**
+
+XY dragging is optional layout adjustment only.
+
+## Readiness
+
+MVP targets:
 
 - `ASSET_READY`
 - `TOPOLOGY_READY`
 - `CIM_READY`
-- `LOADFLOW_READY`
-- `PROTECTION_STUDY_READY`
 
-Completing one state must not imply the next.
+It does not require `LOADFLOW_READY` or `PROTECTION_STUDY_READY`.
 
-### 7. Publish
+## Scale path
 
-For the MVP, publish:
+Future bulk input:
 
-- canonical model JSON/database state;
-- CIM/XML package;
-- auto-generated SLD;
-- reconciliation report;
-- model-version manifest.
+```text
+UPT / ULTG / SS bulk
+       ↓
+ staging + cleansing
+       ↓
+ per-GI splitter
+       ↓
+ independent One-GI workflow
+```
 
-Later enrichment can add electrical parameters and scenario profiles without
-rebuilding the asset/topology layers.
-
-## Proposed UI
-
-The web workspace should have five main views:
-
-1. **Sources** — uploaded evidence, hashes, dates, scope.
-2. **Inventory** — physical assets and grouping suggestions.
-3. **Reconcile** — exception-only review queue.
-4. **Topology** — generated SLD/network graph and validation findings.
-5. **Publish** — readiness status, diff, version, export.
-
-Dragging XY remains an optional diagram override. It is not required to define
-connectivity.
-
-## Pilot metrics
-
-Suggested pilot targets for discussion, not fixed acceptance policy:
-
-- ≥ 95% source asset rows ingested without manual retyping;
-- ≥ 80% functional grouping automatically proposed;
-- ≥ 80% topology relations derived from source evidence;
-- < 20% model objects requiring human decision;
-- 100% unresolved assumptions visible;
-- zero dangling references in published topology;
-- deterministic repeat build from the same evidence;
-- source refresh produces an explicit diff rather than duplicate records.
-
-If one GI requires extensive manual reconstruction, that is a valid feasibility
-finding: upstream data governance must improve before national scale.
+This preserves the same domain contract when the platform scales.

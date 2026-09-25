@@ -1,107 +1,262 @@
-# 07 — One-GI SSOT MVP Phases
+# 07 — Final Roadmap: One-GI SSOT Feasibility
 
-Direction updated 25 September 2026. The previous full-Bali milestone is deferred
-until the source-to-canonical-model workflow is proven on one real GI.
+Direction finalized 25 September 2026.
 
-## Phase 0 — Governance contract
+## Scope decision
 
-Before production scale, BPO must designate:
+**Input MVP:** one GI, structurally cleaned asset dataset + corresponding SLD.
 
-- Network Model Owner;
-- authoritative source per data domain;
-- domain stewards/reviewers;
-- publication approval flow;
-- security/access classification;
-- downstream model consumers and refresh SLA.
+**Review:** per bay.
 
-The software pilot may proceed before all production governance is finalized,
-but assumptions must remain explicit.
+**Published unit:** one GI canonical network model.
 
-## Phase 1 — One-GI source intake
+**Bulk ULTG/UPT/SS:** later orchestration; bulk is staged/cleaned then split into
+independent per-GI jobs.
 
-- Choose one GI with a usable asset register and approved SLD.
-- Preserve raw source files, hashes, timestamps and source row/page references.
-- Reuse the Babel MxLoader adapter where applicable.
-- Do not infer electrical connectivity from LOCATION/PARENT hierarchy.
+This decision keeps the MVP focused on the real NMM problem — reconstruction and
+governance of electrical network semantics — instead of turning the first version
+into a large ETL/master-data program.
 
-Acceptance:
+## Phase 0 — Direction and governance framing
 
-- source assets are ingested without manual re-entry;
-- duplicate/source-identity findings are explicit;
-- source refresh can be compared.
+Status: **DONE**
 
-## Phase 2 — Functional equipment reconciliation
+- Define NMM as governed network-model SSOT, not second asset register.
+- Define federated source ownership.
+- Separate physical asset, functional equipment, topology, state, parameters,
+  layout and published release.
+- Define security/audit/versioning requirements.
+- Define NMM as model provider; external apps execute studies.
 
-- Group phase-level physical assets where evidence supports one functional object.
-- Map physical asset type to functional CIM/network role.
-- Use SLD evidence to resolve bus/line/transformer/coupler roles.
-- Generate AUTO_RESOLVED / REVIEW_REQUIRED / UNRESOLVED decisions.
+Exit: product thesis and governance discussion documented.
 
-Acceptance:
+## Phase 1 — One-GI input contract
 
-- no silent assignment of ambiguous PMS/DS roles;
-- all mapping decisions preserve evidence and reviewer state;
-- one functional object may map to multiple physical assets.
+Status: **NEXT**
 
-## Phase 3 — Canonical topology
+Required pilot package:
 
-- Build Substation, VoltageLevel, Bay, Equipment, Terminal and ConnectivityNode.
-- Keep CT/PT/CVT/LA semantics distinct from switching/conducting topology.
-- Validate dangling references, branch structure and boundary nodes.
-- Separate normal state, scenario state and diagram layout.
+```text
+GI_<NAME>/
+├── assets_clean.xlsx
+└── SLD_<GI>.<supported format>
+```
 
-Acceptance:
+Clean asset input must retain:
 
-- zero dangling references in publishable topology;
-- assumptions/conflicts remain visible;
-- same evidence produces deterministic canonical identities.
+- source asset ID;
+- GI identity;
+- bay/location containment;
+- raw + normalized asset type;
+- source description;
+- phase if available;
+- available NIA/TECHIDENTNO/manufacturer/install date;
+- source/provenance identity.
 
-## Phase 4 — Publish and review
+It must **not** require the user to pre-enter Terminal, ConnectivityNode, PMS
+role, electrical sequence, or diagram coordinates.
 
-- Auto-render PLN-oriented SLD from topology.
-- Make XY drag an optional layout override, never a connectivity input.
-- Export canonical JSON/model state and CIM/XML.
-- Re-import the export and compare identity/topology/provenance.
-- Publish model-version manifest and readiness states.
+Exit:
 
-Acceptance:
+- schema validated;
+- sample GI package can be loaded deterministically;
+- input gaps reported, not silently filled.
 
-- ASSET_READY / TOPOLOGY_READY / CIM_READY reported independently;
-- round-trip does not silently drop supported objects/relations;
-- model can be rebuilt from the same evidence.
+## Phase 2 — Physical asset normalization and functional grouping
 
-## Phase 5 — Feasibility decision
+Status: **NEXT**
+
+Implement three evidence classes:
+
+- **DETERMINISTIC** — directly established by source;
+- **HEURISTIC** — high-confidence proposed grouping;
+- **ENGINEERING_EVIDENCE_REQUIRED** — cannot be decided from asset table.
+
+Examples:
+
+- `Circuit Breaker → CB`: deterministic normalization.
+- R/S/T CB rows → one functional breaker: heuristic/proposed until grouping rules
+  are proven.
+- which DS is Bus-I/Bus-II/Line: engineering evidence required.
+
+Exit:
+
+- physical asset remains lossless;
+- one functional object can map to multiple assets;
+- all heuristic decisions are reviewable.
+
+## Phase 3 — SLD evidence extraction
+
+Status: **NEXT**
+
+Extract/represent:
+
+- busbar configuration;
+- bay labels/boundaries;
+- PMT/PMS/earthing-switch role;
+- line/transformer/generator endpoint;
+- CT/PT/CVT/LA presence when supported by evidence;
+- sequence/connectivity evidence;
+- revision/source metadata.
+
+Initial extraction may be assisted. The key requirement is evidence traceability,
+not full computer vision automation.
+
+Exit:
+
+- SLD evidence has explicit source and confidence;
+- ambiguous visual interpretation remains unresolved/reviewable.
+
+## Phase 4 — Reconciliation and review UI
+
+Status: **NEXT**
+
+Compare cleaned inventory and SLD evidence.
+
+Decision states:
+
+- `AUTO_RESOLVED`
+- `REVIEW_REQUIRED`
+- `UNRESOLVED`
+- `CONFLICT`
+
+User sees only exceptions and ambiguous mappings.
+
+Review unit = bay.
+
+Exit:
+
+- user does not retype source-known fields;
+- review decisions are persisted with reviewer/evidence;
+- source refresh does not silently overwrite reviewed decisions.
+
+## Phase 5 — Canonical GI graph
+
+Status: **NEXT**
+
+Build:
+
+- Substation;
+- VoltageLevel;
+- Bay;
+- functional equipment;
+- Terminal;
+- ConnectivityNode;
+- asset mapping;
+- provenance;
+- boundary objects;
+- readiness state.
+
+Rules:
+
+- LOCATION/PARENT is containment, not electrical connectivity.
+- XY is presentation, not topology.
+- unknown ≠ zero/closed/verified.
+
+Exit:
+
+- zero dangling internal references;
+- topology assumptions explicit;
+- deterministic canonical identities.
+
+## Phase 6 — CIM/XML + generated SLD
+
+Status: **NEXT**
+
+- serialize supported model to CIM/XML;
+- re-import and compare semantic identity/connectivity;
+- auto-render SLD from topology;
+- preserve optional user layout override separately;
+- publish reconciliation/readiness report.
+
+Exit:
+
+- `ASSET_READY`, `TOPOLOGY_READY`, `CIM_READY` evaluated independently;
+- supported topology survives export/re-import;
+- SLD can be regenerated without manually placing every object.
+
+## Phase 7 — One-GI feasibility gate
+
+Status: **GATE**
 
 Measure:
 
-- source rows ingested without retyping;
-- automatic functional grouping;
-- automatic topology derivation;
-- number of human review decisions;
-- unresolved/conflicting evidence;
-- elapsed time to reviewed publication;
-- change behavior after source refresh.
+- % rows ingested without retyping;
+- % functional grouping automatic/proposed;
+- % topology derived from source evidence;
+- number of human decisions;
+- unresolved/conflict count;
+- time from source package to reviewed publication;
+- source-refresh diff behavior;
+- CIM validation/interoperability status.
 
-BPO uses the results to decide whether to scale to more GI or first improve
-upstream data governance.
+BPO decision:
 
-## Phase 6 — Engineering enrichment
+- **scale**, if automation and governance burden are acceptable;
+- **improve upstream data first**, if manual reconstruction remains dominant;
+- **stop/re-scope**, if business value does not justify maintenance cost.
 
-Only after topology feasibility:
+## Phase 8 — Engineering enrichment
 
-- line R/X/B and ratings;
-- transformer electrical model;
-- load/generation P/Q and scenario;
-- study-ready parameter validation;
-- early PowerFactory/PSS®E/ETAP import tests.
+Status: **LATER**
 
-NMM remains the model provider; solvers remain external.
+Add only after topology feasibility:
 
-## Phase 7 — Scale and advanced integration
+- line R/X/B and rating;
+- transformer model;
+- load/generation P/Q;
+- scenario/snapshot;
+- study-readiness checks;
+- PowerFactory/PSS®E/ETAP import interpretation tests.
 
-- multiple GI / SS / system model;
-- operational-state integration;
+Exit: `LOADFLOW_READY` where data is sufficient.
+
+## Phase 9 — Bulk orchestration
+
+Status: **LATER**
+
+Support ULTG/UPT/SS input through:
+
+```text
+bulk source
+→ staging/cleansing
+→ GI scope resolution
+→ per-GI job queue
+→ independent review/publication
+```
+
+Exit:
+
+- one GI failure/review does not block others;
+- bulk refresh generates per-GI diffs;
+- model ownership remains scoped and auditable.
+
+## Phase 10 — Advanced integration
+
+Status: **LATER**
+
+Potential scope:
+
+- EMS/SCADA operational state;
+- native TP/SSH/SV packages;
 - protection/defense-scheme context;
-- broader CGMES profiles and package validation;
-- controlled external/cross-utility exchange where required;
-- production hosting, RBAC, audit and release automation.
+- planning/asset-criticality consumers;
+- broader CGMES exchange;
+- cross-utility/cross-border exchange if required;
+- production RBAC/audit/release automation.
+
+## Non-goals of MVP
+
+Do not block the One-GI pilot waiting for:
+
+- full national asset cleansing;
+- real-time SCADA integration;
+- complete load flow dataset;
+- protection settings;
+- automatic CV extraction of every SLD symbol;
+- cross-border CGMES transaction readiness.
+
+The MVP answers one question first:
+
+> Can existing PLN asset data + an existing GI SLD become a trustworthy,
+> maintainable network model with little manual re-entry?
