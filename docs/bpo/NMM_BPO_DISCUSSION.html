@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NMM PLN — SSOT Realignment & One-GI Pilot</title>
+<style>
+:root{--navy:#11364d;--blue:#0070ad;--cyan:#14a8c4;--yellow:#ffd400;--ink:#17242d;--muted:#60717c;--bg:#edf3f6;--white:#fff;--line:#d6e1e7}
+*{box-sizing:border-box}html{scroll-snap-type:y mandatory;scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+.slide{min-height:100vh;scroll-snap-align:start;padding:54px 68px 62px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.slide:before{content:"";position:absolute;right:-150px;top:-140px;width:390px;height:390px;border-radius:50%;background:rgba(20,168,196,.08)}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+h1{font-size:52px;line-height:1.06;margin:14px 0 18px;max-width:1050px}h2{font-size:39px;line-height:1.12;margin:0 0 22px;max-width:1100px}h3{font-size:21px;margin:0 0 8px}
+p,li{font-size:19px;line-height:1.46}.lead{font-size:24px;color:var(--muted);max-width:1050px}.small{font-size:13px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:21px;box-shadow:0 8px 28px rgba(17,54,77,.055)}.accent{border-left:6px solid var(--cyan)}.warn{border-left:6px solid var(--yellow)}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}.box{background:#fff;border:2px solid #c8d9e2;border-radius:11px;padding:14px 17px;font-size:17px;font-weight:750}.arrow{font-size:25px;color:var(--blue);font-weight:800}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15px}th,td{padding:11px 13px;border-bottom:1px solid #e4eaee;text-align:left;vertical-align:top}th{background:#e9f4f8;color:var(--navy)}
+.big{font-size:31px;color:var(--navy);font-weight:850}.decision{background:linear-gradient(135deg,#11364d,#00699f);color:#fff}.decision .card{color:var(--ink)}
+.footer{position:absolute;left:68px;right:68px;bottom:18px;display:flex;justify-content:space-between;color:#74838d;font-size:12px}.decision .footer{color:#c6d7e0}
+.code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#122c3d;color:#eff8fb;border-radius:14px;padding:19px;font-size:16px;line-height:1.55;white-space:pre-wrap}
+@media(max-width:900px){.slide{padding:34px 24px 58px}.grid2,.grid3{grid-template-columns:1fr}h1{font-size:39px}h2{font-size:31px}p,li{font-size:17px}.footer{left:24px;right:24px}.flow{align-items:stretch}.box{width:100%}.arrow{display:none}}
+@media print{html{scroll-snap-type:none}.slide{page-break-after:always;min-height:100vh}}
+</style>
+</head><body>
+
+<section class="slide">
+<div class="kicker">NMM realignment • BPO discussion</div>
+<h1>NMM bukan database aset baru.<br>NMM adalah <span style="color:var(--blue)">governed network-model SSOT</span>.</h1>
+<p class="lead">Proposal: uji satu GI menggunakan asset extract yang sudah clean + corresponding SLD, lalu ukur berapa banyak network model yang bisa dibangun tanpa re-entry manual.</p>
+<div class="footer"><span>PLN Network Model Management</span><span>1</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Kenapa direalign</div>
+<h2>PoC membuktikan jalur CIM ke PowerFactory, tetapi belum membuktikan model bisa dibangun dan dipelihara dari data PLN existing.</h2>
+<div class="grid2">
+<div class="card accent"><h3>Sudah terbukti</h3><p>ED/CIM interchange, external simulation path, dan result/state round-trip.</p></div>
+<div class="card warn"><h3>Belum terbukti</h3><p>Identity reconciliation, asset-to-function mapping, topology aktual, governance, update, dan maintenance burden.</p></div>
+</div>
+<div class="footer"><span>Technology-path proof ≠ production-feasibility proof</span><span>2</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">SSOT yang dimaksud</div>
+<h2>Satu canonical identity dan satu published network model — bukan satu database yang mengambil alih semua domain.</h2>
+<div class="flow"><div class="box">Asset master</div><div class="arrow">+</div><div class="box">SLD / as-built</div><div class="arrow">+</div><div class="box">Operational source</div><div class="arrow">+</div><div class="box">Engineering source</div><div class="arrow">→</div><div class="box" style="border-color:var(--cyan)">NMM Canonical Graph</div></div>
+<p class="lead">Upstream system tetap authoritative untuk native fact-nya; NMM authoritative untuk hasil reconciliation dan model publication.</p>
+<div class="footer"><span>Federated source ownership, canonical publication.</span><span>3</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Scope MVP</div>
+<h2>Input per GI, review per bay, publish per GI.</h2>
+<div class="grid3">
+<div class="card"><div class="big">INPUT</div><p>1 cleaned GI asset extract + 1 GI SLD.</p></div>
+<div class="card"><div class="big">REVIEW</div><p>Exception/ambiguity per bay.</p></div>
+<div class="card"><div class="big">OUTPUT</div><p>Canonical GI graph + SLD + CIM + report.</p></div>
+</div>
+<p class="lead">Per-bay terlalu sempit untuk konteks busbar/coupler; raw bulk terlalu luas untuk MVP karena bercampur dengan enterprise cleansing.</p>
+<div class="footer"><span>Bulk nanti: staging → per-GI job splitter.</span><span>4</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Boundary data</div>
+<h2>Cleansing berhenti sebelum topology.</h2>
+<div class="grid2">
+<div class="card"><h3>Sudah clean sebelum masuk NMM</h3><ul><li>asset/source identity</li><li>GI scope</li><li>location/bay containment</li><li>basic asset type</li><li>duplicate/orphan flag</li><li>source provenance</li></ul></div>
+<div class="card"><h3>NMM yang menyelesaikan</h3><ul><li>functional grouping</li><li>PMS/PMT/ES role</li><li>equipment sequence</li><li>Terminal/ConnectivityNode</li><li>topology validation</li><li>readiness</li></ul></div>
+</div>
+<div class="footer"><span>Kalau topology harus diisi manual di Excel, value NMM hilang.</span><span>5</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Workflow</div>
+<h2>User mengoreksi model — bukan membangun ulang model.</h2>
+<div class="code">clean asset table           GI SLD
+       │                      │
+       ▼                      ▼
+normalize asset        topology evidence
+       └──────────┬───────────┘
+                  ▼
+              RECONCILE
+          AUTO / REVIEW / GAP
+                  │
+                  ▼
+             BAY REVIEW
+                  │
+                  ▼
+        CANONICAL GI GRAPH
+          │       │       │
+          ▼       ▼       ▼
+         CIM     SLD    readiness</div>
+<div class="footer"><span>XY = presentation, bukan connectivity.</span><span>6</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Readiness</div>
+<h2>Diagram lengkap tidak otomatis berarti model siap studi.</h2>
+<table>
+<tr><th>Level</th><th>Status</th><th>Meaning</th></tr>
+<tr><td>L0</td><td>ASSET_READY</td><td>identity + containment</td></tr>
+<tr><td>L1</td><td>TOPOLOGY_READY</td><td>functional role + Terminal/ConnectivityNode</td></tr>
+<tr><td>L2</td><td>CIM_READY</td><td>supported semantic/profile export</td></tr>
+<tr><td>L3</td><td>LOADFLOW_READY</td><td>R/X/B + trafo model + P/Q + scenario</td></tr>
+<tr><td>L4</td><td>PROTECTION_STUDY_READY</td><td>CT/PT + setting + protection context</td></tr>
+</table>
+<p class="lead">Pilot pertama berhenti di L2.</p>
+<div class="footer"><span>External tools tetap menjalankan studi.</span><span>7</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Governance</div>
+<h2>SSOT hanya sustainable kalau ownership tiap domain jelas.</h2>
+<table>
+<tr><th>Domain</th><th>Candidate source</th><th>Discussion owner</th></tr>
+<tr><td>Asset identity/lifecycle</td><td>Maximo / asset source</td><td>UIT + asset owner</td></tr>
+<tr><td>As-built topology</td><td>approved SLD / as-built</td><td>UIT / engineering owner</td></tr>
+<tr><td>Operational state</td><td>EMS/SCADA / dispatch</td><td>P2B</td></tr>
+<tr><td>Protection / defense scheme</td><td>protection repository</td><td>OSL / protection owner</td></tr>
+<tr><td>Engineering taxonomy</td><td>engineering standard</td><td>TSJ / RST as applicable</td></tr>
+<tr><td>Published network model</td><td>NMM registry</td><td>BPO-designated Network Model Owner</td></tr>
+</table>
+<p class="small">Ini proposal untuk diskusi, bukan klaim mandat organisasi yang sudah berlaku.</p>
+<div class="footer"><span>No silent overwrite; versioned publication.</span><span>8</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Data request ke BPO</div>
+<h2>Yang diminta hanya dua evidence set untuk satu GI.</h2>
+<div class="grid2">
+<div class="card"><h3>1. Cleaned asset extract</h3><p>ASSETNUM, SITEID, GI, LOCATION/bay, ASSETTYPE, description, NIA/TECHIDENTNO bila ada, phase bila ada, source revision.</p></div>
+<div class="card"><h3>2. Corresponding SLD</h3><p>Full primary GI SLD, revision/date jelas, approved/as-built jika tersedia, label dan primary equipment terbaca.</p></div>
+</div>
+<p class="lead">Tidak meminta BPO menambahkan Terminal, ConnectivityNode, PMS role, XY, impedance, P/Q, atau relay setting untuk pilot pertama.</p>
+<div class="footer"><span>Minimum request, maximum feasibility signal.</span><span>9</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Belum diperlukan</div>
+<h2>Jangan menunggu data engineering lengkap untuk menjawab feasibility topology.</h2>
+<div class="grid3">
+<div class="card"><h3>Later</h3><p>R/X/B, transformer impedance, P/Q, dispatch.</p></div>
+<div class="card"><h3>Later</h3><p>SCADA real-time, relay setting, defense-scheme logic.</p></div>
+<div class="card"><h3>Later</h3><p>cross-border CGMES package dan broader operational profiles.</p></div>
+</div>
+<div class="footer"><span>Topology feasibility first.</span><span>10</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Deliverable & KPI</div>
+<h2>BPO mendapat model dan ukuran beban kerja manual.</h2>
+<div class="grid3">
+<div class="card"><div class="big">≥95%</div><p>asset rows tanpa retyping</p></div>
+<div class="card"><div class="big">≥80%</div><p>functional grouping auto/proposed</p></div>
+<div class="card"><div class="big">≥80%</div><p>topology relation dari evidence</p></div>
+<div class="card"><div class="big">&lt;20%</div><p>object perlu human decision</p></div>
+<div class="card"><div class="big">100%</div><p>assumption/conflict visible</p></div>
+<div class="card"><div class="big">0</div><p>dangling internal reference</p></div>
+</div>
+<p class="small">Discussion target, bukan final policy threshold.</p>
+<div class="footer"><span>Feasibility = reduction of manual work.</span><span>11</span></div>
+</section>
+
+<section class="slide">
+<div class="kicker">Security</div>
+<h2>Model tetap PLN-controlled, versioned, dan auditable.</h2>
+<div class="grid3">
+<div class="card"><h3>Source</h3><p>Immutable evidence + hash/revision.</p></div>
+<div class="card"><h3>Access</h3><p>RBAC / least privilege / controlled export.</p></div>
+<div class="card"><h3>Release</h3><p>Draft → Reviewed → Published + rollback.</p></div>
+</div>
+<div class="footer"><span>Read-only ingestion by default.</span><span>12</span></div>
+</section>
+
+<section class="slide decision">
+<div class="kicker" style="color:#8fe5f3">Decision request</div>
+<h1>Untuk memulai, BPO cukup memilih satu GI dan memberikan dua evidence set.</h1>
+<div class="grid2">
+<div class="card"><h3>Data</h3><p>Cleaned asset extract + corresponding SLD/revision.</p></div>
+<div class="card"><h3>People</h3><p>Source owner + satu engineering reviewer untuk exception review.</p></div>
+<div class="card"><h3>Governance</h3><p>Pilot Network Model Owner + handling/security constraint.</p></div>
+<div class="card"><h3>Decision after pilot</h3><p>Scale, improve upstream data first, atau re-scope/stop.</p></div>
+</div>
+<p class="lead" style="color:#d7ebf4;margin-top:26px">Tujuan pilot bukan membuktikan bahwa XML bisa dibuat. Tujuannya membuktikan bahwa model jaringan bisa dibangun dan dipelihara dengan effort yang layak.</p>
+<div class="footer"><span>One-GI feasibility before national scale</span><span>13</span></div>
+</section>
+
+</body></html>

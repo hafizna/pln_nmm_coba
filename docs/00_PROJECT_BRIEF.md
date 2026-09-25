@@ -2,60 +2,27 @@
 
 Direction finalized 25 September 2026.
 
-## Objective
+Repo ini menguji apakah data existing PLN dapat direkonsiliasi menjadi
+authoritative network model dengan manual re-entry seminimal mungkin.
 
-Evaluate whether PLN can build a governed Network Model Management layer from
-existing data **without requiring large-scale manual re-entry**.
+MVP boundary:
 
-The first feasibility unit is **one GI**.
+- **input:** one structurally-cleaned GI asset extract + corresponding GI SLD;
+- **review:** per bay;
+- **publication:** one canonical GI model;
+- **bulk:** later staging + per-GI orchestration.
 
-## MVP contract
+NMM menjadi governed network-model layer; upstream system tetap authoritative
+untuk native fact-nya.
 
-Input:
+Master product/governance/data-request document:
 
-- structurally cleaned asset extract for one GI;
-- matching/relevant GI SLD with revision/source information.
+[16_NMM_SSOT_REALIGNMENT_AND_PILOT.md](16_NMM_SSOT_REALIGNMENT_AND_PILOT.md)
 
-Review:
+Implementation roadmap:
 
-- per bay, exception-only.
+[07_PHASES.md](07_PHASES.md)
 
-Output:
+Target code structure:
 
-- canonical GI network graph;
-- generated SLD;
-- CIM/XML;
-- reconciliation/provenance/readiness report;
-- published model version.
-
-## Why one GI
-
-Per bay is too narrow to establish busbar/coupler/inter-bay context.
-
-Raw UPT/ULTG bulk is too broad for the first feasibility test because it mixes
-enterprise cleansing with network reconstruction.
-
-Future bulk support will stage/clean data and split it into independent GI jobs.
-
-## Product boundary
-
-NMM is the SSOT for the **published network model**, not for every upstream
-native fact.
-
-It does not replace:
-
-- asset master/Maximo;
-- approved SLD/as-built source;
-- EMS/SCADA;
-- protection repositories;
-- PowerFactory/PSS®E/ETAP.
-
-It reconciles them through stable identity, topology, provenance, versioning and
-publication governance.
-
-## Immediate acceptance question
-
-> Can one GI be reconstructed from existing asset data + SLD evidence with
-> substantially less engineering effort than rebuilding the model manually?
-
-The result determines whether to scale, improve upstream data first, or re-scope.
+[19_REPO_TARGET_STRUCTURE.md](19_REPO_TARGET_STRUCTURE.md)
